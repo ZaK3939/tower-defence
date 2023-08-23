@@ -123,7 +123,6 @@ export class Game extends Phaser.Game implements IGame {
       registerScript("https://sdk.crazygames.com/crazygames-sdk-v2.js");
     }
 
-    console.log("Game is started");
     this.events.on(Phaser.Core.Events.READY, () => {
       this.screen = <IScreen>this.scene.getScene(GameScene.SCREEN);
       this.world = <IWorld>this.scene.getScene(GameScene.WORLD);

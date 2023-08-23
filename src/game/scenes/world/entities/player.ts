@@ -427,7 +427,6 @@ export class Player extends Sprite implements IPlayer {
 
     const oldMoving = this.isMoving;
     const oldDirection = this.direction;
-    console.log(key);
     if (x !== 0 || y !== 0) {
       this.isMoving = true;
       this.direction = PLAYER_MOVE_DIRECTIONS[key];

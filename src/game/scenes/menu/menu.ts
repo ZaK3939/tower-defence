@@ -15,9 +15,8 @@ export class Menu extends Scene {
     new Interface(this, MenuUI, {
       defaultPage: data.page,
     });
-    console.log("Menu scene created");
+
     if (!this.game.isStarted) {
-      console.log("Start game", this.game);
       this.game.world.camera.focusOnLevel();
     }
   }
