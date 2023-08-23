@@ -1,9 +1,23 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "moduleResolution": "node"
-    },
-    "include": [
-        "./src/**/*"
-    ]
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "es6",
+    "target": "es6",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@entity/*": ["./src/game/scenes/world/entities/*"],
+      "@scene/*": ["./src/game/scenes/*"],
+      "@game/*": ["./src/game/*"],
+      "@type/*": ["./src/types/*"],
+      "@const/*": ["./src/const/*"],
+      "@lib/*": ["./src/lib/*"]
+    }
+  },
+  "include": ["./src/**/*"]
 }

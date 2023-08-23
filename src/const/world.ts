@@ -1,0 +1,5 @@
+export const WORLD_COLLIDE_SPEED_FACTOR = 0.002;
+
+export const WORLD_DEPTH_DEBUG = 9999;
+
+export const WORLD_DEPTH_EFFECT = 9998;

@@ -1,0 +1,1 @@
+export const WAVE_TIMELEFT_ALARM = 3000;

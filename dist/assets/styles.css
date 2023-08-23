@@ -1,0 +1,45 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  background: #222;
+}
+
+img {
+  image-rendering: pixelated;
+}
+
+.system-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  padding: 100px;
+  font: 20px 'Verdana';
+  font-weight: bold;
+  line-height: 20pt;
+  letter-spacing: 2px;
+  color: #aaa;
+  text-align: center;
+  z-index: 999;
+}
+
+.loading-animation {
+  width: 49px;
+  height: 90px;
+  background: url('./loading.gif') center top no-repeat;
+  background-size: 100%;
+  margin-bottom: 40px;
+  position: relative;
+}
