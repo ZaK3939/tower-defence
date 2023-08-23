@@ -13,7 +13,7 @@ export const Copyright: React.FC = () => (
       </Link>
       <Version>Version {pkg.version}</Version>
     </About>
-    <Discord href="https://discord.gg/cnFAdMsRxn" target="_blank">
+    <Discord href="https://discord.com/invite/phi" target="_blank">
       <Icon src="assets/discord.png" />
       DISCORD
     </Discord>
