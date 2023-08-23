@@ -16,11 +16,16 @@ export const ENEMY_PATH_BREAKPOINT = 32;
 export const ENEMY_SPAWN_POSITIONS_GRID = 4;
 
 export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
-  [EnemyTexture.BAT]: {
+  [EnemyTexture.RedCandle]: {
     frameRate: 4,
+    // size: {
+    //   width: 12,
+    //   height: 18,
+    //   gamut: 4,
+    // },
     size: {
-      width: 12,
-      height: 18,
+      width: 60,
+      height: 58.78,
       gamut: 4,
     },
   },

@@ -1,7 +1,7 @@
 {
-  "name": "phaser3-typescript-project-template",
-  "version": "1.2.0",
-  "description": "A Phaser 3 Project Template using Rollup and TypeScript",
+  "name": "tower-defense",
+  "version": "0.0.1",
+  "description": "Build and Defence in the onchain crypto world",
   "main": "src/index.ts",
   "scripts": {
     "start": "webpack serve --mode development",
@@ -11,28 +11,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/photonstorm/phaser3-typescript-project-template.git"
+    "url": "git+https://github.com/ZaK3939/tower-defence.git"
   },
   "author": {
     "name": "ZaK3939",
     "email": "test@test.com",
-    "url": "https://test"
+    "url": "https://twitter.com/ZacK_3939"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/photonstorm/phaser3-typescript-project-template/issues"
+    "url": "https://github.com/ZaK3939/tower-defence/issues"
   },
-  "homepage": "https://github.com/photonstorm/phaser3-typescript-project-template#readme",
+  "homepage": "https://github.com/ZaK3939/tower-defence#readme",
   "devDependencies": {
     "@babel/core": "7.22.9",
     "@babel/preset-env": "7.22.9",
     "@babel/preset-react": "7.22.5",
-    "@rollup/plugin-commonjs": "^24.0.1",
-    "@rollup/plugin-json": "^6.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.2",
-    "@rollup/plugin-replace": "^5.0.2",
-    "@rollup/plugin-terser": "^0.4.0",
-    "@rollup/plugin-typescript": "^11.1.0",
     "@types/node": "^20.5.2",
     "@types/heap": "0.2.31",
     "@types/react": "18.2.18",
@@ -49,8 +43,6 @@
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "^18.2.0",
-    "rollup": "^3.20.2",
-    "rollup-plugin-serve": "^2.0.2",
     "styled-components": "6.0.1",
     "ts-loader": "9.4.4",
     "typescript": "5.1.6",

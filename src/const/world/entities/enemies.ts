@@ -1,4 +1,4 @@
-import { EnemyBat } from "@game/scenes/world/entities/npc/variants/enemy/variants/bat";
+import { EnemyRedCandle } from "@entity/npc/variants/enemy/variants/redCandle";
 import { EnemyBoss } from "@game/scenes/world/entities/npc/variants/enemy/variants/boss";
 import { EnemyDemon } from "@game/scenes/world/entities/npc/variants/enemy/variants/demon";
 import { EnemyImpure } from "@game/scenes/world/entities/npc/variants/enemy/variants/impure";
@@ -10,7 +10,7 @@ import { EnemyUndead } from "@game/scenes/world/entities/npc/variants/enemy/vari
 import { EnemyVariant, IEnemyFactory } from "@type/world/entities/npc/enemy";
 
 export const ENEMIES: Record<EnemyVariant, IEnemyFactory> = {
-  [EnemyVariant.BAT]: EnemyBat,
+  [EnemyVariant.RedCandle]: EnemyRedCandle,
   [EnemyVariant.DEMON]: EnemyDemon,
   [EnemyVariant.RISPER]: EnemyRisper,
   [EnemyVariant.SPIKE]: EnemySpike,

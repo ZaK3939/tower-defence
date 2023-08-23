@@ -427,7 +427,7 @@ export class Player extends Sprite implements IPlayer {
 
     const oldMoving = this.isMoving;
     const oldDirection = this.direction;
-
+    console.log(key);
     if (x !== 0 || y !== 0) {
       this.isMoving = true;
       this.direction = PLAYER_MOVE_DIRECTIONS[key];
@@ -509,10 +509,11 @@ export class Player extends Sprite implements IPlayer {
     Object.values(PLAYER_MOVE_ANIMATIONS).forEach((key, index) => {
       this.anims.create({
         key,
-        frames: this.anims.generateFrameNumbers(PlayerTexture.PLAYER, {
-          start: index * 4,
-          end: (index + 1) * 4 - 1,
-        }),
+        // frames: this.anims.generateFrameNumbers(PlayerTexture.PLAYER, {
+        //   start: index * 4,
+        //   end: (index + 1) * 4 - 1,
+        // }),
+        frames: this.anims.generateFrameNumbers(PlayerTexture.PLAYER, {}),
         frameRate: 8,
         repeat: -1,
       });

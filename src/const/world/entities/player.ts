@@ -9,9 +9,14 @@ import {
 
 import { DIFFICULTY } from "../difficulty";
 
+// export const PLAYER_TILE_SIZE = {
+//   width: 20,
+//   height: 30,
+//   gamut: 4,
+// };
 export const PLAYER_TILE_SIZE = {
-  width: 20,
-  height: 30,
+  width: 69,
+  height: 89,
   gamut: 4,
 };
 
