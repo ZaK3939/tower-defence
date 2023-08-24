@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 
 import { AUDIO_VOLUME, CONTAINER_ID, DEBUG_MODS, SETTINGS } from "@const/game";
+import { Analytics } from "@lib/analytics";
 import { Tutorial } from "@lib/tutorial";
 import { eachEntries, registerScript } from "@lib/utils";
 
@@ -18,6 +19,7 @@ import { MenuPage } from "@type/menu";
 import { IScreen } from "@type/screen";
 import { IWorld } from "@type/world";
 import { ITutorial } from "@type/tutorial";
+import { IAnalytics } from "@type/analytics";
 import { shaders } from "../shaders";
 import { Gameover } from "@game/scenes/gameover";
 import { Screen } from "@game/scenes/screen";
@@ -27,6 +29,8 @@ import { World } from "@scene/world";
 
 export class Game extends Phaser.Game implements IGame {
   readonly tutorial: ITutorial;
+
+  readonly analytics: IAnalytics;
 
   private flags: string[];
 
@@ -114,7 +118,9 @@ export class Game extends Phaser.Game implements IGame {
         },
       },
     });
+
     this.tutorial = new Tutorial();
+    this.analytics = new Analytics();
 
     this.readFlags();
     this.readSettings();
@@ -150,15 +156,15 @@ export class Game extends Phaser.Game implements IGame {
       }
     );
 
-    // window.onerror = (message, path, line, column, error) => {
-    //   if (error) {
-    //     this.analytics.trackError(error);
-    //   } else if (typeof message === "string") {
-    //     this.analytics.trackError(new Error(message));
-    //   }
+    window.onerror = (message, path, line, column, error) => {
+      if (error) {
+        this.analytics.trackError(error);
+      } else if (typeof message === "string") {
+        this.analytics.trackError(new Error(message));
+      }
 
-    //   return false;
-    // };
+      return false;
+    };
   }
 
   public pauseGame() {

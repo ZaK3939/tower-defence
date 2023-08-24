@@ -26,7 +26,7 @@ export interface IEnemyTarget {
 }
 
 export enum EnemyTexture {
-  RedCandle = "enemy/bat",
+  RedCandle = "enemy/redCandle",
   SPIKE = "enemy/spike",
   RISPER = "enemy/risper",
   DEMON = "enemy/demon",
