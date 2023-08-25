@@ -75,5 +75,5 @@ export const AdsReward: React.FC = () => {
         <Amount type="experience">+{adsReward.experience}</Amount>
       </Amounts>
     </Modal>
-  ) : null; // isAdsOfferOpenがnullの場合にnullを返す
+  ) : null;
 };

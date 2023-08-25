@@ -1,5 +1,5 @@
 import { MIN_VALID_SCREEN_SIZE } from "@const/game";
-import { Vector2D, Vector3D } from "@type/level";
+import { Vector2D, Vector3D } from "@type/world/level";
 
 /**
  * Check positions is equals.

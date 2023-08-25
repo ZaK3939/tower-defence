@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import { ILive } from "./live";
-import { Vector2D, LevelBiome, TileType } from "@type/level";
+import { Vector2D, LevelBiome, TileType } from "@type/world/level";
 import { IWorld } from "@type/world";
 import { EntityType } from "../entities";
 import { IParticlesParent } from "@type/world/effects";

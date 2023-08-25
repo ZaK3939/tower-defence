@@ -1,5 +1,5 @@
 import { ILive } from "./utils/live";
-import { Vector2D } from "@type/level";
+import { Vector2D } from "@type/world/level";
 import { ISprite } from "./utils/sprite";
 import { IEnemyTarget } from "./npc/enemy";
 

@@ -31,7 +31,6 @@ export class Camera implements ICamera {
   }
 
   public focusOnLevel() {
-    console.log("focusOnLevel");
     const camera = this.scene.cameras.main;
     const size = this.scene.level.size - 1;
     const beg = Level.ToWorldPosition({ x: 0, y: size, z: 0 });

@@ -2,7 +2,7 @@ import * as Phaser from "phaser";
 
 import { IScene } from "@type/scene";
 import { IPlayer } from "@type/world/entities/player";
-import { ILevel, Vector2D } from "@type/level/level";
+import { ILevel, Vector2D } from "@type/world/level/level";
 import { IWave } from "./wave";
 import { IAssistant } from "./entities/npc/assistant";
 import { IBuilder } from "./builder";

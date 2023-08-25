@@ -1,4 +1,4 @@
-import { Vector2D } from "@type/level";
+import { Vector2D } from "@type/world/level";
 
 export interface INavigator {
   /**

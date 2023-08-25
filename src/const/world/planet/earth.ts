@@ -2,7 +2,7 @@ import { BiomeType, LevelBiomes, SpawnTarget } from "@type/world/level";
 
 export const LEVEL_BIOMES_EARTH: LevelBiomes = [
   {
-    params: { upperBound: 0.12 },
+    params: { upperBound: 0.06 },
     data: {
       type: BiomeType.WATER,
       tileIndex: 0,
@@ -13,7 +13,7 @@ export const LEVEL_BIOMES_EARTH: LevelBiomes = [
     },
   },
   {
-    params: { lowerBound: 0.12, upperBound: 0.15 },
+    params: { lowerBound: 0.06, upperBound: 0.1 },
     data: {
       type: BiomeType.WATER,
       tileIndex: 1,
@@ -24,7 +24,7 @@ export const LEVEL_BIOMES_EARTH: LevelBiomes = [
     },
   },
   {
-    params: { lowerBound: 0.15, upperBound: 0.17 },
+    params: { lowerBound: 0.1, upperBound: 0.12 },
     data: {
       type: BiomeType.WATER,
       tileIndex: 2,
@@ -35,7 +35,7 @@ export const LEVEL_BIOMES_EARTH: LevelBiomes = [
     },
   },
   {
-    params: { lowerBound: 0.17, upperBound: 0.2 },
+    params: { lowerBound: 0.12, upperBound: 0.18 },
     data: {
       type: BiomeType.SAND,
       tileIndex: 6,
@@ -47,15 +47,15 @@ export const LEVEL_BIOMES_EARTH: LevelBiomes = [
     },
   },
   {
-    params: { lowerBound: 0.2, upperBound: 0.24 },
+    params: { lowerBound: 0.18, upperBound: 0.24 },
     data: {
       type: BiomeType.SAND,
       tileIndex: [7, 8],
       z: 0,
       collide: false,
-      solid: true,
+      solid: false,
       friction: 1.2,
-      spawn: [SpawnTarget.ENEMY, SpawnTarget.CRYSTAL],
+      spawn: [SpawnTarget.ENEMY],
     },
   },
   {

@@ -15,8 +15,8 @@ import { DIFFICULTY } from "../difficulty";
 //   gamut: 4,
 // };
 export const PLAYER_TILE_SIZE = {
-  width: 69,
-  height: 89,
+  width: 40,
+  height: 51.59,
   gamut: 4,
 };
 

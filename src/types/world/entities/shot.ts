@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import { IParticlesParent } from "../effects";
-import { Vector2D } from "@type/level";
+import { Vector2D } from "@type/world/level";
 
 import { IWorld } from "../world";
 import { IEnemy } from "./npc/enemy";

@@ -2,7 +2,7 @@ import Phaser from "phaser";
 import { IParticlesParent } from "../effects";
 import { IWorld } from "../world";
 import { ILive } from "./utils/live";
-import { Vector2D } from "@type/level";
+import { Vector2D } from "@type/world/level";
 import { IShotInitiator } from "./shot";
 import { IEnemyTarget } from "./npc/enemy";
 

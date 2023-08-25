@@ -7,7 +7,7 @@ import { GameDifficulty, IGame } from "@type/game";
 
 import { Param } from "./param";
 import { Wrapper, Params } from "./styles";
-import { LevelPlanet } from "@type/level";
+import { LevelPlanet } from "@type/world/level";
 
 export const NewGame: React.FC = () => {
   const game = useGame<IGame>();

@@ -37,11 +37,19 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 4,
     },
   },
+  // [EnemyTexture.DEMON]: {
+  //   frameRate: 4,
+  //   size: {
+  //     width: 16,
+  //     height: 24,
+  //     gamut: 4,
+  //   },
+  // },
   [EnemyTexture.DEMON]: {
     frameRate: 4,
     size: {
-      width: 16,
-      height: 24,
+      width: 98,
+      height: 90,
       gamut: 4,
     },
   },
@@ -85,11 +93,19 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 6,
     },
   },
+  // [EnemyTexture.BOSS]: {
+  //   frameRate: 4,
+  //   size: {
+  //     width: 64,
+  //     height: 80,
+  //     gamut: 12,
+  //   },
+  // },
   [EnemyTexture.BOSS]: {
     frameRate: 4,
     size: {
-      width: 64,
-      height: 80,
+      width: 193,
+      height: 216,
       gamut: 12,
     },
   },

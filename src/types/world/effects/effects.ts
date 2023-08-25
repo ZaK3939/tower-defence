@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 import { IWorld } from "../world";
-import { Vector2D } from "@type/level";
+import { Vector2D } from "@type/world/level";
 
 export interface IEffect extends Phaser.GameObjects.Sprite {
   readonly scene: IWorld;
