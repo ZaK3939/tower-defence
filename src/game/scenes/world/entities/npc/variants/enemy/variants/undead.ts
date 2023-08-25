@@ -4,7 +4,7 @@ import { EnemyVariantData, EnemyTexture } from "@type/world/entities/npc/enemy";
 import { Enemy } from "../enemy";
 
 export class EnemyUndead extends Enemy {
-  static SpawnWaveRange = [7];
+  static SpawnWaveRange = [3, 4];
 
   constructor(scene: IWorld, data: EnemyVariantData) {
     super(scene, {
