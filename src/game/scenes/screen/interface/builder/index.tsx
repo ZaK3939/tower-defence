@@ -25,7 +25,7 @@ export const Builder: React.FC = () => {
       case TutorialStep.BUILD_GENERATOR: {
         return setHint({
           variant: BuildingVariant.GENERATOR,
-          text: "Build generator to get resources",
+          text: "Build staking tower to get ethereum",
         });
       }
       case TutorialStep.BUILD_RADAR: {

@@ -318,7 +318,7 @@ export class Building
     const cost = this.getUpgradeCost();
 
     if (this.scene.player.resources < cost) {
-      this.scene.game.screen.notice(NoticeType.ERROR, "Not enough resources");
+      this.scene.game.screen.notice(NoticeType.ERROR, "Not enough ethereum");
 
       return;
     }
@@ -356,7 +356,7 @@ export class Building
     const cost = this.getRepairCost();
 
     if (this.scene.player.resources < cost) {
-      this.scene.game.screen.notice(NoticeType.ERROR, "Not enough resources");
+      this.scene.game.screen.notice(NoticeType.ERROR, "Not enough ethereum");
 
       return;
     }

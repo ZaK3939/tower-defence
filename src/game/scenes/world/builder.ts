@@ -365,7 +365,7 @@ export class Builder extends EventEmitter implements IBuilder {
     }
 
     if (this.scene.player.resources < BuildingInstance.Cost) {
-      this.scene.game.screen.notice(NoticeType.ERROR, "Not enough resources");
+      this.scene.game.screen.notice(NoticeType.ERROR, "Not enough ethereum");
 
       return;
     }

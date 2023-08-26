@@ -34,7 +34,7 @@ export const Resources: React.FC = () => {
       <Amount type="resources">{amount}</Amount>
       {hint && (
         <Hint side="top" align="left">
-          If resources not enough
+          If ethereum not enough
           <br />
           you can find crystals on map
         </Hint>

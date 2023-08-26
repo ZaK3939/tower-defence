@@ -232,7 +232,7 @@ export class Player extends Sprite implements IPlayer {
     const cost = this.getSuperskillCost(type);
 
     if (this.resources < cost) {
-      this.scene.game.screen.notice(NoticeType.ERROR, "Not enough resources");
+      this.scene.game.screen.notice(NoticeType.ERROR, "Not enough ethereum");
 
       return;
     }
