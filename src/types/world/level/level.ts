@@ -108,19 +108,16 @@ export type LevelBiome = {
 
 export enum LevelPlanet {
   EARTH = "EARTH",
-  MOON = "MOON",
   MARS = "MARS",
 }
 
 export enum LevelSceneryTexture {
   EARTH = "level/earth/scenery",
-  MOON = "level/moon/scenery",
   MARS = "level/mars/scenery",
 }
 
 export enum LevelTilesetTexture {
   EARTH = "level/earth/tileset",
-  MOON = "level/moon/tileset",
   MARS = "level/mars/tileset",
 }
 

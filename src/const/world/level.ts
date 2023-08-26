@@ -3,7 +3,6 @@ import { WorldLayerParams } from "gen-biome";
 import { TileMeta, LevelBiomes, LevelPlanet } from "@type/world/level";
 import { LEVEL_BIOMES_EARTH } from "./planet/earth";
 import { LEVEL_BIOMES_MARS } from "./planet/mars";
-import { LEVEL_BIOMES_MOON } from "./planet/moon";
 
 export const LEVEL_MAP_SIZE = 100;
 
@@ -44,12 +43,6 @@ export const LEVEL_PLANETS: Record<
     SCENERY_DENSITY: 2.0,
     SCENERY_VARIANTS: 4,
     CRYSTAL_VARIANTS: [1],
-  },
-  [LevelPlanet.MOON]: {
-    BIOMES: LEVEL_BIOMES_MOON,
-    SCENERY_DENSITY: 1.5,
-    SCENERY_VARIANTS: 8,
-    CRYSTAL_VARIANTS: [3],
   },
   [LevelPlanet.MARS]: {
     BIOMES: LEVEL_BIOMES_MARS,
