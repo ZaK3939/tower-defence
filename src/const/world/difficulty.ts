@@ -164,13 +164,13 @@ export const DIFFICULTY = {
   BUILDING_TOWER_LAZER_DAMAGE: 65, // Attack damage
 
   /**
-   * Building: Generator
+   * Building: Staking
    */
 
-  BUILDING_GENERATOR_COST: 20, // Building cost
-  BUILDING_GENERATOR_HEALTH: 300, // Health
-  BUILDING_GENERATOR_DELAY: 1300, // Pause between resource generations
-  BUILDING_GENERATOR_DELAY_GROWTH: -0.154, // Pause growth by level (Linear)
+  BUILDING_STAKING_COST: 20, // Building cost
+  BUILDING_STAKING_HEALTH: 300, // Health
+  BUILDING_STAKING_DELAY: 1300, // Pause between resource generations
+  BUILDING_STAKING_DELAY_GROWTH: -0.154, // Pause growth by level (Linear)
 
   /**
    * Building: Ammunition

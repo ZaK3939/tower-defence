@@ -204,8 +204,8 @@ export class Player extends Sprite implements IPlayer {
     this.resources -= amount;
 
     if (
-      this.resources < DIFFICULTY.BUILDING_GENERATOR_COST &&
-      this.scene.builder.getBuildingsByVariant(BuildingVariant.GENERATOR)
+      this.resources < DIFFICULTY.BUILDING_STAKING_COST &&
+      this.scene.builder.getBuildingsByVariant(BuildingVariant.STAKING)
         .length === 0
     ) {
       this.scene.game.tutorial.start(TutorialStep.RESOURCES);

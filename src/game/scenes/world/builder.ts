@@ -184,8 +184,8 @@ export class Builder extends EventEmitter implements IBuilder {
         variant: BuildingVariant.TOWER_FIRE,
       },
       {
-        step: TutorialStep.BUILD_GENERATOR,
-        variant: BuildingVariant.GENERATOR,
+        step: TutorialStep.BUILD_STAKING,
+        variant: BuildingVariant.STAKING,
       },
     ];
 
@@ -515,7 +515,7 @@ export class Builder extends EventEmitter implements IBuilder {
       },
     });
 
-    this.scene.game.tutorial.bind(TutorialStep.BUILD_GENERATOR, {
+    this.scene.game.tutorial.bind(TutorialStep.BUILD_STAKING, {
       beg: () => {
         this.scene.setTimePause(true);
       },

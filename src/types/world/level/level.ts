@@ -107,18 +107,18 @@ export type LevelBiome = {
 };
 
 export enum LevelPlanet {
-  EARTH = "EARTH",
-  MARS = "MARS",
+  DUNGEONS = "DUNGEONS",
+  CRYPTO = "CRYPTO",
 }
 
 export enum LevelSceneryTexture {
-  EARTH = "level/earth/scenery",
-  MARS = "level/mars/scenery",
+  DUNGEONS = "level/dungeons/scenery",
+  CRYPTO = "level/crypto/scenery",
 }
 
 export enum LevelTilesetTexture {
-  EARTH = "level/earth/tileset",
-  MARS = "level/mars/tileset",
+  DUNGEONS = "level/dungeons/tileset",
+  CRYPTO = "level/crypto/tileset",
 }
 
 export enum BiomeType {

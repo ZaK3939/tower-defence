@@ -121,7 +121,7 @@ export class BuildingTowerFire extends BuildingTower {
       TutorialStepState.IN_PROGRESS
     ) {
       this.scene.game.tutorial.complete(TutorialStep.BUILD_TOWER_FIRE);
-      this.scene.game.tutorial.start(TutorialStep.BUILD_GENERATOR);
+      this.scene.game.tutorial.start(TutorialStep.BUILD_STAKING);
     }
   }
 }

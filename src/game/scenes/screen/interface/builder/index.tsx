@@ -22,9 +22,9 @@ export const Builder: React.FC = () => {
 
   const showHint = (step: TutorialStep) => {
     switch (step) {
-      case TutorialStep.BUILD_GENERATOR: {
+      case TutorialStep.BUILD_STAKING: {
         return setHint({
-          variant: BuildingVariant.GENERATOR,
+          variant: BuildingVariant.STAKING,
           text: "Build staking tower to get ethereum",
         });
       }
@@ -51,7 +51,7 @@ export const Builder: React.FC = () => {
 
   const hideHint = (step: TutorialStep) => {
     switch (step) {
-      case TutorialStep.BUILD_GENERATOR:
+      case TutorialStep.BUILD_STAKING:
       case TutorialStep.BUILD_RADAR:
       case TutorialStep.BUILD_TOWER_FIRE:
       case TutorialStep.BUILD_AMMUNITION: {

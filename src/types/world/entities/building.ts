@@ -152,7 +152,7 @@ export enum BuildingVariant {
   TOWER_FIRE = "TOWER_FIRE",
   TOWER_LAZER = "TOWER_LAZER",
   TOWER_FROZEN = "TOWER_FROZEN",
-  GENERATOR = "GENERATOR",
+  STAKING = "STAKING",
   AMMUNITION = "AMMUNITION",
   RADAR = "RADAR",
 }
@@ -162,7 +162,7 @@ export enum BuildingTexture {
   TOWER_FIRE = "building/textures/tower_fire",
   TOWER_FROZEN = "building/textures/tower_frozen",
   TOWER_LAZER = "building/textures/tower_lazer",
-  GENERATOR = "building/textures/generator",
+  STAKING = "building/textures/staking",
   AMMUNITION = "building/textures/ammunition",
   RADAR = "building/textures/radar",
 }

@@ -129,7 +129,7 @@ export class World extends Scene implements IWorld {
       loop: true,
     });
 
-    this.level = new Level(this, data.planet ?? LevelPlanet.EARTH);
+    this.level = new Level(this, data.planet ?? LevelPlanet.DUNGEONS);
     this.camera = new Camera(this);
 
     this.generateEnemySpawnPositions();
@@ -191,7 +191,7 @@ export class World extends Scene implements IWorld {
 
   public getResourceExtractionSpeed() {
     const generators = this.builder.getBuildingsByVariant(
-      BuildingVariant.GENERATOR
+      BuildingVariant.STAKING
     );
     const countPerSecond = generators.reduce(
       (current, generator) =>

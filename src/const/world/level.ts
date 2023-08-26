@@ -1,8 +1,8 @@
 import { WorldLayerParams } from "gen-biome";
 
 import { TileMeta, LevelBiomes, LevelPlanet } from "@type/world/level";
-import { LEVEL_BIOMES_EARTH } from "./planet/earth";
-import { LEVEL_BIOMES_MARS } from "./planet/mars";
+import { LEVEL_BIOMES_DUNGEONS } from "./planet/dungeons";
+import { LEVEL_BIOMES_CRYPTO } from "./planet/crypto";
 
 export const LEVEL_MAP_SIZE = 100;
 
@@ -38,14 +38,14 @@ export const LEVEL_PLANETS: Record<
     CRYSTAL_VARIANTS: number[];
   }
 > = {
-  [LevelPlanet.EARTH]: {
-    BIOMES: LEVEL_BIOMES_EARTH,
+  [LevelPlanet.DUNGEONS]: {
+    BIOMES: LEVEL_BIOMES_DUNGEONS,
     SCENERY_DENSITY: 2.0,
     SCENERY_VARIANTS: 4,
     CRYSTAL_VARIANTS: [0, 1],
   },
-  [LevelPlanet.MARS]: {
-    BIOMES: LEVEL_BIOMES_MARS,
+  [LevelPlanet.CRYPTO]: {
+    BIOMES: LEVEL_BIOMES_CRYPTO,
     SCENERY_DENSITY: 1.5,
     SCENERY_VARIANTS: 8,
     CRYSTAL_VARIANTS: [2, 3],
