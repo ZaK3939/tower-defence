@@ -29,11 +29,19 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 4,
     },
   },
+  // [EnemyTexture.RISPER]: {
+  //   frameRate: 4,
+  //   size: {
+  //     width: 16,
+  //     height: 24,
+  //     gamut: 4,
+  //   },
+  // },
   [EnemyTexture.RISPER]: {
     frameRate: 4,
     size: {
-      width: 16,
-      height: 24,
+      width: 50,
+      height: 48.98,
       gamut: 4,
     },
   },
@@ -93,19 +101,35 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 4,
     },
   },
+  // [EnemyTexture.OVERLORD]: {
+  //   frameRate: 8,
+  //   size: {
+  //     width: 32,
+  //     height: 40,
+  //     gamut: 6,
+  //   },
+  // },
   [EnemyTexture.OVERLORD]: {
     frameRate: 8,
     size: {
-      width: 32,
-      height: 40,
+      width: 36,
+      height: 50.93,
       gamut: 6,
     },
   },
+  // [EnemyTexture.IMPURE]: {
+  //   frameRate: 8,
+  //   size: {
+  //     width: 32,
+  //     height: 40,
+  //     gamut: 6,
+  //   },
+  // },
   [EnemyTexture.IMPURE]: {
     frameRate: 8,
     size: {
-      width: 32,
-      height: 40,
+      width: 52,
+      height: 52,
       gamut: 6,
     },
   },
