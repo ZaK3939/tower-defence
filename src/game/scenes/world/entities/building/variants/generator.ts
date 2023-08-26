@@ -16,7 +16,7 @@ import {
 export class BuildingGenerator extends Building {
   static Name = "Generator";
 
-  static Description = "Generates ethereums for builds and upgrades";
+  static Description = "Generates Ethereum for builds and upgrades";
 
   static Params: BuildingParam[] = [
     {

@@ -374,10 +374,12 @@ export class World extends Scene implements IWorld {
       )
     );
 
-    for (let i = 0; i < maxCount; i++) {
-      create();
+    console.log("this.wave.numberOfWaves", this.wave.number);
+    if (this.wave.number != 1) {
+      for (let i = 0; i < maxCount; i++) {
+        create();
+      }
     }
-
     this.wave.on(WaveEvents.COMPLETE, () => {
       const newCount =
         maxCount - this.getEntitiesGroup(EntityType.CRYSTAL).getTotalUsed();
