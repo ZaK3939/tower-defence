@@ -24,8 +24,8 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
     //   gamut: 4,
     // },
     size: {
-      width: 60,
-      height: 58.78,
+      width: 35,
+      height: 34.29,
       gamut: 4,
     },
   },
@@ -45,19 +45,35 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
   //     gamut: 4,
   //   },
   // },
+  // [EnemyTexture.DEMON]: {
+  //   frameRate: 4,
+  //   size: {
+  //     width: 98,
+  //     height: 90,
+  //     gamut: 4,
+  //   },
+  // },
   [EnemyTexture.DEMON]: {
     frameRate: 4,
     size: {
-      width: 98,
-      height: 90,
+      width: 49,
+      height: 45,
       gamut: 4,
     },
   },
+  // [EnemyTexture.SPIKE]: {
+  //   frameRate: 4,
+  //   size: {
+  //     width: 16,
+  //     height: 26,
+  //     gamut: 4,
+  //   },
+  // },
   [EnemyTexture.SPIKE]: {
     frameRate: 4,
     size: {
-      width: 16,
-      height: 26,
+      width: 30,
+      height: 36.73,
       gamut: 4,
     },
   },
@@ -72,8 +88,8 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
   [EnemyTexture.UNDEAD]: {
     frameRate: 4,
     size: {
-      width: 79,
-      height: 80,
+      width: 45,
+      height: 45.47,
       gamut: 4,
     },
   },
