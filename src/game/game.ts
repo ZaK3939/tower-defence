@@ -217,6 +217,7 @@ export class Game extends Phaser.Game implements IGame {
 
     this.isStarted = false;
 
+    this.world.stop();
     this.world.scene.restart();
 
     this.tutorial.reset();
@@ -257,10 +258,10 @@ export class Game extends Phaser.Game implements IGame {
     this.scene.systemScene.scene.stop(GameScene.SCREEN);
     this.scene.systemScene.scene.launch(GameScene.GAMEOVER, { stat, record });
 
-    // this.analytics.trackEvent({
-    //   world: this.world,
-    //   success: false,
-    // });
+    this.analytics.trackEvent({
+      world: this.world,
+      success: false,
+    });
   }
 
   public getDifficultyMultiplier() {

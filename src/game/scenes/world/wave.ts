@@ -77,6 +77,13 @@ export class Wave extends EventEmitter implements IWave {
     this.runTimeleft();
   }
 
+  public destroy() {
+    this.removeAllListeners();
+    if (this.alarmInterval) {
+      clearInterval(this.alarmInterval);
+    }
+  }
+
   public getTimeleft() {
     const now = this.scene.getTime();
 
@@ -198,10 +205,10 @@ export class Wave extends EventEmitter implements IWave {
       this.scene.game.tutorial.start(TutorialStep.BUILD_RADAR);
     }
 
-    // this.scene.game.analytics.trackEvent({
-    //   world: this.scene,
-    //   success: true,
-    // });
+    this.scene.game.analytics.trackEvent({
+      world: this.scene,
+      success: true,
+    });
   }
 
   private spawnEnemy() {

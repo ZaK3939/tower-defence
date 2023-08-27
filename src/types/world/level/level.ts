@@ -106,6 +106,11 @@ export type LevelBiome = {
   spawn: SpawnTarget[];
 };
 
+export type LevelData = {
+  planet?: LevelPlanet;
+  seed?: number[];
+};
+
 export enum LevelPlanet {
   DUNGEONS = "DUNGEONS",
   CRYPTO = "CRYPTO",

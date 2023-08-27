@@ -107,7 +107,15 @@ export class Building
 
   constructor(
     scene: IWorld,
-    { positionAtMatrix, health, texture, variant, radius, delay }: BuildingData
+    {
+      positionAtMatrix,
+      instant,
+      health,
+      texture,
+      variant,
+      radius,
+      delay,
+    }: BuildingData
   ) {
     const tilePosition = { ...positionAtMatrix, z: 1 };
     const positionAtWorld = Level.ToWorldPosition(tilePosition);
@@ -137,7 +145,9 @@ export class Building
     this.setOrigin(0.5, LEVEL_TILE_SIZE.origin);
     this.scene.level.putTile(this, tilePosition);
 
-    this.startBuildProcess();
+    if (!instant) {
+      this.startBuildProcess();
+    }
 
     this.scene.level.navigator.setPointCost(
       positionAtMatrix,
@@ -155,6 +165,7 @@ export class Building
       this.unselect();
 
       this.scene.level.navigator.resetPointCost(positionAtMatrix);
+      this.live.removeAllListeners();
     });
   }
 

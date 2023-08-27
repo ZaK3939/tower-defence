@@ -20,7 +20,7 @@ import { Camera } from "@game/scenes/world/camera";
 import { WorldUI } from "@game/scenes/world/interface";
 import { Level } from "@game/scenes/world/level";
 
-import { GameScene } from "@type/game";
+import { GameEvents, GameScene } from "@type/game";
 import { LiveEvents } from "@type/live";
 import { IWorld, WorldEvents, WorldHint } from "@type/world";
 import { IBuilder } from "@type/world/builder";
@@ -31,7 +31,13 @@ import { IAssistant } from "@type/world/entities/npc/assistant";
 import { EnemyVariant, IEnemy } from "@type/world/entities/npc/enemy";
 import { IPlayer, PlayerSkill } from "@type/world/entities/player";
 import { ISprite } from "@type/world/entities/sprite";
-import { ILevel, LevelPlanet, SpawnTarget, Vector2D } from "@type/world/level";
+import {
+  ILevel,
+  LevelData,
+  LevelPlanet,
+  SpawnTarget,
+  Vector2D,
+} from "@type/world/level";
 import { IWave, WaveEvents } from "@type/world/wave";
 import { Builder } from "./builder";
 import { Wave } from "./wave";
@@ -121,7 +127,7 @@ export class World extends Scene implements IWorld {
     super(GameScene.WORLD);
   }
 
-  public create(data: { planet?: LevelPlanet }) {
+  public create(data: LevelData) {
     this.input.setPollAlways();
 
     this.lifecyle = this.time.addEvent({
@@ -129,7 +135,7 @@ export class World extends Scene implements IWorld {
       loop: true,
     });
 
-    this.level = new Level(this, data.planet ?? LevelPlanet.DUNGEONS);
+    this.level = new Level(this, data);
     this.camera = new Camera(this);
 
     this.generateEnemySpawnPositions();
@@ -138,17 +144,22 @@ export class World extends Scene implements IWorld {
   public start() {
     new Interface(this, WorldUI);
 
-    this.addEntityGroups();
-
     this.camera.addZoomControl();
 
-    this.wave = new Wave(this);
+    this.resetTime();
 
+    this.addWaveManager();
+    this.addBuilder();
+
+    this.addEntityGroups();
     this.addPlayer();
     this.addAssistant();
     this.addCrystals();
+  }
 
-    this.builder = new Builder(this);
+  public stop() {
+    this.wave?.destroy();
+    this.builder?.destroy();
   }
 
   public update(time: number, delta: number) {
@@ -187,6 +198,11 @@ export class World extends Scene implements IWorld {
 
   public setTimePause(state: boolean) {
     this.lifecyle.paused = state;
+  }
+
+  private resetTime() {
+    this.setTimePause(false);
+    this.lifecyle.elapsed = 0;
   }
 
   public getResourceExtractionSpeed() {
@@ -306,6 +322,26 @@ export class World extends Scene implements IWorld {
         runChildUpdate: true,
       }),
     };
+  }
+
+  private addWaveManager() {
+    this.wave = new Wave(this);
+
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.wave.destroy();
+    });
+  }
+
+  private addBuilder() {
+    this.builder = new Builder(this);
+
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.builder.destroy();
+    });
+
+    this.game.events.once(GameEvents.FINISH, () => {
+      this.builder.close();
+    });
   }
 
   private addPlayer() {

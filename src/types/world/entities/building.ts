@@ -218,7 +218,14 @@ export type BuildingControl = {
   onClick: () => void;
 };
 
+export type BuildingBuildData = {
+  variant: BuildingVariant;
+  instant?: boolean;
+  positionAtMatrix: Vector2D;
+};
+
 export type BuildingVariantData = {
+  instant?: boolean;
   positionAtMatrix: Vector2D;
 };
 

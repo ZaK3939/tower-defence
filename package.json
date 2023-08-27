@@ -38,7 +38,7 @@
     "alias-reuse": "2.0.0",
     "babel-loader": "9.1.2",
     "copy-webpack-plugin": "11.0.0",
-    "gen-biome": "2.3.2",
+    "gen-biome": "2.4.0",
     "heap": "0.2.7",
     "html-webpack-plugin": "5.5.3",
     "jest": "^29.5.0",

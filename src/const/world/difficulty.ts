@@ -21,7 +21,7 @@ export const DIFFICULTY = {
   ASSISTANT_ATTACK_DAMAGE_GROWTH: 0.55, // Damage growth by upgrade level (Quadratic)
   ASSISTANT_ATTACK_SPEED: 500, // Attack speed
   ASSISTANT_ATTACK_SPEED_GROWTH: 0.1, // Attack speed growth by upgrade level (Quadratic)
-  ASSISTANT_ATTACK_DISTANCE: 70, // Attack distance
+  ASSISTANT_ATTACK_DISTANCE: 100, // Attack distance
   ASSISTANT_ATTACK_DISTANCE_GROWTH: 0.15, // Attack distance growth by upgrade level (Quadratic)
   ASSISTANT_ATTACK_PAUSE: 1000, // Attack pause
   ASSISTANT_ATTACK_PAUSE_GROWTH: -0.15, // Attack pause growth by upgrade level (Quadratic)
@@ -77,7 +77,7 @@ export const DIFFICULTY = {
   ENEMY_HEALTH: 90, // Health
   ENEMY_HEALTH_GROWTH: 0.38, // Health growth by wave number (Quadratic)
   ENEMY_HEALTH_GROWTH_RETARDATION_LEVEL: 13, // Level for health growth retardation
-  ENEMY_ARMOUR: 50, // Armour
+  ENEMY_ARMOUR: 60, // Armour
   ENEMY_ARMOUR_GROWTH: 0.38, // Armour growth by wave number (Quadratic)
   ENEMY_ARMOUR_GROWTH_RETARDATION_LEVEL: 15, // Level for armour growth retardation
   ENEMY_SPEED: 60, // Movement speed

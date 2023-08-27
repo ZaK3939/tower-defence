@@ -3,6 +3,7 @@ import * as Phaser from "phaser";
 import { IScreen } from "./screen";
 import { ITutorial } from "./tutorial";
 import { IWorld } from "./world";
+import { IAnalytics } from "./analytics";
 
 export interface IGame extends Phaser.Game {
   /**
@@ -29,6 +30,11 @@ export interface IGame extends Phaser.Game {
    * Game is started.
    */
   readonly isStarted: boolean;
+
+  /**
+   * Analytics manager.
+   */
+  readonly analytics: IAnalytics;
 
   /**
    * Tutorial manager.
