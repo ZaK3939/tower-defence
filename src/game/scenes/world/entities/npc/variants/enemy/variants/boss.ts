@@ -10,7 +10,7 @@ export class EnemyBoss extends Enemy {
       texture: EnemyTexture.BOSS,
       score: 10,
       multipliers: {
-        health: 7.0,
+        health: 10.0,
         damage: 1.0,
         speed: 0.5,
       },

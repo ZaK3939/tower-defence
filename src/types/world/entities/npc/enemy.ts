@@ -26,27 +26,27 @@ export interface IEnemyTarget {
 }
 
 export enum EnemyTexture {
-  RedCandle = "enemy/redCandle",
-  SPIKE = "enemy/spike",
-  RISPER = "enemy/risper",
-  DEMON = "enemy/demon",
-  OVERLORD = "enemy/overlord",
+  REDCANDLE = "enemy/redCandle",
+  GREENCANDLE = "enemy/greenCandle",
+  LILNOUNSVEHICLE = "enemy/lilNounsVehicle",
+  SONICBAT = "enemy/sonicBat",
+  GNOSISTRUCK = "enemy/gnosisTruck",
   BOSS = "enemy/boss",
-  IMPURE = "enemy/impure",
-  UNDEAD = "enemy/undead",
-  TERMER = "enemy/termer",
+  GITCOINSPACEFIGHTER = "enemy/gitcoinSpacefighter",
+  AAVEDJ = "enemy/aaveDJ",
+  BEARMONSTER = "enemy/bearMonster",
 }
 
 export enum EnemyVariant {
-  RedCandle = "RedCandle",
-  SPIKE = "SPIKE",
-  RISPER = "RISPER",
-  DEMON = "DEMON",
-  OVERLORD = "OVERLORD",
+  REDCANDLE = "REDCANDLE",
+  GREENCANDLE = "GREENCANDLE",
+  LILNOUNSVEHICLE = "LILNOUNSVEHICLE",
+  SONICBAT = "SONICBAT",
+  GNOSISTRUCK = "GNOSISTRUCK",
   BOSS = "BOSS",
-  IMPURE = "IMPURE",
-  UNDEAD = "UNDEAD",
-  TERMER = "TERMER",
+  GITCOINSPACEFIGHTER = "GITCOINSPACEFIGHTER",
+  AAVEDJ = "AAVEDJ",
+  BEARMONSTER = "BEARMONSTER",
 }
 
 export type EnemyTexturesMeta = Record<

@@ -9,7 +9,7 @@ export class EnemyRedCandle extends Enemy {
   constructor(scene: IWorld, data: EnemyVariantData) {
     super(scene, {
       ...data,
-      texture: EnemyTexture.RedCandle,
+      texture: EnemyTexture.REDCANDLE,
       multipliers: {
         health: 0.35,
         damage: 0.1,

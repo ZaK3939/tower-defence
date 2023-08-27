@@ -16,7 +16,7 @@ export const ENEMY_PATH_BREAKPOINT = 32;
 export const ENEMY_SPAWN_POSITIONS_GRID = 4;
 
 export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
-  [EnemyTexture.RedCandle]: {
+  [EnemyTexture.REDCANDLE]: {
     frameRate: 4,
     size: {
       width: 35,
@@ -24,7 +24,7 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 4,
     },
   },
-  [EnemyTexture.RISPER]: {
+  [EnemyTexture.LILNOUNSVEHICLE]: {
     frameRate: 4,
     size: {
       width: 50,
@@ -32,7 +32,7 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 4,
     },
   },
-  [EnemyTexture.DEMON]: {
+  [EnemyTexture.SONICBAT]: {
     frameRate: 4,
     size: {
       width: 49,
@@ -40,7 +40,7 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 4,
     },
   },
-  [EnemyTexture.SPIKE]: {
+  [EnemyTexture.GREENCANDLE]: {
     frameRate: 4,
     size: {
       width: 30,
@@ -48,7 +48,7 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 4,
     },
   },
-  [EnemyTexture.UNDEAD]: {
+  [EnemyTexture.AAVEDJ]: {
     frameRate: 4,
     size: {
       width: 45,
@@ -56,7 +56,7 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 4,
     },
   },
-  [EnemyTexture.OVERLORD]: {
+  [EnemyTexture.GNOSISTRUCK]: {
     frameRate: 8,
     size: {
       width: 36,
@@ -64,7 +64,7 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 6,
     },
   },
-  [EnemyTexture.IMPURE]: {
+  [EnemyTexture.GITCOINSPACEFIGHTER]: {
     frameRate: 8,
     size: {
       width: 52,
@@ -72,7 +72,7 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 6,
     },
   },
-  [EnemyTexture.TERMER]: {
+  [EnemyTexture.BEARMONSTER]: {
     frameRate: 4,
     size: {
       width: 65,
