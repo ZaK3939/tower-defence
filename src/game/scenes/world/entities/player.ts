@@ -10,6 +10,7 @@ import {
   PLAYER_SUPERSKILLS,
 } from "@const/world/entities/player";
 import { Crystal } from "@game/scenes/world/entities/crystal";
+import { Stair } from "@game/scenes/world/entities/stair";
 import { Sprite } from "@game/scenes/world/entities/sprite";
 import { registerAudioAssets, registerSpriteAssets } from "@lib/assets";
 import { progressionLinear, progressionQuadratic } from "@lib/difficulty";
@@ -133,9 +134,11 @@ export class Player extends Sprite implements IPlayer {
 
     this.setTilesGroundCollision(true);
     this.setTilesCollision(
-      [TileType.MAP, TileType.BUILDING, TileType.CRYSTAL],
+      [TileType.MAP, TileType.BUILDING, TileType.CRYSTAL, TileType.STAIR],
       (tile) => {
         if (tile instanceof Crystal) {
+          tile.pickup();
+        } else if (tile instanceof Stair) {
           tile.pickup();
         }
       }

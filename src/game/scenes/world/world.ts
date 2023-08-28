@@ -12,6 +12,7 @@ import {
 } from "@const/world/entities/enemy";
 import { LEVEL_PLANETS } from "@const/world/level";
 import { Crystal } from "@game/scenes/world/entities/crystal";
+import { Stair } from "@game/scenes/world/entities/stair";
 import { Assistant } from "@game/scenes/world/entities/npc/variants/assistant";
 import { Player } from "@game/scenes/world/entities/player";
 import { Scene } from "..";
@@ -149,6 +150,7 @@ export class World extends Scene implements IWorld {
     this.addPlayer();
     this.addAssistant();
     this.addCrystals();
+    this.addStair();
   }
 
   public stop() {
@@ -304,6 +306,7 @@ export class World extends Scene implements IWorld {
 
   private addEntityGroups() {
     this.entityGroups = {
+      [EntityType.STAIR]: this.add.group(),
       [EntityType.CRYSTAL]: this.add.group(),
       [EntityType.ENEMY]: this.add.group(),
       [EntityType.NPC]: this.add.group({
@@ -404,7 +407,6 @@ export class World extends Scene implements IWorld {
       )
     );
 
-    console.log("this.wave.numberOfWaves", this.wave.number);
     if (this.wave.number != 1) {
       for (let i = 0; i < maxCount; i++) {
         create();
@@ -415,6 +417,28 @@ export class World extends Scene implements IWorld {
         maxCount - this.getEntitiesGroup(EntityType.CRYSTAL).getTotalUsed();
 
       for (let i = 0; i < newCount; i++) {
+        create();
+      }
+    });
+  }
+
+  private addStair() {
+    const positions = this.level.readSpawnPositions(SpawnTarget.STAIR);
+
+    const create = () => {
+      const freePositions = positions.filter((position) =>
+        this.level.isFreePoint({ ...position, z: 1 })
+      );
+      const variants = LEVEL_PLANETS[this.level.planet].STAIR_VARIANTS;
+
+      new Stair(this, {
+        positionAtMatrix: Phaser.Utils.Array.GetRandom(freePositions),
+        variant: Phaser.Utils.Array.GetRandom(variants),
+      });
+    };
+
+    this.wave.on(WaveEvents.COMPLETE, () => {
+      if (this.wave.number === 2) {
         create();
       }
     });

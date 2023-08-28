@@ -43,7 +43,7 @@ export const LEVEL_BIOMES_DUNGEONS: LevelBiomes = [
       collide: false,
       solid: true,
       friction: 1.2,
-      spawn: [SpawnTarget.ENEMY, SpawnTarget.CRYSTAL],
+      spawn: [SpawnTarget.ENEMY, SpawnTarget.CRYSTAL, SpawnTarget.STAIR],
     },
   },
   {

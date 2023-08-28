@@ -42,7 +42,7 @@ export const LEVEL_BIOMES_CRYPTO: LevelBiomes = [
       z: 0,
       collide: false,
       solid: true,
-      spawn: [SpawnTarget.ENEMY, SpawnTarget.CRYSTAL],
+      spawn: [SpawnTarget.ENEMY, SpawnTarget.CRYSTAL, SpawnTarget.STAIR],
     },
   },
   {

@@ -74,6 +74,7 @@ export enum TileType {
   BUILDING = "BUILDING",
   CRYSTAL = "CRYSTAL",
   SCENERY = "SCENERY",
+  STAIR = "STAIR",
 }
 
 export type TileMeta = {
@@ -89,6 +90,7 @@ export enum SpawnTarget {
   PLAYER = "PLAYER",
   SCENERY = "SCENERY",
   CRYSTAL = "CRYSTAL",
+  STAIR = "STAIR",
 }
 
 export type LevelBiomes = Array<{
