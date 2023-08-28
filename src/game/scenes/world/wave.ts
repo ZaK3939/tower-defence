@@ -64,7 +64,6 @@ export class Wave extends EventEmitter implements IWave {
 
   private nextSpawnTimestamp: number = 0;
 
-  // private alarmInterval: Nullable<NodeJS.Timer> = null;
   private alarmInterval: Nullable<NodeJS.Timeout> = null;
 
   constructor(scene: IWorld) {
@@ -158,44 +157,61 @@ export class Wave extends EventEmitter implements IWave {
   }
 
   private start() {
+    // Set the wave as ongoing
     this.isGoing = true;
 
+    // Reset the spawn timers and counters
     this.nextSpawnTimestamp = 0;
     this.spawnedEnemiesCount = 0;
+
+    // Calculate the maximum number of enemies for this wave based on progression
     this.enemiesMaxCount = progressionQuadraticMixed({
       defaultValue: DIFFICULTY.WAVE_ENEMIES_COUNT,
       scale: DIFFICULTY.WAVE_ENEMIES_COUNT_GROWTH,
       level: this.number,
     });
 
+    // Clear any existing alarm intervals
     if (this.alarmInterval) {
       clearInterval(this.alarmInterval);
       this.alarmInterval = null;
     }
 
+    // Play the wave start sound
     this.scene.sound.play(WaveAudio.START);
 
+    // Emit an event indicating the start of the wave
     this.emit(WaveEvents.START, this.number);
   }
 
   private complete() {
     const prevNumber = this.number;
 
+    // Mark the wave as completed
     this.isGoing = false;
+
+    // Increment the wave number
     this.number++;
 
+    // Run the remaining time logic
     this.runTimeleft();
 
+    // Display a notice indicating the wave completion
     this.scene.game.screen.notice(
       NoticeType.INFO,
       `Wave ${prevNumber} completed`
     );
+
+    // Play the wave completion sound
     this.scene.sound.play(WaveAudio.COMPLETE);
 
+    // Emit an event indicating the completion of the wave
     this.emit(WaveEvents.COMPLETE, prevNumber);
 
+    // Execute any level-specific effects upon wave completion
     this.scene.level.looseEffects();
 
+    // Start specific tutorials based on the wave number
     if (this.number === 2) {
       this.scene.game.tutorial.start(TutorialStep.UPGRADE_SKILL);
       this.scene.game.tutorial.start(TutorialStep.UPGRADE_BUILDING);
@@ -205,6 +221,7 @@ export class Wave extends EventEmitter implements IWave {
       this.scene.game.tutorial.start(TutorialStep.BUILD_RADAR);
     }
 
+    // Track an analytics event for wave completion
     this.scene.game.analytics.trackEvent({
       world: this.scene,
       success: true,

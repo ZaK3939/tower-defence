@@ -299,7 +299,9 @@ export class Builder extends EventEmitter implements IBuilder {
     if (!this.buildArea) {
       return false;
     }
-
+    if (this.scene.wave.isGoing) {
+      return false;
+    }
     const positionAtMatrix = this.getAssumedPosition();
 
     const positionAtWorldDown = Level.ToWorldPosition({

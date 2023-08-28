@@ -83,7 +83,6 @@ export class Level extends TileMatrix implements ILevel {
 
     LEVEL_PLANETS[this.planet].BIOMES.forEach((biome) => {
       if (biome.params) {
-        console.log(biome.params, biome.data);
         layer.addBiome(biome.params, biome.data);
       }
     });

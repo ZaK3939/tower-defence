@@ -31,13 +31,7 @@ import { IAssistant } from "@type/world/entities/npc/assistant";
 import { EnemyVariant, IEnemy } from "@type/world/entities/npc/enemy";
 import { IPlayer, PlayerSkill } from "@type/world/entities/player";
 import { ISprite } from "@type/world/entities/sprite";
-import {
-  ILevel,
-  LevelData,
-  LevelPlanet,
-  SpawnTarget,
-  Vector2D,
-} from "@type/world/level";
+import { ILevel, LevelData, SpawnTarget, Vector2D } from "@type/world/level";
 import { IWave, WaveEvents } from "@type/world/wave";
 import { Builder } from "./builder";
 import { Wave } from "./wave";

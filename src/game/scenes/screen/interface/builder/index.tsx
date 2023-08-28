@@ -1,4 +1,4 @@
-import { useGame } from "phaser-react-ui";
+import { useGame, useScene, useSceneUpdate } from "phaser-react-ui";
 import React, { useEffect, useState } from "react";
 
 import { Hint } from "@scene/system/interface/hint";
@@ -9,9 +9,13 @@ import { BuildingVariant } from "@type/world/entities/building";
 import { BuilderInfo } from "./info";
 import { BuilderPreview } from "./preview";
 import { Variant, Info, Wrapper } from "./styles";
+import { WaveEvents } from "@type/world/wave";
+import { GameScene } from "@type/game";
+import { IWorld } from "@type/world";
 
 export const Builder: React.FC = () => {
   const game = useGame<IGame>();
+  const world = useScene<IWorld>(GameScene.WORLD);
 
   const [hint, setHint] = useState<
     Nullable<{
@@ -19,6 +23,9 @@ export const Builder: React.FC = () => {
       text: string;
     }>
   >(null);
+
+  // check for wave is Going
+  const [isGoing, setIsGoing] = useState<boolean>(false);
 
   const showHint = (step: TutorialStep) => {
     switch (step) {
@@ -69,7 +76,12 @@ export const Builder: React.FC = () => {
     []
   );
 
-  return (
+  useSceneUpdate(world, () => {
+    const waveIsGoing = world.wave.isGoing;
+    setIsGoing(waveIsGoing);
+  });
+
+  return !isGoing ? (
     <Wrapper>
       {Object.values(BuildingVariant).map((variant, index) => (
         <Variant key={variant}>
@@ -83,5 +95,5 @@ export const Builder: React.FC = () => {
         </Variant>
       ))}
     </Wrapper>
-  );
+  ) : null;
 };
