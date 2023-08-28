@@ -30,21 +30,21 @@ export const DIFFICULTY = {
    * Superskills
    */
 
-  SUPERSKILL_FROST_COST: 40, // Cost of use
+  SUPERSKILL_FROST_COST: 15, // Cost of use
   SUPERSKILL_FROST_DURATION: 6000, // Superskill duration
-  SUPERSKILL_RAGE_COST: 60, // Cost of use
+  SUPERSKILL_RAGE_COST: 30, // Cost of use
   SUPERSKILL_RAGE_DURATION: 10000, // Superskill duration
-  SUPERSKILL_SHIELD_COST: 40, // Cost of use
+  SUPERSKILL_SHIELD_COST: 15, // Cost of use
   SUPERSKILL_SHIELD_DURATION: 10000, // Superskill duration
-  SUPERSKILL_FIRE_COST: 70, // Cost of use
+  SUPERSKILL_FIRE_COST: 30, // Cost of use
   SUPERSKILL_FIRE_DURATION: 1000, // Superskill duration
-  SUPERSKILL_COST_GROWTH: 0.15, // Growth cost by wave number (Linear)
+  SUPERSKILL_COST_GROWTH: 0.1, // Growth cost by wave number (Linear)
 
   /**
    * Wave
    */
 
-  WAVE_TIMELEFT: 10000, // Pause between waves
+  WAVE_TIMELEFT: 20000, // Pause between waves
   WAVE_TIMELEFT_GROWTH: 0.5, // Pause growth by wave number (Linear)
   WAVE_ENEMIES_COUNT: 4, // Enemies count on first wave
   WAVE_ENEMIES_COUNT_GROWTH: 0.27, // Enemies count growth by wave number (Quadratic Mixed)
@@ -66,7 +66,7 @@ export const DIFFICULTY = {
    * Crystals
    */
 
-  CRYSTAL_SPAWN_FACTOR: 0.15, // Crystal spawn factor
+  CRYSTAL_SPAWN_FACTOR: 0.3, // Crystal spawn factor
   CRYSTAL_RESOURCES: 4, // Resources in crystal
   CRYSTAL_RESOURCES_GROWTH: 1.0, // Resources amount growth by wave number (Linear)
 
@@ -176,7 +176,7 @@ export const DIFFICULTY = {
    * Building: Ammunition
    */
 
-  BUILDING_AMMUNITION_COST: 40, // Building cost
+  BUILDING_AMMUNITION_COST: 30, // Building cost
   BUILDING_AMMUNITION_HEALTH: 400, // Health
   BUILDING_AMMUNITION_ALLOW_BY_WAVE: 3, // Minimal wave for allow build
   BUILDING_AMMUNITION_RADIUS: 120, // Heal radius
