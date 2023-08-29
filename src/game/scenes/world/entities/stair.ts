@@ -1,9 +1,7 @@
 import Phaser from "phaser";
 
-import { DIFFICULTY } from "@const/world/difficulty";
 import { LEVEL_TILE_SIZE } from "@const/world/level";
 import { registerAudioAssets, registerSpriteAssets } from "@lib/assets";
-import { progressionLinear } from "@lib/difficulty";
 import { Level } from "@game/scenes/world/level";
 import { IWorld } from "@type/world";
 import { EntityType } from "@type/world/entities";
@@ -40,6 +38,7 @@ export class Stair extends Phaser.GameObjects.Image implements IStair, ITile {
   }
 
   public pickup() {
+    this.scene.game.world.getStair();
     this.scene.sound.play(StairAudio.PICKUP);
 
     this.destroy();

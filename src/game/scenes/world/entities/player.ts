@@ -32,8 +32,9 @@ import {
   PlayerSkill,
   PlayerSuperskill,
 } from "@type/world/entities/player";
-import { TileType } from "@type/world/level";
+import { TileType, Vector2D } from "@type/world/level";
 import { WaveEvents } from "@type/world/wave";
+import { Level } from "../level";
 
 export class Player extends Sprite implements IPlayer {
   private _experience: number = 0;
@@ -139,7 +140,14 @@ export class Player extends Sprite implements IPlayer {
         if (tile instanceof Crystal) {
           tile.pickup();
         } else if (tile instanceof Stair) {
-          tile.pickup();
+          if (!this.scene.game.world.wave.isGoing) {
+            tile.pickup();
+          } else {
+            this.scene.game.screen.notice(
+              NoticeType.INFO,
+              `You can't leave the level while the wave is going`
+            );
+          }
         }
       }
     );
@@ -161,7 +169,6 @@ export class Player extends Sprite implements IPlayer {
     if (this.live.isDead()) {
       return;
     }
-
     if (this.dustEffect) {
       this.dustEffect.emitter.setDepth(this.depth - 1);
     }
@@ -201,6 +208,17 @@ export class Player extends Sprite implements IPlayer {
     ) {
       this.scene.game.tutorial.complete(TutorialStep.RESOURCES);
     }
+  }
+
+  public changePosition(positionAtMatrix: Vector2D) {
+    this.positionAtMatrix = positionAtMatrix;
+
+    const positionAtWorld = Level.ToWorldPosition({
+      ...positionAtMatrix,
+      z: 0,
+    });
+
+    this.setPosition(positionAtWorld.x, positionAtWorld.y);
   }
 
   public takeResources(amount: number) {

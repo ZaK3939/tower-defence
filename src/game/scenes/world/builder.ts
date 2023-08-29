@@ -8,7 +8,6 @@ import { BUILDINGS } from "@const/world/entities/buildings";
 import { LEVEL_TILE_SIZE } from "@const/world/level";
 import { getStage, equalPositions } from "@lib/utils";
 import { Level } from "@game/scenes/world/level";
-import { LiveEvents } from "@type/live";
 import { NoticeType } from "@type/screen";
 import { TutorialStep, TutorialStepState } from "@type/tutorial";
 import { IWorld } from "@type/world";
@@ -506,6 +505,19 @@ export class Builder extends EventEmitter implements IBuilder {
 
     this.buildingPreview.destroy();
     this.buildingPreview = null;
+  }
+
+  public removeAllBuildings() {
+    for (const variant in this.buildings) {
+      const buildingsList = this.buildings[variant as BuildingVariant];
+
+      buildingsList?.forEach((building) => {
+        building.destroy();
+      });
+
+      this.buildings[variant as BuildingVariant] = [];
+      this.removeAllListeners(variant);
+    }
   }
 
   private handleKeyboard() {

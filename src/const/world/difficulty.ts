@@ -44,7 +44,7 @@ export const DIFFICULTY = {
    * Wave
    */
 
-  WAVE_TIMELEFT: 20000, // Pause between waves
+  WAVE_TIMELEFT: 15000, // Pause between waves
   WAVE_TIMELEFT_GROWTH: 0.5, // Pause growth by wave number (Linear)
   WAVE_ENEMIES_COUNT: 4, // Enemies count on first wave
   WAVE_ENEMIES_COUNT_GROWTH: 0.27, // Enemies count growth by wave number (Quadratic Mixed)

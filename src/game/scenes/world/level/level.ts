@@ -42,9 +42,25 @@ export class Level extends TileMatrix implements ILevel {
 
   readonly planet: LevelPlanet;
 
-  readonly gridCollide: boolean[][] = [];
+  private _gridCollide: boolean[][] = [];
 
-  readonly gridSolid: boolean[][] = [];
+  public get gridCollide() {
+    return this._gridCollide;
+  }
+
+  private set gridCollide(v) {
+    this._gridCollide = v;
+  }
+
+  private _gridSolid: boolean[][] = [];
+
+  public get gridSolid() {
+    return this._gridSolid;
+  }
+
+  private set gridSolid(v) {
+    this._gridSolid = v;
+  }
 
   private _effectsOnGround: Effect[] = [];
 
@@ -345,6 +361,14 @@ export class Level extends TileMatrix implements ILevel {
         this.sceneryTiles.add(tile);
       }
     }
+  }
+  public resetProperties(): void {
+    this.gridCollide = [];
+    this.gridSolid = [];
+    this.groundLayer.destroy();
+    this.deleteAllTiles();
+    this.removeEffects();
+    this.sceneryTiles.clear(true, true);
   }
 
   static ToMatrixPosition(positionAtWorld: Vector2D) {

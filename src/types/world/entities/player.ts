@@ -73,6 +73,11 @@ export interface IPlayer extends ISprite, IEnemyTarget {
   giveResources(amount: number): void;
 
   /**
+   * Change player position at matrix.
+   */
+  changePosition(positionAtMatrix: Vector2D): void;
+
+  /**
    * Take player resources.
    * @param amount - Resources amount
    */

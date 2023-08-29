@@ -9,6 +9,7 @@ import { registerAudioAssets, registerSpriteAssets } from "@lib/assets";
 import { progressionQuadratic } from "@lib/difficulty";
 import { getClosest } from "@lib/utils";
 import { Effect } from "@scene/world/effects";
+import { Level } from "@scene/world/level";
 import { GameSettings } from "@type/game";
 import { IWorld } from "@type/world";
 import { EffectTexture } from "@type/world/effects";
@@ -22,6 +23,7 @@ import {
 import { IEnemy } from "@type/world/entities/npc/enemy";
 import { IPlayer } from "@type/world/entities/player";
 import { IShot, ShotParams } from "@type/world/entities/shot";
+import { Vector2D } from "@type/world/level";
 import { WaveEvents } from "@type/world/wave";
 
 export class Assistant extends NPC implements IAssistant {
@@ -121,6 +123,17 @@ export class Assistant extends NPC implements IAssistant {
     }
 
     super.onDead();
+  }
+
+  public changePosition(positionAtMatrix: Vector2D) {
+    this.positionAtMatrix = positionAtMatrix;
+
+    const positionAtWorld = Level.ToWorldPosition({
+      ...positionAtMatrix,
+      z: 0,
+    });
+
+    this.setPosition(positionAtWorld.x, positionAtWorld.y);
   }
 
   private isCanAttack() {

@@ -32,10 +32,23 @@ import { IAssistant } from "@type/world/entities/npc/assistant";
 import { EnemyVariant, IEnemy } from "@type/world/entities/npc/enemy";
 import { IPlayer, PlayerSkill } from "@type/world/entities/player";
 import { ISprite } from "@type/world/entities/sprite";
-import { ILevel, LevelData, SpawnTarget, Vector2D } from "@type/world/level";
+import {
+  ILevel,
+  LevelData,
+  LevelPlanet,
+  SpawnTarget,
+  Vector2D,
+} from "@type/world/level";
 import { IWave, WaveEvents } from "@type/world/wave";
 import { Builder } from "./builder";
 import { Wave } from "./wave";
+import { NoticeType } from "@type/screen";
+
+function isMovable(position: Vector2D, level: ILevel) {
+  const x = position.x;
+  const y = position.y;
+  return !level.gridSolid[y][x];
+}
 
 export class World extends Scene implements IWorld {
   private entityGroups: Record<EntityType, Phaser.GameObjects.Group>;
@@ -118,6 +131,26 @@ export class World extends Scene implements IWorld {
     this._deltaTime = v;
   }
 
+  private _isUpStair: boolean = false;
+
+  public get isUpStair() {
+    return this._isUpStair;
+  }
+
+  private set isUpStair(v) {
+    this._isUpStair = v;
+  }
+
+  private _stairNumber: number = 1;
+
+  public get stairNumber() {
+    return this._stairNumber;
+  }
+
+  private set stairNumber(v) {
+    this._stairNumber = v;
+  }
+
   constructor() {
     super(GameScene.WORLD);
   }
@@ -153,6 +186,24 @@ export class World extends Scene implements IWorld {
     this.addStair();
   }
 
+  public getStair() {
+    this.game.screen.notice(
+      NoticeType.INFO,
+      `You have reached the ${this.stairNumber} level of the dungeon`
+    );
+    this.isUpStair = true;
+  }
+
+  private reCreateLevel() {
+    this.level.resetProperties();
+    this.level = new Level(this, {
+      planet:
+        this.level.planet === LevelPlanet.DUNGEONS
+          ? LevelPlanet.CRYPTO
+          : LevelPlanet.DUNGEONS,
+    });
+  }
+
   public stop() {
     this.wave?.destroy();
     this.builder?.destroy();
@@ -162,12 +213,31 @@ export class World extends Scene implements IWorld {
     if (!this.game.isStarted) {
       return;
     }
-
     this.deltaTime = delta;
-
     this.player.update();
     this.builder.update();
     this.wave.update();
+
+    if (this.isUpStair) {
+      this.stairNumber++;
+      this.builder.removeAllBuildings();
+      this.removeCrystals();
+      this.removeEnemies();
+      this.reCreateLevel();
+
+      const positions = this.level.readSpawnPositions(SpawnTarget.PLAYER);
+      this.player.changePosition(Phaser.Utils.Array.GetRandom(positions));
+      const positionAtMatrix = aroundPosition(
+        this.player.positionAtMatrix
+      ).find((spawn) => {
+        const biome = this.level.map.getAt(spawn);
+        return biome?.solid;
+      });
+      this.assistant?.changePosition(positionAtMatrix!);
+      this.isUpStair = false;
+
+      this.getExtraTime();
+    }
   }
 
   public showHint(hint: WorldHint) {
@@ -194,6 +264,10 @@ export class World extends Scene implements IWorld {
 
   public setTimePause(state: boolean) {
     this.lifecyle.paused = state;
+  }
+
+  private getExtraTime() {
+    this.lifecyle.elapsed = this.lifecyle.elapsed - 20000;
   }
 
   private resetTime() {
@@ -236,6 +310,14 @@ export class World extends Scene implements IWorld {
     const enemy: IEnemy = new EnemyInstance(this, { positionAtMatrix });
 
     return enemy;
+  }
+
+  private removeEnemies() {
+    const enemies = this.getEntities<IEnemy>(EntityType.ENEMY);
+    enemies.forEach((enemy) => {
+      this.entityGroups[EntityType.ENEMY].remove(enemy, true, true);
+      enemy.destroy();
+    });
   }
 
   private generateEnemySpawnPositions() {
@@ -386,9 +468,8 @@ export class World extends Scene implements IWorld {
   }
 
   private addCrystals() {
-    const positions = this.level.readSpawnPositions(SpawnTarget.CRYSTAL);
-
     const create = () => {
+      const positions = this.level.readSpawnPositions(SpawnTarget.CRYSTAL);
       const freePositions = positions.filter((position) =>
         this.level.isFreePoint({ ...position, z: 1 })
       );
@@ -421,8 +502,14 @@ export class World extends Scene implements IWorld {
       }
     });
   }
+  private removeCrystals() {
+    const crystals = this.getEntities<Crystal>(EntityType.CRYSTAL);
+    crystals.forEach((crystal) => {
+      crystal.destroy();
+    });
+  }
 
-  private addStair() {
+  public addStair() {
     const positions = this.level.readSpawnPositions(SpawnTarget.STAIR);
 
     const create = () => {
@@ -438,9 +525,7 @@ export class World extends Scene implements IWorld {
     };
 
     this.wave.on(WaveEvents.COMPLETE, () => {
-      if (this.wave.number === 2) {
-        create();
-      }
+      create();
     });
   }
 }

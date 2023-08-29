@@ -102,6 +102,12 @@ export interface IBuilder extends EventEmitter {
    * @param variant - Varaint
    */
   getBuildingsByVariant<T extends IBuilding>(variant: BuildingVariant): T[];
+
+  /**
+   * delete all buildings variant.
+   */
+
+  removeAllBuildings(): void;
 }
 
 export enum BuilderEvents {

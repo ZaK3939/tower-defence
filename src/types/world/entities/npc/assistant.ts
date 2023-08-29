@@ -9,6 +9,7 @@ import { Vector2D } from "@type/world/level";
 export interface IAssistant extends INPC, IShotInitiator, IEnemyTarget {
   readonly body: Phaser.Physics.Arcade.Body;
 
+  changePosition(position: Vector2D): void;
   /**
    * Upgrade level.
    */

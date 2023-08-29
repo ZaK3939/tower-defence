@@ -19,14 +19,14 @@ export interface ISprite
   readonly live: ILive;
 
   /**
-   * Current position at matrix.
-   */
-  readonly positionAtMatrix: Vector2D;
-
-  /**
    * Sprite wrapper.
    */
   readonly container: Phaser.GameObjects.Container;
+
+  /**
+   * Current position at matrix.
+   */
+  positionAtMatrix: Vector2D;
 
   /**
    * Movement speed.

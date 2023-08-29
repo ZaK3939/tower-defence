@@ -88,4 +88,14 @@ export class TileMatrix implements ITileMatrix {
 
     delete this.tiles[z][y][x];
   }
+
+  public deleteAllTiles() {
+    this.tiles.forEach((tiles) => {
+      tiles.forEach((row) => {
+        row.forEach((tile) => {
+          tile.destroy();
+        });
+      });
+    });
+  }
 }

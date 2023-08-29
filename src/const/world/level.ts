@@ -4,7 +4,7 @@ import { TileMeta, LevelBiomes, LevelPlanet } from "@type/world/level";
 import { LEVEL_BIOMES_DUNGEONS } from "./planet/dungeons";
 import { LEVEL_BIOMES_CRYPTO } from "./planet/crypto";
 
-export const LEVEL_MAP_SIZE = 50;
+export const LEVEL_MAP_SIZE = 40;
 
 export const LEVEL_TILE_SIZE: TileMeta = {
   width: 42,
@@ -43,14 +43,14 @@ export const LEVEL_PLANETS: Record<
 > = {
   [LevelPlanet.DUNGEONS]: {
     BIOMES: LEVEL_BIOMES_DUNGEONS,
-    SCENERY_DENSITY: 2.0,
+    SCENERY_DENSITY: 0.3,
     SCENERY_VARIANTS: 4,
     CRYSTAL_VARIANTS: [0, 1],
     STAIR_VARIANTS: [0, 1],
   },
   [LevelPlanet.CRYPTO]: {
     BIOMES: LEVEL_BIOMES_CRYPTO,
-    SCENERY_DENSITY: 1.5,
+    SCENERY_DENSITY: 0.3,
     SCENERY_VARIANTS: 8,
     CRYSTAL_VARIANTS: [2, 3],
     STAIR_VARIANTS: [2, 3],

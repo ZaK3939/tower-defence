@@ -12,19 +12,10 @@ import { LevelPlanet } from "@type/world/level";
 export const NewGame: React.FC = () => {
   const game = useGame<IGame>();
 
-  const planets = useMemo(() => Object.keys(LevelPlanet) as LevelPlanet[], []);
   const difficulties = useMemo(
     () => Object.keys(GameDifficulty) as GameDifficulty[],
     []
   );
-
-  const onChangePlanet = (planet: LevelPlanet) => {
-    game.world.scene.restart({ planet });
-
-    game.world.events.once(Phaser.Scenes.Events.CREATE, () => {
-      game.world.camera.focusOnLevel();
-    });
-  };
 
   const onChangeDifficulty = (difficulty: GameDifficulty) => {
     game.difficulty = difficulty;
@@ -37,12 +28,6 @@ export const NewGame: React.FC = () => {
   return (
     <Wrapper>
       <Params>
-        <Param
-          label="Planet"
-          values={planets}
-          defaultValue={game.world.level.planet}
-          onChange={onChangePlanet}
-        />
         <Param
           label="Difficulty"
           values={difficulties}

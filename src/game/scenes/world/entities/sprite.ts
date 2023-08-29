@@ -40,7 +40,7 @@ export class Sprite extends Phaser.Physics.Arcade.Sprite implements ISprite {
     return this._positionAtMatrix;
   }
 
-  private set positionAtMatrix(v) {
+  public set positionAtMatrix(v) {
     this._positionAtMatrix = v;
   }
 

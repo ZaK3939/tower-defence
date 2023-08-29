@@ -177,6 +177,8 @@ export class Wave extends EventEmitter implements IWave {
       this.alarmInterval = null;
     }
 
+    // close building preview
+    this.scene.game.world.builder.unsetBuildingVariant();
     // Play the wave start sound
     this.scene.sound.play(WaveAudio.START);
 
@@ -184,7 +186,7 @@ export class Wave extends EventEmitter implements IWave {
     this.emit(WaveEvents.START, this.number);
   }
 
-  private complete() {
+  public complete() {
     const prevNumber = this.number;
 
     // Mark the wave as completed
@@ -220,7 +222,6 @@ export class Wave extends EventEmitter implements IWave {
     } else if (this.number === 8) {
       this.scene.game.tutorial.start(TutorialStep.BUILD_RADAR);
     }
-
     // Track an analytics event for wave completion
     this.scene.game.analytics.trackEvent({
       world: this.scene,

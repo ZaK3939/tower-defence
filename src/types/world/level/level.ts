@@ -67,6 +67,11 @@ export interface ILevel extends ITileMatrix {
    * @param type - Type
    */
   getBiome(type: BiomeType): Nullable<LevelBiome>;
+
+  /**
+   * reset grid and effects.
+   */
+  resetProperties(): void;
 }
 
 export enum TileType {
