@@ -77,6 +77,11 @@ export interface IGame extends Phaser.Game {
   finishGame(): void;
 
   /**
+   * Finish game.
+   */
+  clearGame(): void;
+
+  /**
    * Get difficylty multiplier by settings.
    */
   getDifficultyMultiplier(): number;
@@ -119,6 +124,7 @@ export enum GameScene {
   WORLD = "WORLD",
   SCREEN = "SCREEN",
   MENU = "MENU",
+  GAMECLEAR = "GAMECLEAR",
 }
 
 export enum GameEvents {

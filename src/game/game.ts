@@ -21,6 +21,7 @@ import { IWorld } from "@type/world";
 import { ITutorial } from "@type/tutorial";
 import { IAnalytics } from "@type/analytics";
 import { shaders } from "../shaders";
+import { Gameclear } from "@game/scenes/gameclear";
 import { Gameover } from "@game/scenes/gameover";
 import { Screen } from "@game/scenes/screen";
 import { Menu } from "@game/scenes/menu";
@@ -98,7 +99,7 @@ export class Game extends Phaser.Game implements IGame {
 
   constructor() {
     super({
-      scene: [System, World, Screen, Menu, Gameover],
+      scene: [System, World, Screen, Menu, Gameover, Gameclear],
       pixelArt: true,
       autoRound: true,
       disableContextMenu: true,
@@ -261,6 +262,31 @@ export class Game extends Phaser.Game implements IGame {
     this.analytics.trackEvent({
       world: this.world,
       success: false,
+    });
+  }
+
+  public clearGame() {
+    if (!this.isStarted) {
+      return;
+    }
+
+    this.isFinished = true;
+
+    this.events.emit(GameEvents.FINISH);
+
+    const record = this.getRecordStat();
+    const stat = this.getCurrentStat();
+
+    if (!IS_DEV_MODE) {
+      this.writeBestStat(stat, record);
+    }
+
+    this.scene.systemScene.scene.stop(GameScene.SCREEN);
+    this.scene.systemScene.scene.launch(GameScene.GAMECLEAR, { stat, record });
+
+    this.analytics.trackEvent({
+      world: this.world,
+      success: true,
     });
   }
 

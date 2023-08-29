@@ -48,8 +48,8 @@ export const DIFFICULTY = {
   WAVE_TIMELEFT_GROWTH: 0.5, // Pause growth by wave number (Linear)
   WAVE_ENEMIES_COUNT: 4, // Enemies count on first wave
   WAVE_ENEMIES_COUNT_GROWTH: 0.27, // Enemies count growth by wave number (Quadratic Mixed)
-  WAVE_ENEMIES_SPAWN_PAUSE: 2300, // Pause between enemies spawn
-  WAVE_ENEMIES_SPAWN_PAUSE_GROWTH: -0.035, // Enemies spawn pause growth by wave number (Quadratic)
+  WAVE_ENEMIES_SPAWN_PAUSE: 2000, // Pause between enemies spawn
+  WAVE_ENEMIES_SPAWN_PAUSE_GROWTH: -0.045, // Enemies spawn pause growth by wave number (Quadratic)
   WAVE_EXPERIENCE: 50, // Gained experience per complete wave
   WAVE_EXPERIENCE_GROWTH: 0.2, // Experience amount growth by wave number (Quadratic)
 
@@ -193,4 +193,14 @@ export const DIFFICULTY = {
   BUILDING_RADAR_ALLOW_BY_WAVE: 8, // Minimal wave for allow build
   BUILDING_RADAR_RADIUS: 130, // Unhidden radius
   BUILDING_RADAR_RADIUS_GROWTH: 0.3, // Radius growth by level (Linear)
+
+  /**
+   * Building: Stair
+   */
+
+  BUILDING_STAIR_COST: 50, // Building cost
+  BUILDING_STAIR_HEALTH: 200, // Health
+  BUILDING_STAIR_ALLOW_BY_WAVE: 6, // Minimal wave for allow build
+  BUILDING_STAIR_DELAY: 1000, // Pause between resource generations
+  BUILDING_STAIR_DELAY_GROWTH: -0.154, // Pause growth by level (Linear)
 };

@@ -88,7 +88,7 @@ export class Level extends TileMatrix implements ILevel {
     super(LEVEL_MAP_SIZE, LEVEL_MAP_MAX_HEIGHT);
 
     this.scene = scene;
-    this.planet = planet ?? LevelPlanet.CRYPTO;
+    this.planet = planet ?? LevelPlanet.DUNGEONS;
 
     const generator = new WorldGenerator<LevelBiome>({
       width: LEVEL_MAP_SIZE,

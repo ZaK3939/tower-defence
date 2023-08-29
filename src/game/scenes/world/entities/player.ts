@@ -35,6 +35,8 @@ import {
 import { TileType, Vector2D } from "@type/world/level";
 import { WaveEvents } from "@type/world/wave";
 import { Level } from "../level";
+import { Building } from "./building";
+import { BuildingStair } from "./building/variants/stair";
 
 export class Player extends Sprite implements IPlayer {
   private _experience: number = 0;
@@ -139,8 +141,22 @@ export class Player extends Sprite implements IPlayer {
       (tile) => {
         if (tile instanceof Crystal) {
           tile.pickup();
-        } else if (tile instanceof Stair) {
+        } else if (tile instanceof Building) {
+          if (tile.variant === BuildingVariant.STAIR) {
+            if (this.scene.game.world.isTimePaused()) {
+              // If the building is a stair, call the pickup method
+              (tile as BuildingStair).pickup();
+              this.scene.game.world.setTimePause(false);
+            } else {
+              this.scene.game.screen.notice(
+                NoticeType.INFO,
+                `You can't leave the level becase the boss is coming`
+              );
+            }
+          }
+        } else if (tile instanceof Stair)
           if (!this.scene.game.world.wave.isGoing) {
+            // If the tile is a stair, call the pickup method
             tile.pickup();
           } else {
             this.scene.game.screen.notice(
@@ -148,7 +164,6 @@ export class Player extends Sprite implements IPlayer {
               `You can't leave the level while the wave is going`
             );
           }
-        }
       }
     );
 
@@ -217,7 +232,8 @@ export class Player extends Sprite implements IPlayer {
       ...positionAtMatrix,
       z: 0,
     });
-
+    this.setVelocity(0, 0);
+    this.stopMovement();
     this.setPosition(positionAtWorld.x, positionAtWorld.y);
   }
 

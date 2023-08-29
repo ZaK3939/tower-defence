@@ -5,6 +5,7 @@ import { BuildingTowerFire } from "@game/scenes/world/entities/building/variants
 import { BuildingTowerFrozen } from "@game/scenes/world/entities/building/variants/tower/variants/frozen";
 import { BuildingTowerLazer } from "@game/scenes/world/entities/building/variants/tower/variants/lazer";
 import { BuildingWall } from "@game/scenes/world/entities/building/variants/wall";
+import { BuildingStair } from "@game/scenes/world/entities/building/variants/stair";
 import {
   BuildingVariant,
   IBuildingFactory,
@@ -18,4 +19,5 @@ export const BUILDINGS: Record<BuildingVariant, IBuildingFactory> = {
   [BuildingVariant.STAKING]: BuildingStaking,
   [BuildingVariant.AMMUNITION]: BuildingAmmunition,
   [BuildingVariant.RADAR]: BuildingRadar,
+  [BuildingVariant.STAIR]: BuildingStair,
 };

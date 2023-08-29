@@ -58,9 +58,14 @@ export interface IWorld extends IScene {
   start(): void;
 
   /**
-   * Create world.
+   * Change Level screen.
    */
   getStair(): void;
+
+  /**
+   * Finish world.
+   */
+  finishWorld(): void;
 
   /**
    * Stop world.

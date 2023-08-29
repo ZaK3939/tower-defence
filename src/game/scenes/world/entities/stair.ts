@@ -38,9 +38,10 @@ export class Stair extends Phaser.GameObjects.Image implements IStair, ITile {
   }
 
   public pickup() {
-    this.scene.game.world.getStair();
-    this.scene.sound.play(StairAudio.PICKUP);
+    this.scene.camera.zoomOut();
 
+    this.scene.sound.play(StairAudio.PICKUP);
+    this.scene.game.clearGame();
     this.destroy();
   }
 }

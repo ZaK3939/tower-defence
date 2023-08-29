@@ -155,6 +155,7 @@ export enum BuildingVariant {
   STAKING = "STAKING",
   AMMUNITION = "AMMUNITION",
   RADAR = "RADAR",
+  STAIR = "STAIR",
 }
 
 export enum BuildingTexture {
@@ -165,6 +166,7 @@ export enum BuildingTexture {
   STAKING = "building/textures/staking",
   AMMUNITION = "building/textures/ammunition",
   RADAR = "building/textures/radar",
+  STAIR = "building/textures/stair",
 }
 
 export enum BuildingIcon {

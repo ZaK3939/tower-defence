@@ -202,10 +202,15 @@ export class Builder extends EventEmitter implements IBuilder {
   public isBuildingAllowByWave(variant: BuildingVariant) {
     const waveAllowed = BUILDINGS[variant].AllowByWave;
 
+    if (variant === BuildingVariant.STAIR) {
+      return (
+        this.scene.wave.number == 6 && this.scene.game.world.isTimePaused()
+      );
+    }
+
     if (waveAllowed) {
       return waveAllowed <= this.scene.wave.number;
     }
-
     return true;
   }
 

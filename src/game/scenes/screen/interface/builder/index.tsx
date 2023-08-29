@@ -53,6 +53,12 @@ export const Builder: React.FC = () => {
           text: "Build ammunition to reload towers",
         });
       }
+      case TutorialStep.BUILD_STAIR: {
+        return setHint({
+          variant: BuildingVariant.STAIR,
+          text: "Build stair to get to the next level",
+        });
+      }
     }
   };
 
@@ -61,7 +67,8 @@ export const Builder: React.FC = () => {
       case TutorialStep.BUILD_STAKING:
       case TutorialStep.BUILD_RADAR:
       case TutorialStep.BUILD_TOWER_FIRE:
-      case TutorialStep.BUILD_AMMUNITION: {
+      case TutorialStep.BUILD_AMMUNITION:
+      case TutorialStep.BUILD_STAIR: {
         return setHint(null);
       }
     }

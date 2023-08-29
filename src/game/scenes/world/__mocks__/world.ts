@@ -21,6 +21,12 @@ const world = {
       complete: jest.fn(),
       state: jest.fn(() => TutorialStepState.COMPLETED),
     },
+    world: {
+      setTimePause: jest.fn(),
+      builder: {
+        unsetBuildingVariant: jest.fn(),
+      },
+    },
     analytics: {
       trackEvent: jest.fn(),
     },

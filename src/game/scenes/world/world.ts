@@ -44,12 +44,6 @@ import { Builder } from "./builder";
 import { Wave } from "./wave";
 import { NoticeType } from "@type/screen";
 
-function isMovable(position: Vector2D, level: ILevel) {
-  const x = position.x;
-  const y = position.y;
-  return !level.gridSolid[y][x];
-}
-
 export class World extends Scene implements IWorld {
   private entityGroups: Record<EntityType, Phaser.GameObjects.Group>;
 
@@ -187,10 +181,12 @@ export class World extends Scene implements IWorld {
   }
 
   public getStair() {
-    this.game.screen.notice(
-      NoticeType.INFO,
-      `You have reached the ${this.stairNumber} level of the dungeon`
-    );
+    this.game.screen.notice(NoticeType.INFO, `You have reached xxx floor`);
+    this.isUpStair = true;
+  }
+
+  public finishWorld() {
+    this.game.screen.notice(NoticeType.INFO, `You have reached xxx goal`);
     this.isUpStair = true;
   }
 
@@ -198,7 +194,7 @@ export class World extends Scene implements IWorld {
     this.level.resetProperties();
     this.level = new Level(this, {
       planet:
-        this.level.planet === LevelPlanet.DUNGEONS
+        this.level.planet === LevelPlanet.CRYPTO
           ? LevelPlanet.CRYPTO
           : LevelPlanet.DUNGEONS,
     });
@@ -510,9 +506,8 @@ export class World extends Scene implements IWorld {
   }
 
   public addStair() {
-    const positions = this.level.readSpawnPositions(SpawnTarget.STAIR);
-
     const create = () => {
+      const positions = this.level.readSpawnPositions(SpawnTarget.STAIR);
       const freePositions = positions.filter((position) =>
         this.level.isFreePoint({ ...position, z: 1 })
       );
@@ -525,7 +520,15 @@ export class World extends Scene implements IWorld {
     };
 
     this.wave.on(WaveEvents.COMPLETE, () => {
-      create();
+      console.log(this.wave.number);
+      if (this.wave.number === 11) {
+        this.game.screen.notice(
+          NoticeType.INFO,
+          `Congratulations! Lets find the stair to the goal`
+        );
+        create();
+        this.setTimePause(true);
+      }
     });
   }
 }
