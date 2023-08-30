@@ -30,16 +30,16 @@ export const DIFFICULTY = {
    * Superskills
    */
 
-  SUPERSKILL_FROST_COST: 10, // Cost of use
+  SUPERSKILL_FROST_COST: 5, // Cost of use
   SUPERSKILL_FROST_DURATION: 6000, // Superskill duration
-  SUPERSKILL_RAGE_COST: 20, // Cost of use
+  SUPERSKILL_RAGE_COST: 10, // Cost of use
   SUPERSKILL_RAGE_DURATION: 10000, // Superskill duration
-  SUPERSKILL_SHIELD_COST: 15, // Cost of use
+  SUPERSKILL_SHIELD_COST: 8, // Cost of use
   SUPERSKILL_SHIELD_DURATION: 10000, // Superskill duration
-  SUPERSKILL_FIRE_COST: 12, // Cost of use
+  SUPERSKILL_FIRE_COST: 6, // Cost of use
   SUPERSKILL_FIRE_DURATION: 1000, // Superskill duration
   SUPERSKILL_COST_GROWTH: 0.1, // Growth cost by wave number (Linear)
-
+  SUPERSKILL_ALLOW_BY_WAVE: 6, // Minimal wave for allow use
   /**
    * Wave
    */

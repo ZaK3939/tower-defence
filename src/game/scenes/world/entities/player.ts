@@ -189,7 +189,7 @@ export class Player extends Sprite implements IPlayer {
     }
 
     if (this.currentBiome?.type === BiomeType.MAGMA) {
-      this.live.damage(0.1);
+      this.live.damage(this.live.maxHealth * 0.005);
       this.addFireEffect(100);
       this.setVelocity(0, 0);
     }
@@ -268,7 +268,11 @@ export class Player extends Sprite implements IPlayer {
   }
 
   public useSuperskill(type: PlayerSuperskill) {
-    if (this.activeSuperskills[type] || !this.scene.wave.isGoing) {
+    if (
+      this.activeSuperskills[type] ||
+      !this.scene.wave.isGoing ||
+      !(this.scene.wave.number < DIFFICULTY.SUPERSKILL_ALLOW_BY_WAVE)
+    ) {
       return;
     }
 

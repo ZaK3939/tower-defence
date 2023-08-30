@@ -22,6 +22,11 @@
   "bugs": {
     "url": "https://github.com/ZaK3939/tower-defence/issues"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm version patch && git add package.json"
+    }
+  },
   "homepage": "https://github.com/ZaK3939/tower-defence#readme",
   "devDependencies": {
     "@babel/core": "7.22.9",
@@ -42,6 +47,7 @@
     "gen-biome": "2.4.0",
     "heap": "0.2.7",
     "html-webpack-plugin": "5.5.3",
+    "husky": "^8.0.3",
     "jest": "^29.5.0",
     "jest-canvas-mock": "2.5.2",
     "jest-environment-jsdom": "29.5.0",
