@@ -6,7 +6,7 @@ import { MenuPage } from "@type/menu";
 import { Content } from "./content";
 import { Copyright } from "./copyright";
 import { Navigation } from "./navigation";
-import { Wrapper, Logotype, Header, Block, Main, Menu } from "./styles";
+import { Wrapper, Logotype, Header, Block, Main, Menu, Title } from "./styles";
 
 type Props = {
   defaultPage?: MenuPage;
@@ -21,11 +21,12 @@ export const MenuUI: React.FC<Props> = ({ defaultPage }) => {
         <Header>
           <Block>
             <Logotype src="assets/logotype.png" />
+            <Title>Crypto Defense</Title>
             <Copyright />
           </Block>
         </Header>
         <Menu>
-          <Block>
+          <Block centerContent>
             <Navigation page={page} onSelect={setPage} />
           </Block>
         </Menu>
