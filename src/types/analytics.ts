@@ -1,4 +1,5 @@
 import { IWorld } from "@type/world";
+import { GameStat } from "./game";
 
 export interface IAnalytics {
   /**
@@ -16,5 +17,6 @@ export interface IAnalytics {
 
 export type AnalyticEventData = {
   world: IWorld;
+  stat?: GameStat;
   success: boolean;
 };

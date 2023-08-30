@@ -31,17 +31,16 @@ export class Analytics implements IAnalytics {
   public trackEvent(data: AnalyticEventData) {
     const payload = this.getEventPayload(data);
 
-    // if (IS_DEV_MODE) {
-    //   console.log("Track analytic event:", payload);
-    // } else {
-    //   fetch(`${ANALYTICS_SERVER}/api/create-event.php`, {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(payload),
-    //   }).catch((e) => {
-    //     console.warn("Failed analytics event tracking:", payload, e);
-    //   });
-    // }
+    const successColor = 3447003;
+    const failureColor = 15158332;
+
+    const embedColor = payload.success ? successColor : failureColor;
+    const eventTitle = payload.success
+      ? "📊 Clear event tracked!"
+      : "⚠️ Fail! An event failed!";
+    const eventDescription = payload.success
+      ? "A new successful event has been tracked in the game."
+      : "An event failed in the game!";
     if (IS_DEV_MODE) {
       console.log("Track analytic event:", payload);
     } else if (DISCORD_WEBHOOK_URL) {
@@ -49,12 +48,14 @@ export class Analytics implements IAnalytics {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          content: "📊 New analytic event tracked!",
+          content: payload.success
+            ? "📊 Clear event tracked!"
+            : "⚠️ Fail! An event failed!",
           embeds: [
             {
-              title: "📈 Analytic Event",
-              description: "A new event has been tracked in the game.",
-              color: 3447003, // カラーコードでEmbedの左側のバーの色を設定
+              title: eventTitle,
+              description: eventDescription,
+              color: embedColor,
               fields: [
                 {
                   name: "Success",
@@ -76,12 +77,17 @@ export class Analytics implements IAnalytics {
                 { name: "User ID", value: payload.userId, inline: true },
                 { name: "Host", value: payload.host, inline: true },
                 { name: "Version", value: payload.version, inline: true },
+                {
+                  name: "Score",
+                  value: payload.score ? payload.score.toString() : "playing",
+                  inline: true,
+                },
               ],
               footer: {
                 text: "Tracked at " + new Date().toLocaleString(),
               },
               thumbnail: {
-                url: "https://github.com/ZaK3939/tower-defence/blob/master/src/assets/banner.png?raw=true", // ゲームのアイコンや関連する画像のURL
+                url: "https://github.com/ZaK3939/tower-defence/blob/master/src/assets/banner.png?raw=true",
               },
             },
           ],
@@ -116,6 +122,13 @@ export class Analytics implements IAnalytics {
       planet: data.world.level.planet,
       waveNumber: data.world.wave.number,
       resources: data.world.player.resources,
+
+      // stat
+      score: data.stat?.score,
+      waves: data.stat?.waves,
+      kills: data.stat?.kills,
+      lived: data.stat?.lived,
+
       // System info
       userId: this.userId,
       host: this.host,

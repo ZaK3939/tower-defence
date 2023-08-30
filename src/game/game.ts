@@ -261,6 +261,7 @@ export class Game extends Phaser.Game implements IGame {
 
     this.analytics.trackEvent({
       world: this.world,
+      stat: stat,
       success: false,
     });
   }
