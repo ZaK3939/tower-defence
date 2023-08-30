@@ -45,8 +45,35 @@ export class BuildingStair extends Building {
       },
     });
 
+    let hintId: Nullable<string> = null;
+
+    const hideCurrentHint = () => {
+      if (hintId) {
+        this.scene.hideHint(hintId);
+        hintId = null;
+      }
+    };
+    const unbindUpgradeStep = this.scene.game.tutorial.bind(
+      TutorialStep.BUILD_STAIR,
+      {
+        beg: () => {
+          hintId = this.scene.showHint({
+            side: "top",
+            text: "Lets touch and go to the next floor!",
+            position: this.getPositionOnGround(),
+          });
+        },
+        end: hideCurrentHint,
+      }
+    );
+    this.on(Phaser.GameObjects.Events.DESTROY, () => {
+      hideCurrentHint();
+      unbindUpgradeStep();
+    });
+
     this.scene.game.tutorial.complete(TutorialStep.BUILD_STAIR);
   }
+
   public pickup() {
     this.scene.game.world.getStair();
     this.scene.sound.play(StairAudio.PICKUP);

@@ -84,7 +84,9 @@ export class Builder extends EventEmitter implements IBuilder {
         this.updateBuildAreaPosition();
         this.updateBuildingPreview();
       } else {
-        this.open();
+        if (!this.scene.wave.isGoing) {
+          this.open();
+        }
       }
     } else if (this.isBuild) {
       this.close();

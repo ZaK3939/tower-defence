@@ -181,12 +181,15 @@ export class World extends Scene implements IWorld {
   }
 
   public getStair() {
-    this.game.screen.notice(NoticeType.INFO, `You have reached xxx floor`);
+    this.game.screen.notice(NoticeType.INFO, `You have reached 2nd floor`);
     this.isUpStair = true;
   }
 
   public finishWorld() {
-    this.game.screen.notice(NoticeType.INFO, `You have reached xxx goal`);
+    this.game.screen.notice(
+      NoticeType.INFO,
+      `You have reached beta versions goal`
+    );
     this.isUpStair = true;
   }
 
