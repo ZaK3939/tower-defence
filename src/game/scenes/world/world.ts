@@ -520,7 +520,6 @@ export class World extends Scene implements IWorld {
     };
 
     this.wave.on(WaveEvents.COMPLETE, () => {
-      console.log(this.wave.number);
       if (this.wave.number === 11) {
         this.game.screen.notice(
           NoticeType.INFO,

@@ -140,6 +140,7 @@ export enum BiomeType {
   RUBBLE = "RUBBLE",
   MOUNT = "MOUNT",
   SNOW = "SNOW",
+  MAGMA = "MAGMA",
 }
 
 export type Vector2D = {

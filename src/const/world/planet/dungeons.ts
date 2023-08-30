@@ -49,11 +49,11 @@ export const LEVEL_BIOMES_DUNGEONS: LevelBiomes = [
   {
     params: { lowerBound: 0.18, upperBound: 0.24 },
     data: {
-      type: BiomeType.SAND,
+      type: BiomeType.MAGMA,
       tileIndex: [7, 8],
       z: 0,
       collide: false,
-      solid: false,
+      solid: true,
       friction: 1.2,
       spawn: [SpawnTarget.ENEMY],
     },

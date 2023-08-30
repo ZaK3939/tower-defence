@@ -20,7 +20,7 @@ export const Health: React.FC = () => {
   return (
     <Container>
       <Progress style={{ width: `${(health / maxHealth) * 100}%` }} />
-      <Value>{`${health} HP`}</Value>
+      <Value>{`${health.toFixed(1)} HP`}</Value>
     </Container>
   );
 };

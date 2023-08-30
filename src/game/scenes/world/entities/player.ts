@@ -32,7 +32,7 @@ import {
   PlayerSkill,
   PlayerSuperskill,
 } from "@type/world/entities/player";
-import { TileType, Vector2D } from "@type/world/level";
+import { BiomeType, TileType, Vector2D } from "@type/world/level";
 import { WaveEvents } from "@type/world/wave";
 import { Level } from "../level";
 import { Building } from "./building";
@@ -186,6 +186,12 @@ export class Player extends Sprite implements IPlayer {
     }
     if (this.dustEffect) {
       this.dustEffect.emitter.setDepth(this.depth - 1);
+    }
+
+    if (this.currentBiome?.type === BiomeType.MAGMA) {
+      this.live.damage(0.1);
+      this.addFireEffect(100);
+      this.setVelocity(0, 0);
     }
 
     this.updateDirection();
@@ -553,6 +559,36 @@ export class Player extends Sprite implements IPlayer {
         frameRate: 8,
         repeat: -1,
       });
+    });
+  }
+  private addFireEffect(duration: number) {
+    if (!this.scene.game.isSettingEnabled(GameSettings.EFFECTS)) {
+      return;
+    }
+
+    new Particles(this, {
+      key: "fire",
+      texture: ParticlesTexture.GLOW,
+      params: {
+        follow: this,
+        followOffset: this.getBodyOffset(),
+        duration,
+        color: [0xfacc22, 0xf89800, 0xf83600, 0x9f0404],
+        colorEase: "quad.out",
+        lifespan: this.displayWidth * 25,
+        angle: {
+          min: -100,
+          max: -80,
+        },
+        scale: {
+          start: (this.displayWidth * 1.25) / 100,
+          end: 0,
+          ease: "sine.out",
+        },
+        speed: 80,
+        advance: 200,
+        blendMode: "ADD",
+      },
     });
   }
 }

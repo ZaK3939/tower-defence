@@ -105,13 +105,38 @@ export class Analytics implements IAnalytics {
 
     const payload = this.getErrorPayload(data);
 
-    fetch(`${ANALYTICS_SERVER}/api/create-error.php`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    }).catch((e) => {
-      console.warn("Failed analytics error tracking:", payload, e);
-    });
+    const discordPayload = {
+      content: "⚠️ An error occurred in the game!",
+      embeds: [
+        {
+          title: "Error Event",
+          description: payload.message,
+          color: 15158332, // 赤色
+          fields: [
+            { name: "Error Name", value: data.name, inline: true },
+            {
+              name: "Error Stack",
+              value: data.stack ? data.stack.substring(0, 1024) : "N/A",
+              inline: false,
+            },
+          ],
+          footer: {
+            text: "Tracked at " + new Date().toLocaleString(),
+          },
+        },
+      ],
+    };
+    if (IS_DEV_MODE) {
+      console.log("Track analytic event:", payload);
+    } else if (DISCORD_WEBHOOK_URL) {
+      fetch(DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(discordPayload),
+      }).catch((e) => {
+        console.warn("Failed analytics error tracking:", discordPayload, e);
+      });
+    }
   }
 
   private getEventPayload(data: AnalyticEventData) {
