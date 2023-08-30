@@ -35,9 +35,7 @@ export class Analytics implements IAnalytics {
     const failureColor = 15158332;
 
     const embedColor = payload.success ? successColor : failureColor;
-    const eventTitle = payload.success
-      ? "📊 Clear event tracked!"
-      : "⚠️ Fail! An event failed!";
+    const eventTitle = payload.success ? "📊 GameClear" : "GameOver!";
     const eventDescription = payload.success
       ? "A new successful event has been tracked in the game."
       : "An event failed in the game!";
@@ -48,9 +46,7 @@ export class Analytics implements IAnalytics {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          content: payload.success
-            ? "📊 Clear event tracked!"
-            : "⚠️ Fail! An event failed!",
+          content: payload.success ? "📊 GameClear" : "GameOver!",
           embeds: [
             {
               title: eventTitle,
@@ -58,7 +54,7 @@ export class Analytics implements IAnalytics {
               color: embedColor,
               fields: [
                 {
-                  name: "Success",
+                  name: "Game Clear",
                   value: payload.success.toString(),
                   inline: true,
                 },
