@@ -1,6 +1,6 @@
 {
   "name": "tower-defense",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Build and Defence in the onchain crypto world",
   "main": "./dist/index.html",
   "scripts": {
