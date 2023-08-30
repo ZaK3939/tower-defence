@@ -142,7 +142,7 @@ export const DIFFICULTY = {
 
   BUILDING_TOWER_FROZEN_COST: 40, // Building cost
   BUILDING_TOWER_FROZEN_HEALTH: 800, // Health
-  BUILDING_TOWER_FROZEN_ALLOW_BY_WAVE: 3, // Minimal wave for allow build
+  BUILDING_TOWER_FROZEN_ALLOW_BY_WAVE: 4, // Minimal wave for allow build
   BUILDING_TOWER_FROZEN_RADIUS: 150, // Freeze radius
   BUILDING_TOWER_FROZEN_RADIUS_GROWTH: 0.25, // Radius growth by level (Linear)
   BUILDING_TOWER_FROZEN_DELAY: 1400, // Pause between freezes
@@ -190,7 +190,7 @@ export const DIFFICULTY = {
 
   BUILDING_RADAR_COST: 60, // Building cost
   BUILDING_RADAR_HEALTH: 800, // Health
-  BUILDING_RADAR_ALLOW_BY_WAVE: 7, // Minimal wave for allow build
+  BUILDING_RADAR_ALLOW_BY_WAVE: 8, // Minimal wave for allow build
   BUILDING_RADAR_RADIUS: 130, // Unhidden radius
   BUILDING_RADAR_RADIUS_GROWTH: 0.3, // Radius growth by level (Linear)
 

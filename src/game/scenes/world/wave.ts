@@ -221,19 +221,10 @@ export class Wave extends EventEmitter implements IWave {
       this.scene.game.tutorial.start(TutorialStep.BUILD_AMMUNITION);
     } else if (this.number === 6) {
       this.scene.game.world.setTimePause(true);
-      this.scene.game.screen.notice(
-        NoticeType.INFO,
-        "You can build a rocket to go the another map"
-      );
       this.scene.game.tutorial.start(TutorialStep.BUILD_STAIR);
-    } else if (this.number === 7) {
+    } else if (this.number === 8) {
       this.scene.game.tutorial.start(TutorialStep.BUILD_RADAR);
     }
-    // Track an analytics event for wave completion
-    // this.scene.game.analytics.trackEvent({
-    //   world: this.scene,
-    //   success: true,
-    // });
   }
 
   private spawnEnemy() {

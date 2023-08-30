@@ -5,7 +5,7 @@ import { EnemyVariantData, EnemyTexture } from "@type/world/entities/npc/enemy";
 import { Enemy } from "../enemy";
 
 export class EnemyGitcoinSpacefighter extends Enemy {
-  static SpawnWaveRange = [7, 10];
+  static SpawnWaveRange = [8, 10];
 
   constructor(scene: IWorld, data: EnemyVariantData) {
     super(scene, {
