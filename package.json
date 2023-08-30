@@ -24,7 +24,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm version patch && git add package.json"
+      "pre-push": "npm run test && npm version patch && git add package.json"
     }
   },
   "homepage": "https://github.com/ZaK3939/tower-defence#readme",
