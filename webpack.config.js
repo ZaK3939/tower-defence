@@ -1,27 +1,30 @@
-const path = require('path');
+const path = require("path");
 
-const alias = require('alias-reuse');
-const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-
-const tsconfig = require('./tsconfig.json');
+const alias = require("alias-reuse");
+const CopyPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
+const Dotenv = require("dotenv-webpack");
+const tsconfig = require("./tsconfig.json");
 
 module.exports = (_, options) => {
-  const isDev = options.mode === 'development';
-  const entryDir = path.resolve(__dirname, 'src');
+  const isDev = options.mode === "development";
+  const entryDir = path.resolve(__dirname, "src");
   const outputDir = path.resolve(__dirname, tsconfig.compilerOptions.outDir);
 
   return {
-    target: 'web',
+    target: "web",
     resolve: {
-      extensions: ['.js', '.ts', '.tsx'],
-      alias: alias.fromFile(__dirname, './tsconfig.json').toWebpack(),
+      extensions: [".js", ".ts", ".tsx"],
+      alias: alias.fromFile(__dirname, "./tsconfig.json").toWebpack(),
+      fallback: {
+        path: require.resolve("path-browserify"),
+      },
     },
-    entry: path.join(entryDir, 'index.ts'),
+    entry: path.join(entryDir, "index.ts"),
     output: {
       path: outputDir,
-      filename: 'bundle.[fullhash].js',
+      filename: "bundle.[fullhash].js",
       clean: true,
     },
     module: {
@@ -29,24 +32,25 @@ module.exports = (_, options) => {
         {
           test: /\.tsx?$/,
           exclude: /node_modules/,
-          use: ['babel-loader', 'ts-loader'],
+          use: ["babel-loader", "ts-loader"],
         },
       ],
     },
     plugins: [
+      new Dotenv(),
       new webpack.DefinePlugin({
         IS_DEV_MODE: JSON.stringify(isDev),
       }),
       new HtmlWebpackPlugin({
-        template: path.join(entryDir, 'index.html'),
-        filename: 'index.html',
-        inject: 'body',
+        template: path.join(entryDir, "index.html"),
+        filename: "index.html",
+        inject: "body",
       }),
       new CopyPlugin({
         patterns: [
           {
-            from: path.join(entryDir, 'assets'),
-            to: 'assets',
+            from: path.join(entryDir, "assets"),
+            to: "assets",
           },
         ],
       }),
@@ -58,6 +62,6 @@ module.exports = (_, options) => {
       compress: true,
       port: 9999,
     },
-    devtool: 'source-map',
+    devtool: "source-map",
   };
 };

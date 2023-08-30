@@ -38,6 +38,7 @@
     "alias-reuse": "2.0.0",
     "babel-loader": "9.1.2",
     "copy-webpack-plugin": "11.0.0",
+    "dotenv-webpack": "^8.0.1",
     "gen-biome": "2.4.0",
     "heap": "0.2.7",
     "html-webpack-plugin": "5.5.3",
@@ -63,11 +64,13 @@
   "dependencies": {
     "gen-biome": "2.3.2",
     "heap": "0.2.7",
+    "path-browserify": "^1.0.1",
     "phaser": "3.60.0",
     "phaser-react-ui": "1.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "6.0.1",
+    "util": "^0.12.5",
     "uuid": "9.0.0"
   }
 }
