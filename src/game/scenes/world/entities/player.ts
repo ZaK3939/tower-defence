@@ -189,7 +189,7 @@ export class Player extends Sprite implements IPlayer {
     }
 
     if (this.currentBiome?.type === BiomeType.MAGMA) {
-      this.live.damage(this.live.maxHealth * 0.005);
+      this.live.damage(this.live.maxHealth * 0.003);
       this.addFireEffect(100);
       this.setVelocity(0, 0);
     }
