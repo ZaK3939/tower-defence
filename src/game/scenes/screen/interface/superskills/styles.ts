@@ -13,6 +13,6 @@ export const Wrapper = styled.div`
   display: flex;
 
   &.fade-in {
-    animation: ${fadeIn} 2s; /* Adjust duration as needed */
+    animation: ${fadeIn} 3s; /* Adjust duration as needed */
   }
 `;
