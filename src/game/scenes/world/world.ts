@@ -194,7 +194,7 @@ export class World extends Scene implements IWorld {
     this.level.resetProperties();
     this.level = new Level(this, {
       planet:
-        this.level.planet === LevelPlanet.CRYPTO
+        this.level.planet !== LevelPlanet.CRYPTO
           ? LevelPlanet.CRYPTO
           : LevelPlanet.DUNGEONS,
     });

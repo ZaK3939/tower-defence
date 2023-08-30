@@ -30,13 +30,13 @@ export const DIFFICULTY = {
    * Superskills
    */
 
-  SUPERSKILL_FROST_COST: 15, // Cost of use
+  SUPERSKILL_FROST_COST: 10, // Cost of use
   SUPERSKILL_FROST_DURATION: 6000, // Superskill duration
-  SUPERSKILL_RAGE_COST: 30, // Cost of use
+  SUPERSKILL_RAGE_COST: 20, // Cost of use
   SUPERSKILL_RAGE_DURATION: 10000, // Superskill duration
   SUPERSKILL_SHIELD_COST: 15, // Cost of use
   SUPERSKILL_SHIELD_DURATION: 10000, // Superskill duration
-  SUPERSKILL_FIRE_COST: 30, // Cost of use
+  SUPERSKILL_FIRE_COST: 12, // Cost of use
   SUPERSKILL_FIRE_DURATION: 1000, // Superskill duration
   SUPERSKILL_COST_GROWTH: 0.1, // Growth cost by wave number (Linear)
 
@@ -190,7 +190,7 @@ export const DIFFICULTY = {
 
   BUILDING_RADAR_COST: 60, // Building cost
   BUILDING_RADAR_HEALTH: 800, // Health
-  BUILDING_RADAR_ALLOW_BY_WAVE: 8, // Minimal wave for allow build
+  BUILDING_RADAR_ALLOW_BY_WAVE: 7, // Minimal wave for allow build
   BUILDING_RADAR_RADIUS: 130, // Unhidden radius
   BUILDING_RADAR_RADIUS_GROWTH: 0.3, // Radius growth by level (Linear)
 

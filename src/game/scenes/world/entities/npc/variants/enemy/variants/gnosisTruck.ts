@@ -6,7 +6,7 @@ import { EnemyVariantData, EnemyTexture } from "@type/world/entities/npc/enemy";
 import { Enemy } from "../enemy";
 
 export class EnemyGnosisTruck extends Enemy {
-  static SpawnWaveRange = [6];
+  static SpawnWaveRange = [6, 10];
 
   constructor(scene: IWorld, data: EnemyVariantData) {
     super(scene, {
