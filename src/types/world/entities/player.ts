@@ -114,6 +114,12 @@ export enum PlayerAudio {
   DAMAGE_3 = "player/damage_3",
 }
 
+export enum PlayerSkillAudio {
+  FROST = "player/superskill_frost",
+  RAGE = "player/superskill_rage",
+  SHIELD = "player/superskill_shield",
+  FIRE = "player/superskill_fire",
+}
 export enum PlayerSkill {
   MAX_HEALTH = "MAX_HEALTH",
   SPEED = "SPEED",

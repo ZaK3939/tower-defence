@@ -31,6 +31,7 @@ import {
   IPlayer,
   PlayerSkill,
   PlayerSuperskill,
+  PlayerSkillAudio,
 } from "@type/world/entities/player";
 import { BiomeType, TileType, Vector2D } from "@type/world/level";
 import { WaveEvents } from "@type/world/wave";
@@ -333,6 +334,7 @@ export class Player extends Sprite implements IPlayer {
         });
       },
     });
+    this.scene.game.sound.play(PlayerSkillAudio[type]);
   }
 
   public getExperienceToUpgrade(type: PlayerSkill) {
@@ -636,4 +638,5 @@ export class Player extends Sprite implements IPlayer {
 }
 
 registerAudioAssets(PlayerAudio);
+registerAudioAssets(PlayerSkillAudio);
 registerSpriteAssets(PlayerTexture, PLAYER_TILE_SIZE);
