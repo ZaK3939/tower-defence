@@ -266,7 +266,7 @@ export class World extends Scene implements IWorld {
   }
 
   private getExtraTime() {
-    this.lifecyle.elapsed = this.lifecyle.elapsed - 20000;
+    this.lifecyle.elapsed = this.lifecyle.elapsed - 40000;
   }
 
   private resetTime() {
