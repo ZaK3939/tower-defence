@@ -21,6 +21,6 @@ export const Wrapper = styled.div`
   display: flex;
 
   &.fade-in {
-    animation: ${flashyFadeIn} 3s; /* Adjust duration as needed */
+    animation: ${flashyFadeIn} 10s; /* Adjust duration as needed */
   }
 `;

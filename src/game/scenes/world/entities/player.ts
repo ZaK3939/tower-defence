@@ -271,7 +271,7 @@ export class Player extends Sprite implements IPlayer {
     if (
       this.activeSuperskills[type] ||
       !this.scene.wave.isGoing ||
-      !(this.scene.wave.number < DIFFICULTY.SUPERSKILL_ALLOW_BY_WAVE)
+      this.scene.wave.number < DIFFICULTY.SUPERSKILL_ALLOW_BY_WAVE
     ) {
       return;
     }
