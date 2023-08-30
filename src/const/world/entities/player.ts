@@ -57,21 +57,25 @@ export const PLAYER_SUPERSKILLS: Record<
     description: "Freezes all spawned enemies",
     cost: DIFFICULTY.SUPERSKILL_FROST_COST,
     duration: DIFFICULTY.SUPERSKILL_FROST_DURATION,
+    cooltime: DIFFICULTY.SUPERSKILL_FROST_COOLTIME,
   },
   [PlayerSuperskill.RAGE]: {
     description: "Doubles towers damage",
     cost: DIFFICULTY.SUPERSKILL_RAGE_COST,
     duration: DIFFICULTY.SUPERSKILL_RAGE_DURATION,
+    cooltime: DIFFICULTY.SUPERSKILL_RAGE_COOLTIME,
   },
   [PlayerSuperskill.SHIELD]: {
     description: "Prevents damage to all buildings",
     cost: DIFFICULTY.SUPERSKILL_SHIELD_COST,
     duration: DIFFICULTY.SUPERSKILL_SHIELD_DURATION,
+    cooltime: DIFFICULTY.SUPERSKILL_SHIELD_COOLTIME,
   },
   [PlayerSuperskill.FIRE]: {
     description: "Deals damage to all enemies",
     cost: DIFFICULTY.SUPERSKILL_FIRE_COST,
     duration: DIFFICULTY.SUPERSKILL_FIRE_DURATION,
+    cooltime: DIFFICULTY.SUPERSKILL_FIRE_COOLTIME,
   },
 };
 

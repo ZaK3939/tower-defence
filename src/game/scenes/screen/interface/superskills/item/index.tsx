@@ -8,7 +8,16 @@ import { GameScene, IGame } from "@type/game";
 import { IWorld } from "@type/world";
 import { PlayerSuperskill } from "@type/world/entities/player";
 
-import { Container, Timeout, Info, Icon, Body, Head, Name } from "./styles";
+import {
+  Container,
+  Timeout,
+  Info,
+  Icon,
+  Body,
+  Head,
+  Name,
+  KeyNumber,
+} from "./styles";
 
 type Props = {
   type: PlayerSuperskill;
@@ -21,7 +30,10 @@ export const SuperskillItem: React.FC<Props> = ({ type }) => {
 
   const [isPaused, setPaused] = useState(false);
   const [isActive, setActive] = useState(false);
+  const [isCoolingDown, setCoolingDown] = useState(false);
   const [cost, setCost] = useState(0);
+
+  const skillIndex = Object.values(PlayerSuperskill).indexOf(type) + 1;
 
   const onClick = () => {
     world.player.useSuperskill(type);
@@ -30,11 +42,18 @@ export const SuperskillItem: React.FC<Props> = ({ type }) => {
   useSceneUpdate(scene, () => {
     setPaused(game.onPause);
     setActive(Boolean(world.player.activeSuperskills[type]));
+    setCoolingDown(Boolean(world.player.coolDownSuperskills[type]));
     setCost(world.player.getSuperskillCost(type));
   });
 
   return (
-    <Container onClick={onClick} $active={isActive}>
+    <Container
+      onClick={onClick}
+      $active={isActive}
+      $coolingDown={isCoolingDown}
+    >
+      {" "}
+      <KeyNumber>{skillIndex}</KeyNumber>
       <Info>
         <Head>
           <Name>{type}</Name>
@@ -49,6 +68,15 @@ export const SuperskillItem: React.FC<Props> = ({ type }) => {
           style={{
             animationDuration: `${PLAYER_SUPERSKILLS[type].duration}ms`,
             animationPlayState: isPaused ? "paused" : "running",
+          }}
+        />
+      )}
+      {isCoolingDown && (
+        <Timeout
+          style={{
+            animationDuration: `${PLAYER_SUPERSKILLS[type].cooltime}ms`,
+            animationPlayState: isPaused ? "paused" : "running",
+            backgroundColor: "rgba(255, 0, 0, 0.5)",
           }}
         />
       )}

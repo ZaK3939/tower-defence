@@ -531,6 +531,9 @@ export class Builder extends EventEmitter implements IBuilder {
     this.scene.input.keyboard?.on(
       Phaser.Input.Keyboard.Events.ANY_KEY_UP,
       (event: KeyboardEvent) => {
+        if (this.scene.game.world.wave.isGoing) {
+          return;
+        }
         if (Number(event.key)) {
           this.switchBuildingVariant(Number(event.key) - 1);
         }

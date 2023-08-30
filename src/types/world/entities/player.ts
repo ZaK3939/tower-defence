@@ -40,6 +40,11 @@ export interface IPlayer extends ISprite, IEnemyTarget {
   readonly activeSuperskills: Partial<Record<PlayerSuperskill, boolean>>;
 
   /**
+   * cooltime superskills.
+   */
+  readonly coolDownSuperskills: Partial<Record<PlayerSuperskill, boolean>>;
+
+  /**
    * Upgrade player skill.
    */
   upgrade(type: PlayerSkill): void;
@@ -147,4 +152,5 @@ export type PlayerSuperskillData = {
   description: string;
   cost: number;
   duration: number;
+  cooltime: number;
 };

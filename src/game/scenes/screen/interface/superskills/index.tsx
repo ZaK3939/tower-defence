@@ -17,27 +17,16 @@ export const Superskills: React.FC = () => {
     []
   );
 
-  const [isFirstTime, setIsFirstTime] = useState(true); // New state variable
   const [isWaveGoing, setWaveGoing] = useState(false);
-  const [waveNumber, setWaveNumber] = useState(0); // New state variable
+  const [waveNumber, setWaveNumber] = useState(0);
 
   useSceneUpdate(world, () => {
     setWaveGoing(world.wave.isGoing);
-    setWaveNumber(world.wave.number); // Update wave number
+    setWaveNumber(world.wave.number);
   });
 
-  useEffect(() => {
-    if (
-      isWaveGoing &&
-      waveNumber === DIFFICULTY.SUPERSKILL_ALLOW_BY_WAVE &&
-      isFirstTime
-    ) {
-      setIsFirstTime(false); // Update the state after the first display
-    }
-  }, [isWaveGoing, waveNumber, isFirstTime]);
-
   return isWaveGoing && waveNumber >= DIFFICULTY.SUPERSKILL_ALLOW_BY_WAVE ? (
-    <Wrapper className={isFirstTime && isWaveGoing ? "fade-in" : ""}>
+    <Wrapper className="fade-in">
       {superskills.map((superskill) => (
         <SuperskillItem key={superskill} type={superskill} />
       ))}

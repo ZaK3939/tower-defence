@@ -181,7 +181,9 @@ export class Wave extends EventEmitter implements IWave {
     this.scene.game.world.builder.unsetBuildingVariant();
     // Play the wave start sound
     this.scene.sound.play(WaveAudio.START);
-
+    if (this.number >= DIFFICULTY.SUPERSKILL_ALLOW_BY_WAVE) {
+      this.scene.game.screen.notice(NoticeType.INFO, `Superskill is ready!`);
+    }
     // Emit an event indicating the start of the wave
     this.emit(WaveEvents.START, this.number);
   }

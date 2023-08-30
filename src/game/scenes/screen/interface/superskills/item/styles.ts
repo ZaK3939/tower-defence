@@ -68,6 +68,7 @@ export const Body = styled.div`
 
 export const Container = styled.div<{
   $active?: boolean;
+  $coolingDown?: boolean;
 }>`
   background: ${InterfaceBackgroundColor.BLACK_TRANSPARENT_50};
   padding: 14px;
@@ -76,21 +77,31 @@ export const Container = styled.div<{
   border-bottom: 6px solid #000;
   border-radius: 5px;
   ${(props) =>
-    props.$active
-      ? css`
-          ${Icon} {
-            opacity: 0.5;
-          }
-        `
-      : css`
-          &:hover {
-            background: ${InterfaceBackgroundColor.BLACK_TRANSPARENT_75};
-            cursor: pointer;
-            ${Info} {
-              display: block;
-            }
-          }
-        `}
+    props.$coolingDown &&
+    css`
+      background: ${InterfaceBackgroundColor.RED_TRANSPARENT_50}; // 背景色を赤に変更
+      pointer-events: none; // クールタイム中はクリックを無効にする
+    `}
+
+  // アクティブ時のスタイル
+  ${(props) =>
+    props.$active &&
+    css`
+      ${Icon} {
+        opacity: 0.5;
+      }
+    `}
+
+  // アクティブでない時のホバースタイル
+  &:hover {
+    background: ${InterfaceBackgroundColor.BLACK_TRANSPARENT_75};
+    cursor: pointer;
+
+    ${Info} {
+      display: block;
+    }
+  }
+
   &:not(:last-child) {
     margin-right: 10px;
   }
@@ -104,4 +115,16 @@ export const Timeout = styled.div`
   bottom: -6px;
   height: 6px;
   animation: ${animationTimeout} 1s linear;
+`;
+
+export const KeyNumber = styled.span`
+  position: absolute;
+  top: 5px; // Containerの上端から少し離す
+  right: 5px; // Containerの右端から少し離す
+  background-color: rgba(0, 0, 0, 0.7); // 背景色を少し濃くする
+  color: white;
+  font-size: 10px;
+  padding: 1px 4px; // パディングを少し調整
+  border-radius: 50%; // 丸みを持たせる
+  z-index: 1;
 `;

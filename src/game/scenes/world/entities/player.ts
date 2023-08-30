@@ -112,6 +112,16 @@ export class Player extends Sprite implements IPlayer {
     this._activeSuperskills = v;
   }
 
+  private _coolDownSuperskills: Partial<Record<PlayerSuperskill, boolean>> = {};
+
+  public get coolDownSuperskills() {
+    return this._coolDownSuperskills;
+  }
+
+  private set coolDownSuperskills(v) {
+    this._coolDownSuperskills = v;
+  }
+
   constructor(scene: IWorld, data: PlayerData) {
     super(scene, {
       ...data,
@@ -267,9 +277,29 @@ export class Player extends Sprite implements IPlayer {
     });
   }
 
+  private handleSuperskillKeyboard() {
+    this.scene.input.keyboard?.on(
+      Phaser.Input.Keyboard.Events.ANY_KEY_UP,
+      (event: KeyboardEvent) => {
+        if (!this.scene.game.world.wave.isGoing) {
+          return;
+        }
+        if (Number(event.key)) {
+          const skillIndex = Number(event.key) - 1;
+          const selectedSkillType = Object.values(PlayerSuperskill)[skillIndex];
+
+          if (selectedSkillType) {
+            this.useSuperskill(selectedSkillType); // スキルを使用するメソッドを呼び出す
+          }
+        }
+      }
+    );
+  }
+
   public useSuperskill(type: PlayerSuperskill) {
     if (
       this.activeSuperskills[type] ||
+      this.coolDownSuperskills[type] ||
       !this.scene.wave.isGoing ||
       this.scene.wave.number < DIFFICULTY.SUPERSKILL_ALLOW_BY_WAVE
     ) {
@@ -294,6 +324,13 @@ export class Player extends Sprite implements IPlayer {
       delay: PLAYER_SUPERSKILLS[type].duration,
       callback: () => {
         delete this.activeSuperskills[type];
+        this.coolDownSuperskills[type] = true;
+        this.scene.time.addEvent({
+          delay: PLAYER_SUPERSKILLS[type].cooltime,
+          callback: () => {
+            delete this.coolDownSuperskills[type];
+          },
+        });
       },
     });
   }
@@ -434,6 +471,7 @@ export class Player extends Sprite implements IPlayer {
     this.movementKeys = this.scene.input.keyboard?.addKeys(
       CONTROL_KEY.MOVEMENT
     ) as Record<string, Phaser.Input.Keyboard.Key>;
+    this.handleSuperskillKeyboard();
   }
 
   private updateVelocity() {
