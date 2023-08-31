@@ -20,13 +20,17 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export const Block = styled.div<{ centerContent?: boolean }>`
+const shouldForwardProp = (propName: any) => propName !== "centerContent";
+
+export const Block = styled.div.withConfig({
+  shouldForwardProp,
+})<{ centerContent?: boolean }>`
   width: 90%;
   max-width: 900px;
   display: flex;
+  flex-direction: row;
   justify-content: ${(props) =>
     props.centerContent ? "center" : "space-between"};
-  align-items: ${(props) => (props.centerContent ? "center" : "initial")};
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
