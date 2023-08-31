@@ -109,6 +109,17 @@ export interface IBuilding
    * Remove alert icon.
    */
   removeAlertIcon(): void;
+
+  /**
+   * Get data for saving.
+   */
+  getDataPayload(): BuildingDataPayload;
+
+  /**
+   * Load saved data.
+   * @param data - Data
+   */
+  loadDataPayload(data: BuildingDataPayload): void;
 }
 
 export interface IBuildingAmmunition extends IBuilding {
@@ -237,4 +248,12 @@ export type BuildingData = BuildingVariantData & {
   texture: BuildingTexture;
   radius?: BuildingGrowthValue;
   delay?: BuildingGrowthValue;
+};
+
+export type BuildingDataPayload = {
+  variant: BuildingVariant;
+  position: Vector2D;
+  health: number;
+  upgradeLevel: number;
+  ammo?: number;
 };

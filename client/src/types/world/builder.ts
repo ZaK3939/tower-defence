@@ -106,7 +106,6 @@ export interface IBuilder extends EventEmitter {
   /**
    * delete all buildings variant.
    */
-
   removeAllBuildings(): void;
 }
 

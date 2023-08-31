@@ -19,7 +19,12 @@ import { TutorialStep } from "@type/tutorial";
 import { IWorld } from "@type/world";
 import { EntityType } from "@type/world/entities";
 import { EnemyVariant } from "@type/world/entities/npc/enemy";
-import { IWave, WaveAudio, WaveEvents } from "@type/world/wave";
+import {
+  IWave,
+  WaveAudio,
+  WaveDataPayload,
+  WaveEvents,
+} from "@type/world/wave";
 
 export class Wave extends EventEmitter implements IWave {
   readonly scene: IWorld;
@@ -227,6 +232,18 @@ export class Wave extends EventEmitter implements IWave {
     } else if (this.number === 8) {
       this.scene.game.tutorial.start(TutorialStep.BUILD_RADAR);
     }
+  }
+
+  public getDataPayload(): WaveDataPayload {
+    return {
+      number: this.number,
+      timeleft: this.getTimeleft(),
+    };
+  }
+
+  public loadDataPayload(data: WaveDataPayload) {
+    this.number = data.number;
+    this.nextWaveTimestamp = this.scene.getTime() + data.timeleft;
   }
 
   private spawnEnemy() {

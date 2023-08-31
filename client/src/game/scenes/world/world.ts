@@ -21,9 +21,9 @@ import { Camera } from "@game/scenes/world/camera";
 import { WorldUI } from "@game/scenes/world/interface";
 import { Level } from "@game/scenes/world/level";
 
-import { GameEvents, GameScene } from "@type/game";
+import { GameEvents, GameScene, GameState } from "@type/game";
 import { LiveEvents } from "@type/live";
-import { IWorld, WorldEvents, WorldHint } from "@type/world";
+import { IWorld, WorldDataPayload, WorldEvents, WorldHint } from "@type/world";
 import { IBuilder } from "@type/world/builder";
 import { ICamera } from "@type/world/camera";
 import { EntityType } from "@type/world/entities";
@@ -43,6 +43,7 @@ import { IWave, WaveEvents } from "@type/world/wave";
 import { Builder } from "./builder";
 import { Wave } from "./wave";
 import { NoticeType } from "@type/screen";
+import { ICrystal } from "@type/world/entities/crystal";
 
 export class World extends Scene implements IWorld {
   private entityGroups: Record<EntityType, Phaser.GameObjects.Group>;
@@ -155,6 +156,7 @@ export class World extends Scene implements IWorld {
     this.lifecyle = this.time.addEvent({
       delay: Number.MAX_SAFE_INTEGER,
       loop: true,
+      paused: true,
     });
 
     this.level = new Level(this, data);
@@ -178,6 +180,9 @@ export class World extends Scene implements IWorld {
     this.addAssistant();
     this.addCrystals();
     this.addStair();
+    if (this.game.usedSave) {
+      this.loadDataPayload(this.game.usedSave.payload.world);
+    }
   }
 
   public getStair() {
@@ -209,7 +214,7 @@ export class World extends Scene implements IWorld {
   }
 
   public update(time: number, delta: number) {
-    if (!this.game.isStarted) {
+    if (this.game.state !== GameState.STARTED) {
       return;
     }
     this.deltaTime = delta;
@@ -271,7 +276,7 @@ export class World extends Scene implements IWorld {
 
   private resetTime() {
     this.setTimePause(false);
-    this.lifecyle.elapsed = 0;
+    this.lifecyle.elapsed = this.game.usedSave?.payload.world.time ?? 0;
   }
 
   public getResourceExtractionSpeed() {
@@ -385,6 +390,30 @@ export class World extends Scene implements IWorld {
     };
   }
 
+  public getDataPayload(): WorldDataPayload {
+    return {
+      time: this.getTime(),
+      crystals: this.getEntities<ICrystal>(EntityType.CRYSTAL).map((crystal) =>
+        crystal.getDataPayload()
+      ),
+      buildings: this.getEntities<IBuilding>(EntityType.BUILDING).map(
+        (building) => building.getDataPayload()
+      ),
+    };
+  }
+
+  private loadDataPayload(data: WorldDataPayload) {
+    data.buildings.forEach((buildingData) => {
+      const building = this.builder.createBuilding({
+        variant: buildingData.variant,
+        positionAtMatrix: buildingData.position,
+        instant: true,
+      });
+
+      building.loadDataPayload(buildingData);
+    });
+  }
+
   private addEntityGroups() {
     this.entityGroups = {
       [EntityType.STAIR]: this.add.group(),
@@ -405,6 +434,9 @@ export class World extends Scene implements IWorld {
   private addWaveManager() {
     this.wave = new Wave(this);
 
+    if (this.game.usedSave) {
+      this.wave.loadDataPayload(this.game.usedSave.payload.wave);
+    }
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.wave.destroy();
     });
@@ -423,11 +455,21 @@ export class World extends Scene implements IWorld {
   }
 
   private addPlayer() {
-    const positions = this.level.readSpawnPositions(SpawnTarget.PLAYER);
+    let positionAtMatrix: Vector2D;
 
-    this.player = new Player(this, {
-      positionAtMatrix: Phaser.Utils.Array.GetRandom(positions),
-    });
+    if (this.game.usedSave) {
+      positionAtMatrix = this.game.usedSave.payload.player.position;
+    } else {
+      positionAtMatrix = Phaser.Utils.Array.GetRandom(
+        this.level.readSpawnPositions(SpawnTarget.PLAYER)
+      );
+    }
+
+    this.player = new Player(this, { positionAtMatrix });
+
+    if (this.game.usedSave) {
+      this.player.loadDataPayload(this.game.usedSave.payload.player);
+    }
 
     this.camera.focusOn(this.player);
 
@@ -467,7 +509,15 @@ export class World extends Scene implements IWorld {
   }
 
   private addCrystals() {
-    const create = () => {
+    const getRandomPosition = () => {
+      const positions = this.level.readSpawnPositions(SpawnTarget.CRYSTAL);
+      const freePositions = positions.filter((position) =>
+        this.level.isFreePoint({ ...position, z: 1 })
+      );
+
+      return Phaser.Utils.Array.GetRandom(freePositions);
+    };
+    const create = (position: Vector2D) => {
       const positions = this.level.readSpawnPositions(SpawnTarget.CRYSTAL);
       const freePositions = positions.filter((position) =>
         this.level.isFreePoint({ ...position, z: 1 })
@@ -475,7 +525,7 @@ export class World extends Scene implements IWorld {
       const variants = LEVEL_PLANETS[this.level.planet].CRYSTAL_VARIANTS;
 
       new Crystal(this, {
-        positionAtMatrix: Phaser.Utils.Array.GetRandom(freePositions),
+        positionAtMatrix: position,
         variant: Phaser.Utils.Array.GetRandom(variants),
       });
     };
@@ -486,10 +536,16 @@ export class World extends Scene implements IWorld {
           this.game.getDifficultyMultiplier()
       )
     );
-
-    if (this.wave.number != 1) {
-      for (let i = 0; i < maxCount; i++) {
-        create();
+    if (this.game.usedSave) {
+      this.game.usedSave.payload.world.crystals.forEach((crystal) => {
+        create(crystal.position);
+      });
+    } else {
+      if (this.wave.number != 1) {
+        for (let i = 0; i < maxCount; i++) {
+          const position = getRandomPosition();
+          create(position);
+        }
       }
     }
     this.wave.on(WaveEvents.COMPLETE, () => {
@@ -497,10 +553,13 @@ export class World extends Scene implements IWorld {
         maxCount - this.getEntitiesGroup(EntityType.CRYSTAL).getTotalUsed();
 
       for (let i = 0; i < newCount; i++) {
-        create();
+        const position = getRandomPosition();
+
+        create(position);
       }
     });
   }
+
   private removeCrystals() {
     const crystals = this.getEntities<Crystal>(EntityType.CRYSTAL);
     crystals.forEach((crystal) => {

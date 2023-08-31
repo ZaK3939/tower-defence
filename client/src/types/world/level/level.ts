@@ -72,6 +72,11 @@ export interface ILevel extends ITileMatrix {
    * reset grid and effects.
    */
   resetProperties(): void;
+
+  /**
+   * Get data for saving.
+   */
+  getDataPayload(): LevelDataPayload;
 }
 
 export enum TileType {
@@ -118,6 +123,10 @@ export type LevelData = {
   seed?: number[];
 };
 
+export type LevelDataPayload = {
+  planet: LevelPlanet;
+  seed: number[];
+};
 export enum LevelPlanet {
   DUNGEONS = "DUNGEONS",
   CRYPTO = "CRYPTO",

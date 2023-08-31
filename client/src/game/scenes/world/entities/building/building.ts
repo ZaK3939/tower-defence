@@ -39,6 +39,7 @@ import {
   IBuilding,
   BuildingIcon,
   BuildingGrowthValue,
+  BuildingDataPayload,
 } from "@type/world/entities/building";
 import { TileType, Vector2D } from "@type/world/level";
 import { ITile } from "@type/world/level/tile-matrix";
@@ -380,17 +381,39 @@ export class Building
   }
 
   private upgradeHealth() {
-    const maxHealth = progressionQuadratic({
-      defaultValue: this.defaultHealth,
-      scale: DIFFICULTY.BUILDING_HEALTH_GROWTH,
-      level: this.upgradeLevel,
-      roundTo: 100,
-    });
+    const maxHealth = this.getMaxHealth();
 
     const addedHealth = maxHealth - this.live.maxHealth;
 
     this.live.setMaxHealth(maxHealth);
     this.live.addHealth(addedHealth);
+  }
+
+  private getMaxHealth() {
+    return progressionQuadratic({
+      defaultValue: this.defaultHealth,
+      scale: DIFFICULTY.BUILDING_HEALTH_GROWTH,
+      level: this.upgradeLevel,
+      roundTo: 100,
+    });
+  }
+
+  public getDataPayload(): BuildingDataPayload {
+    return {
+      variant: this.variant,
+      position: this.positionAtMatrix,
+      health: this.live.health,
+      upgradeLevel: this.upgradeLevel,
+    };
+  }
+
+  public loadDataPayload(data: BuildingDataPayload) {
+    this.upgradeLevel = data.upgradeLevel;
+    this.updateActionArea();
+    this.setFrame(this.upgradeLevel - 1);
+
+    this.live.setMaxHealth(this.getMaxHealth());
+    this.live.setHealth(data.health);
   }
 
   private onDamage() {

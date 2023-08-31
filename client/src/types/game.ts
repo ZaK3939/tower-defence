@@ -1,9 +1,10 @@
 import * as Phaser from "phaser";
 
 import { IScreen } from "./screen";
-import { ITutorial } from "./tutorial";
+import { ITutorial, TutorialStep, TutorialStepState } from "./tutorial";
 import { IWorld } from "./world";
 import { IAnalytics } from "./analytics";
+import { IStorage, StorageSave } from "./storage";
 
 export interface IGame extends Phaser.Game {
   /**
@@ -18,18 +19,9 @@ export interface IGame extends Phaser.Game {
 
   /**
    * Game is paused.
+   * Game state.
    */
-  readonly onPause: boolean;
-
-  /**
-   * Game is finished.
-   */
-  readonly isFinished: boolean;
-
-  /**
-   * Game is started.
-   */
-  readonly isStarted: boolean;
+  readonly state: GameState;
 
   /**
    * Analytics manager.
@@ -42,9 +34,19 @@ export interface IGame extends Phaser.Game {
   readonly tutorial: ITutorial;
 
   /**
+   * Data storage.
+   */
+  readonly storage: IStorage;
+
+  /**
    * Game settings.
    */
   readonly settings: Partial<Record<GameSettings, string>>;
+
+  /**
+   * Used save data.
+   */
+  readonly usedSave: Nullable<StorageSave>;
 
   /**
    * Game difficulty.
@@ -62,9 +64,15 @@ export interface IGame extends Phaser.Game {
   resumeGame(): void;
 
   /**
+   * Continue game.
+   * @param save - Save data.
+   */
+  continueGame(save: StorageSave): void;
+
+  /**
    * Start new game.
    */
-  startGame(): void;
+  startNewGame(): void;
 
   /**
    * Stop game.
@@ -111,6 +119,16 @@ export interface IGame extends Phaser.Game {
    * @param callback - Complete callback
    */
   showAd(type: GameAdType, callback?: () => void): void;
+
+  /**
+   * Get data for saving.
+   */
+  getDataPayload(): GameDataPayload;
+
+  /**
+   * Load saved data.
+   */
+  loadPayload(): Promise<void>;
 }
 
 export enum GameAdType {
@@ -150,10 +168,22 @@ export enum GameFlag {
   ADS = "ADS",
 }
 
+export enum GameState {
+  IDLE = "IDLE",
+  STARTED = "STARTED",
+  FINISHED = "FINISHED",
+  PAUSED = "PAUSED",
+}
+
 export type GameSettingsData = {
   description: string;
   values: string[];
   default: string;
+};
+
+export type GameDataPayload = {
+  difficulty: GameDifficulty;
+  tutorial: Partial<Record<TutorialStep, TutorialStepState>>;
 };
 
 export type GameStat = {

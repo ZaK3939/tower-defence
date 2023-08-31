@@ -10,6 +10,9 @@ import { EntityType } from "./entities/entities";
 import { EnemyVariant, IEnemy } from "./entities/npc/enemy";
 import { ISprite } from "./entities/utils/sprite";
 import { ICamera } from "./camera";
+import { CrystalDataPayload } from "./entities/crystal";
+import { BuildingDataPayload } from "./entities/building";
+import { StorageSavePayload } from "@type/storage";
 
 export interface IWorld extends IScene {
   /**
@@ -55,7 +58,7 @@ export interface IWorld extends IScene {
   /**
    * Start world.
    */
-  start(): void;
+  start(data?: StorageSavePayload): void;
 
   /**
    * Change Level screen.
@@ -136,6 +139,11 @@ export interface IWorld extends IScene {
    * Get random enemy spawn position.
    */
   getEnemySpawnPosition(): Vector2D;
+
+  /**
+   * Get world data .
+   */
+  getDataPayload(): WorldDataPayload;
 }
 
 export enum WorldEvents {
@@ -150,4 +158,10 @@ export type WorldHint = {
   side: "left" | "right" | "top" | "bottom";
   text: string;
   position: Vector2D;
+};
+
+export type WorldDataPayload = {
+  time: number;
+  buildings: Array<BuildingDataPayload>;
+  crystals: Array<CrystalDataPayload>;
 };

@@ -29,6 +29,7 @@ import {
   LevelTilesetTexture,
   LevelPlanet,
   LevelData,
+  LevelDataPayload,
 } from "@type/world/level";
 import { ITile } from "@type/world/level/tile-matrix";
 import { TileMatrix } from "./tile-matrix";
@@ -369,6 +370,13 @@ export class Level extends TileMatrix implements ILevel {
     this.deleteAllTiles();
     this.removeEffects();
     this.sceneryTiles.clear(true, true);
+  }
+
+  public getDataPayload(): LevelDataPayload {
+    return {
+      planet: this.planet,
+      seed: this.map.seed,
+    };
   }
 
   static ToMatrixPosition(positionAtWorld: Vector2D) {

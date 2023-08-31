@@ -22,7 +22,8 @@ export const BuilderPreview: React.FC<Props> = ({ number, variant }) => {
   const [isUsed, setUsed] = useState(false);
   const [isUsable, setUsable] = useState(false);
 
-  const isNewest = !isUsed && !isDisallow && !isDisabled;
+  const isNewest =
+    !isUsed && !isDisallow && !isDisabled && !world.game.usedSave;
 
   const selectBuilding = () => {
     if (isDisallow) {

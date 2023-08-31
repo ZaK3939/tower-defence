@@ -12,6 +12,7 @@ import {
   BuildingVariantData,
   BuildingIcon,
   IBuildingAmmunition,
+  BuildingDataPayload,
 } from "@type/world/entities/building";
 
 import { Building } from "../building";
@@ -84,6 +85,21 @@ export class BuildingAmmunition
     ];
 
     return super.getInfo().concat(info);
+  }
+
+  public getDataPayload() {
+    return {
+      ...super.getDataPayload(),
+      ammo: this.ammo,
+    };
+  }
+
+  public loadSavePayload(data: BuildingDataPayload) {
+    super.loadDataPayload(data);
+
+    if (data.ammo) {
+      this.ammo = data.ammo;
+    }
   }
 
   public use(amount: number) {

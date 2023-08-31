@@ -8,9 +8,13 @@ export const Wrapper = styled.ul`
   pointer-events: all;
   display: flex;
 `;
+export const Space = styled.div`
+  height: 20px;
+`;
 
 export const Item = styled.li<{
   $active?: boolean;
+  $disabled?: boolean;
 }>`
   font-family: ${InterfaceFont.PIXEL_LABEL};
   font-size: 24px;

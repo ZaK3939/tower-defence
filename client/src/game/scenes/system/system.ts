@@ -2,9 +2,10 @@ import { CONTROL_KEY } from "@const/controls";
 
 import { getAssetsPack, loadFontFace } from "@lib/assets";
 import { removeLoading, setLoadingStatus } from "@lib/state";
-import { GameScene } from "@type/game";
+import { GameScene, GameState } from "@type/game";
 import { InterfaceFont } from "@type/interface";
 import { Scene } from "..";
+import { MenuPage } from "@type/menu";
 
 export class System extends Scene {
   constructor() {
@@ -16,16 +17,19 @@ export class System extends Scene {
     setLoadingStatus("ASSETS LOADING");
   }
 
-  public create() {
+  public async create() {
+    await this.game.loadPayload();
     Promise.all([
       loadFontFace(InterfaceFont.PIXEL_LABEL, "pixel_label.ttf"),
       loadFontFace(InterfaceFont.PIXEL_TEXT, "pixel_text.ttf"),
-    ]).then(() => {
-      removeLoading();
-    });
+    ]);
+
+    removeLoading();
 
     this.scene.launch(GameScene.WORLD);
-    this.scene.launch(GameScene.MENU);
+    this.scene.launch(GameScene.MENU, {
+      defaultPage: MenuPage.NEW_GAME,
+    });
 
     this.scene.bringToTop();
 
@@ -35,13 +39,18 @@ export class System extends Scene {
         return;
       }
 
-      if (this.game.isFinished) {
-        this.game.stopGame();
-      } else if (this.game.isStarted) {
-        if (this.game.onPause) {
+      switch (this.game.state) {
+        case GameState.FINISHED: {
+          this.game.stopGame();
+          break;
+        }
+        case GameState.PAUSED: {
           this.game.resumeGame();
-        } else {
+          break;
+        }
+        case GameState.STARTED: {
           this.game.pauseGame();
+          break;
         }
       }
     });
