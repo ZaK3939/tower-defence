@@ -31,6 +31,8 @@ export interface INPC extends ISprite {
    * @param position - Position at world
    */
   moveTo(position: Vector2D): void;
+
+  changePosition(position: Vector2D): void;
 }
 
 export enum NPCEvent {

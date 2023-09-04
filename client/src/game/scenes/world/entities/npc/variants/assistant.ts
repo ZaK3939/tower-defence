@@ -121,19 +121,10 @@ export class Assistant extends NPC implements IAssistant {
         depth: this.depth + 1,
       });
     }
-
+    if (this.scene.game.isPVP && !this.scene.game.joinGame) {
+      this.scene.game.network.sendAssistantDestroyInfo();
+    }
     super.onDead();
-  }
-
-  public changePosition(positionAtMatrix: Vector2D) {
-    this.positionAtMatrix = positionAtMatrix;
-
-    const positionAtWorld = Level.ToWorldPosition({
-      ...positionAtMatrix,
-      z: 0,
-    });
-
-    this.setPosition(positionAtWorld.x, positionAtWorld.y);
   }
 
   private isCanAttack() {

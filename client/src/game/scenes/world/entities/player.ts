@@ -134,20 +134,22 @@ export class Player extends Sprite implements IPlayer {
       health: DIFFICULTY.PLAYER_HEALTH,
       speed: DIFFICULTY.PLAYER_SPEED,
     });
+
     scene.add.existing(this);
 
     this.gamut = PLAYER_TILE_SIZE.gamut;
-
-    this.handleKeyboard();
     this.registerAnimations();
-
     this.addDustEffect();
+    if (!this.scene.game.joinGame) {
+      this.handleKeyboard();
+    }
     this.addIndicator({
       color: 0xd0ff4f,
       value: () => this.live.health / this.live.maxHealth,
       size: 20,
     });
 
+    // need to change player size to 14,26
     this.body.setSize(14, 26);
 
     this.setTilesGroundCollision(true);
@@ -248,13 +250,24 @@ export class Player extends Sprite implements IPlayer {
 
   public changePosition(positionAtMatrix: Vector2D) {
     this.positionAtMatrix = positionAtMatrix;
+    const positionOfTop = this.getTopCenter();
+
+    const positionOnGround = Level.ToPositionAtWorld(positionAtMatrix);
+    const depth = Level.GetDepth(positionOnGround.y, 1);
+    this.currentBiome = this.scene.level.map.getAt(positionAtMatrix);
+
+    this.setDepth(depth);
+
+    this.container.setDepth(depth + 19);
+    this.container.setPosition(positionOfTop.x, (positionOfTop?.y ?? 0) - 10);
+    this.container.setAlpha(this.alpha);
+    this.container.setVisible(this.visible);
 
     const positionAtWorld = Level.ToWorldPosition({
       ...positionAtMatrix,
       z: 0,
     });
-    this.setVelocity(0, 0);
-    this.stopMovement();
+
     this.setPosition(positionAtWorld.x, positionAtWorld.y);
   }
 

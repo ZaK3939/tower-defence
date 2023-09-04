@@ -379,6 +379,22 @@ export class Level extends TileMatrix implements ILevel {
     };
   }
 
+  static ToPositionAtWorld(positionAtMatrix: Vector2D) {
+    const { width, height, origin } = LEVEL_TILE_SIZE;
+
+    const n = {
+      x: positionAtMatrix.x - positionAtMatrix.y,
+      y: positionAtMatrix.x + positionAtMatrix.y,
+    };
+
+    const positionAtWorld: Vector2D = {
+      x: n.x * (width * 0.5),
+      y: n.y * (height * origin),
+    };
+
+    return positionAtWorld;
+  }
+
   static ToMatrixPosition(positionAtWorld: Vector2D) {
     const { width, height, origin } = LEVEL_TILE_SIZE;
     const n = {

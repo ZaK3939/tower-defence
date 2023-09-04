@@ -14,6 +14,17 @@ export interface IEnemy extends INPC {
    * @param target - Target
    */
   attack(target: IEnemyTarget): void;
+
+  // /**
+  //  * Load saved data.
+  //  * @param data - Data
+  //  */
+  // loadDataPayload(data: EnemyDataPayload): void;
+
+  // /**
+  //  * Get data for saving.
+  //  */
+  // changePosition(positionAtMatrix: Vector2D): void;
 }
 
 export interface IEnemyFactory {
@@ -73,4 +84,9 @@ export type EnemyData = EnemyVariantData & {
     damage: number;
     health: number;
   };
+};
+
+export type EnemySpawnPayload = {
+  variant: EnemyVariant;
+  positionAtMatrix: Vector2D;
 };

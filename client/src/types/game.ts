@@ -5,6 +5,7 @@ import { ITutorial, TutorialStep, TutorialStepState } from "./tutorial";
 import { IWorld } from "./world";
 import { IAnalytics } from "./analytics";
 import { IStorage, StorageSave } from "./storage";
+import { INetwork } from "./network";
 
 export interface IGame extends Phaser.Game {
   /**
@@ -39,6 +40,11 @@ export interface IGame extends Phaser.Game {
   readonly storage: IStorage;
 
   /**
+   * Network manager.
+   */
+
+  readonly network: INetwork;
+  /**
    * Game settings.
    */
   readonly settings: Partial<Record<GameSettings, string>>;
@@ -47,6 +53,16 @@ export interface IGame extends Phaser.Game {
    * Used save data.
    */
   readonly usedSave: Nullable<StorageSave>;
+
+  /**
+   * is game in pvp mode
+   */
+  readonly isPVP: boolean;
+
+  /**
+   * check if game is in join game mode
+   */
+  readonly joinGame: boolean;
 
   /**
    * Game difficulty.
@@ -73,6 +89,16 @@ export interface IGame extends Phaser.Game {
    * Start new game.
    */
   startNewGame(): void;
+
+  /**
+   * Start New vs game.
+   */
+  startNewPvPGame(): void;
+
+  /**
+   * Join New vs game.
+   */
+  joinPvPGame(): void;
 
   /**
    * Stop game.

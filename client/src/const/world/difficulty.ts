@@ -1,4 +1,5 @@
 export const DIFFICULTY = {
+  GAME_GOAL_WAVE: 11,
   /**
    * Player
    */

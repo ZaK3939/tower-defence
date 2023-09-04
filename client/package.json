@@ -7,8 +7,7 @@
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "test": "jest",
-    "lint": "eslint \"./**/*.{js,ts,tsx}\" --ignore-path .gitignore --fix",
-    "prepare": "husky install"
+    "lint": "eslint \"./**/*.{js,ts,tsx}\" --ignore-path .gitignore --fix"
   },
   "repository": {
     "type": "git",
@@ -22,11 +21,6 @@
   "license": "GNU",
   "bugs": {
     "url": "https://github.com/ZaK3939/tower-defence/issues"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run test && npm version patch && git add package.json"
-    }
   },
   "homepage": "https://github.com/ZaK3939/tower-defence#readme",
   "devDependencies": {
@@ -79,6 +73,7 @@
     "react-dom": "18.2.0",
     "styled-components": "6.0.1",
     "util": "^0.12.5",
-    "uuid": "9.0.0"
+    "uuid": "9.0.0",
+    "colyseus.js": "^0.15.9"
   }
 }

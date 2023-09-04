@@ -85,6 +85,10 @@ export class Sprite extends Phaser.Physics.Arcade.Sprite implements ISprite {
     this.on(Phaser.GameObjects.Events.DESTROY, () => {
       this.container.destroy();
       this.live.removeAllListeners();
+
+      if (this.scene.game.isPVP && !this.scene.game.joinGame) {
+        this.scene.game.network.sendEntityDestroyInfo(this);
+      }
     });
   }
 
@@ -244,6 +248,9 @@ export class Sprite extends Phaser.Physics.Arcade.Sprite implements ISprite {
   }
 
   public addIndicator(data: SpriteIndicatorData) {
+    if (this.scene.game.joinGame) {
+      return;
+    }
     const width = data.size ?? this.displayWidth;
     const body = this.scene.add.rectangle(0, 0, width, 5, 0x000000);
 
@@ -262,6 +269,7 @@ export class Sprite extends Phaser.Physics.Arcade.Sprite implements ISprite {
     container.add([body, bar]);
 
     this.container.add(container);
+
     this.indicators.push({ container, value: data.value });
   }
 

@@ -23,6 +23,10 @@ export const Navigation: React.FC<Props> = ({ page, onSelect }) => {
         {
           label: "New game",
           page: MenuPage.NEW_GAME,
+        },
+        {
+          label: "Pvp game",
+          page: MenuPage.PVP_GAME,
         }
         // {
         //   label: "Load game",
@@ -41,7 +45,7 @@ export const Navigation: React.FC<Props> = ({ page, onSelect }) => {
         //   disabled: game.world.wave.isGoing,
         // },
         {
-          label: "Main menu",
+          label: "MainMenu",
           page: MenuPage.NEW_GAME,
           onClick: () => {
             // eslint-disable-next-line no-alert

@@ -61,6 +61,11 @@ export interface IWorld extends IScene {
   start(data?: StorageSavePayload): void;
 
   /**
+   * join world
+   */
+  join(data?: StorageSavePayload): void;
+
+  /**
    * Change Level screen.
    */
   getStair(): void;
@@ -152,6 +157,13 @@ export enum WorldEvents {
   SHOW_HINT = "show_hint",
   HIDE_HINT = "hide_hint",
   USE_SUPERSKILL = "use_superskill",
+  WORLD_UPDTAE = "world_update",
+  ENEMY_ENTITY_UPDATE = "enemy_entity_update",
+  ENEMY_SPAWN_INFO = "enemy_spawn_info",
+  ENTITY_DESTROY_INFO = "entity_destroy_info",
+  ASSISTANT_DESTROY_INFO = "assistant_destroy_info",
+  CRYSTAL_SPAWN_INFO = "crystal_spawn_info",
+  CRYSTAL_PICKUP_INFO = "crystal_pickup_info",
 }
 
 export type WorldHint = {

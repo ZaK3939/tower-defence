@@ -394,6 +394,7 @@ export class Builder extends EventEmitter implements IBuilder {
   public createBuilding(data: BuildingBuildData) {
     const BuildingInstance = BUILDINGS[data.variant];
     const building = new BuildingInstance(this.scene, {
+      instant: data.instant,
       positionAtMatrix: data.positionAtMatrix,
     });
 
@@ -418,7 +419,6 @@ export class Builder extends EventEmitter implements IBuilder {
 
     return building;
   }
-
   public isBuildingLimitReached(variant: BuildingVariant) {
     const limit = this.getBuildingLimit(variant);
 

@@ -52,7 +52,9 @@ export class Crystal
     this.scene.player.giveResources(resources);
 
     this.scene.sound.play(CrystalAudio.PICKUP);
-
+    if (this.scene.game.isPVP) {
+      this.scene.game.network.sendCrystalPickupInfo(this.positionAtMatrix);
+    }
     this.destroy();
   }
 
