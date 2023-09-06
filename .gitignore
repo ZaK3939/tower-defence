@@ -13,3 +13,5 @@ node_modules/
 
 # Build
 /npm-debug.log
+
+backend/.colyseus-cloud.json

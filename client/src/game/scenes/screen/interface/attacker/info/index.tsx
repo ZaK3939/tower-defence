@@ -37,7 +37,7 @@ export const AttakerInfo: React.FC<Props> = ({ variant }) => {
     <Wrapper>
       <Head>
         <Name>{ENEMIES[variant].Name}</Name>
-        <Cost type="resources" value={ENEMIES[variant].Cost} size="large" />
+        {/* <Cost type="resources" value={ENEMIES[variant].Cost} size="large" /> */}
       </Head>
       <Body>
         <Text>{ENEMIES[variant].Description}</Text>

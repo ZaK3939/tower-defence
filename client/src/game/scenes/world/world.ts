@@ -218,6 +218,16 @@ export class World extends Scene implements IWorld {
         }
       });
 
+      this.game.events.on(WorldEvents.PLAYER_IS_LEFT, (sessionId: string) => {
+        if (sessionId !== this.game.network.sessionId) {
+          this.game.screen.notice(
+            NoticeType.INFO,
+            `Player ${sessionId} left. Game paused`
+          );
+          this.setTimePause(true);
+        }
+      });
+
       this.game.events.on(
         WorldEvents.ENEMY_SPAWN_INFO,
         (payload: EnemySpawnPayload) => {

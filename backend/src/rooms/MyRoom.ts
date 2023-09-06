@@ -3,7 +3,7 @@ import { MyRoomState } from "./schema/MyRoomState";
 import { NOTIFICATION_TYPE } from "../../../client/src/const/notification";
 
 export class MyRoom extends Room<MyRoomState> {
-  maxClients = 4;
+  maxClients = 2;
 
   onCreate(options: any) {
     this.setState(new MyRoomState());

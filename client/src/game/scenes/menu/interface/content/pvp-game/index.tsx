@@ -47,7 +47,7 @@ export const PvpGame: React.FC = () => {
     game.joinPvPGame();
   };
 
-  return IS_DEV_MODE ? (
+  return (
     <Wrapper>
       {hasAvailableRooms ? (
         <>
@@ -88,7 +88,5 @@ export const PvpGame: React.FC = () => {
         </>
       )}
     </Wrapper>
-  ) : (
-    <Wrapper>Developing</Wrapper>
   );
 };
