@@ -24,11 +24,14 @@ import {
   EnemyData,
   EnemyTexture,
   IEnemy,
+  EnemyVariant,
 } from "@type/world/entities/npc/enemy";
 import { PlayerSuperskill } from "@type/world/entities/player";
 import { TileType, Vector2D } from "@type/world/level";
 
 export class Enemy extends NPC implements IEnemy {
+  readonly variant: EnemyVariant;
+
   private damage: number;
 
   private might: number;
@@ -41,7 +44,7 @@ export class Enemy extends NPC implements IEnemy {
 
   constructor(
     scene: IWorld,
-    { positionAtMatrix, texture, score, multipliers }: EnemyData
+    { positionAtMatrix, texture, variant, score, multipliers }: EnemyData
   ) {
     super(scene, {
       texture,
@@ -74,6 +77,7 @@ export class Enemy extends NPC implements IEnemy {
       scale: DIFFICULTY.ENEMY_DAMAGE_GROWTH,
       level: scene.wave.number,
     });
+    this.variant = variant;
     this.score = score ?? 1;
     this.gamut = ENEMY_TEXTURE_META[texture].size.gamut;
     this.might =

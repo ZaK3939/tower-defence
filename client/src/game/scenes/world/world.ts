@@ -29,7 +29,11 @@ import { ICamera } from "@type/world/camera";
 import { EntityType } from "@type/world/entities";
 import { BuildingVariant, IBuilding } from "@type/world/entities/building";
 import { IAssistant } from "@type/world/entities/npc/assistant";
-import { EnemyVariant, IEnemy } from "@type/world/entities/npc/enemy";
+import {
+  EnemySpawnPayload,
+  EnemyVariant,
+  IEnemy,
+} from "@type/world/entities/npc/enemy";
 import { IPlayer, PlayerSkill } from "@type/world/entities/player";
 import { ISprite } from "@type/world/entities/sprite";
 import {
@@ -39,11 +43,14 @@ import {
   SpawnTarget,
   Vector2D,
 } from "@type/world/level";
-import { IWave, WaveEvents } from "@type/world/wave";
+import { IWave, WaveAudio, WaveEvents, WaveStartInfo } from "@type/world/wave";
 import { Builder } from "./builder";
 import { Wave } from "./wave";
 import { NoticeType } from "@type/screen";
-import { ICrystal } from "@type/world/entities/crystal";
+import { CrystalDataPayload, ICrystal } from "@type/world/entities/crystal";
+import { StorageSavePayload } from "@type/storage";
+import { IAttacker } from "@type/world/attacker";
+import { Attacker } from "./attacker";
 
 export class World extends Scene implements IWorld {
   private entityGroups: Record<EntityType, Phaser.GameObjects.Group>;
@@ -96,6 +103,16 @@ export class World extends Scene implements IWorld {
 
   private set builder(v) {
     this._builder = v;
+  }
+
+  private _attacker: IAttacker;
+
+  public get attacker() {
+    return this._attacker;
+  }
+
+  private set attacker(v) {
+    this._attacker = v;
   }
 
   private _camera: ICamera;
@@ -183,6 +200,98 @@ export class World extends Scene implements IWorld {
     if (this.game.usedSave) {
       this.loadDataPayload(this.game.usedSave.payload.world);
     }
+
+    if (this.game.isPVP) {
+      this.setTimePause(true);
+      this.game.screen.notice(
+        NoticeType.INFO,
+        `Waiting for player to join the game`
+      );
+
+      this.game.events.on(WorldEvents.PLAYER_IS_READY, (sessionId: string) => {
+        if (sessionId !== this.game.network.sessionId) {
+          this.game.screen.notice(
+            NoticeType.INFO,
+            `Player ${sessionId} is joined. Game started`
+          );
+          this.setTimePause(false);
+        }
+      });
+
+      this.game.events.on(WorldEvents.PLAYER_IS_LEFT, (sessionId: string) => {
+        if (sessionId !== this.game.network.sessionId) {
+          this.game.screen.notice(
+            NoticeType.INFO,
+            `Player ${sessionId} left. Game paused`
+          );
+          this.setTimePause(true);
+        }
+      });
+
+      this.game.events.on(
+        WorldEvents.ENEMY_SPAWN_INFO,
+        (payload: EnemySpawnPayload) => {
+          const EnemyInstance = ENEMIES[payload.variant];
+          const enemy: IEnemy = new EnemyInstance(this, {
+            positionAtMatrix: payload.positionAtMatrix,
+          });
+          this.wave.spawnedEnemiesCount++;
+        }
+      );
+    }
+  }
+
+  public join(payload: StorageSavePayload) {
+    new Interface(this, WorldUI);
+
+    this.camera.addZoomControl();
+    this.camera.zoomOut();
+    this.resetTime(payload);
+
+    this.addWaveManager();
+    this.addBuilder();
+    this.addAttacker();
+
+    this.addEntityGroups();
+
+    this.addPlayer(payload);
+    this.addAssistant();
+
+    this.game.events.on(WorldEvents.ENTITY_DESTROY_INFO, (payload: any) => {
+      const entity = this.getEntities<IEnemy>(EntityType.ENEMY).find(
+        (entity: IEnemy) => {
+          return payload.textureKey == entity.texture.key;
+        }
+      );
+      if (entity) {
+        this.entityGroups[EntityType.ENEMY].remove(entity, true, true);
+        entity.destroy();
+      }
+    });
+    this.game.events.on(WorldEvents.ASSISTANT_DESTROY_INFO, (payload: any) => {
+      this.assistant?.destroy();
+    });
+
+    this.game.events.on(
+      WorldEvents.CRYSTAL_PICKUP_INFO,
+      (payload: Vector2D) => {
+        const entity = this.getEntities<ICrystal>(EntityType.CRYSTAL).find(
+          (entity: ICrystal) => {
+            return (
+              payload.x == entity.positionAtMatrix.x &&
+              payload.y === entity.positionAtMatrix.y
+            );
+          }
+        );
+        if (entity) {
+          this.entityGroups[EntityType.CRYSTAL].remove(entity, true, true);
+          entity.destroy();
+        }
+      }
+    );
+    this.game.events.on(WorldEvents.ASSISTANT_DESTROY_INFO, (payload: any) => {
+      this.assistant?.destroy();
+    });
   }
 
   public getStair() {
@@ -218,30 +327,69 @@ export class World extends Scene implements IWorld {
       return;
     }
     this.deltaTime = delta;
-    this.player.update();
-    this.builder.update();
-    this.wave.update();
+    if (!this.game.joinGame) {
+      this.player.update();
+      this.builder.update();
+      this.wave.update();
 
-    if (this.isUpStair) {
-      this.stairNumber++;
-      this.builder.removeAllBuildings();
-      this.removeCrystals();
-      this.removeEnemies();
-      this.reCreateLevel();
-
-      const positions = this.level.readSpawnPositions(SpawnTarget.PLAYER);
-      this.player.changePosition(Phaser.Utils.Array.GetRandom(positions));
-      const positionAtMatrix = aroundPosition(
-        this.player.positionAtMatrix
-      ).find((spawn) => {
-        const biome = this.level.map.getAt(spawn);
-        return biome?.solid;
-      });
-      this.assistant?.changePosition(positionAtMatrix!);
-      this.isUpStair = false;
-
-      this.getExtraTime();
+      if (this.game.isPVP) {
+        this.game.network.sendPlayerGameState(this.game);
+      }
+      if (this.isUpStair) {
+        this.upStairChange();
+      }
+    } else {
+      this.attacker.update();
+      this.updatebyData(time, delta);
     }
+  }
+
+  public updatebyData(time: number, delta: number) {
+    this.deltaTime = delta;
+
+    if (this.game.state !== GameState.STARTED) {
+      return;
+    }
+    if (this.game.world.wave.isGoing) {
+      this.game.network.sendEnemyGameState(
+        this.getEntitiesGroup(EntityType.ENEMY).getChildren()
+      );
+    }
+    this.game.events.once(
+      WorldEvents.WORLD_UPDTAE,
+      (payload: StorageSavePayload) => {
+        this.player.loadDataPayload(payload.player);
+        this.player.changePosition(payload.player.position);
+        this.loadDataPayload(payload.world);
+        this.wave.loadDataPayload(payload.wave);
+      }
+    );
+    this.game.events.once(WaveEvents.START, (payload: WaveStartInfo) => {
+      this.wave.scene.sound.play(WaveAudio.START);
+      this.wave.isGoing = true;
+      this.wave.spawnedEnemiesCount = 0;
+      this.wave.enemiesMaxCount = payload.enemiesMaxCount;
+      this.wave.emit(WaveEvents.START, payload);
+    });
+    this.game.events.once(WaveEvents.COMPLETE, (payload: number) => {
+      this.wave.scene.sound.play(WaveAudio.COMPLETE);
+      this.wave.isGoing = false;
+      this.wave.number++;
+      this.wave.emit(WaveEvents.COMPLETE, payload);
+    });
+
+    this.game.events.once(
+      WorldEvents.CRYSTAL_SPAWN_INFO,
+      (payload: CrystalDataPayload[]) => {
+        const variants = LEVEL_PLANETS[this.level.planet].CRYSTAL_VARIANTS;
+        payload.forEach((crystal: CrystalDataPayload) => {
+          new Crystal(this, {
+            positionAtMatrix: crystal.position,
+            variant: Phaser.Utils.Array.GetRandom(variants),
+          });
+        });
+      }
+    );
   }
 
   public showHint(hint: WorldHint) {
@@ -274,9 +422,12 @@ export class World extends Scene implements IWorld {
     this.lifecyle.elapsed = this.lifecyle.elapsed - 40000;
   }
 
-  private resetTime() {
+  private resetTime(payload?: StorageSavePayload) {
     this.setTimePause(false);
     this.lifecyle.elapsed = this.game.usedSave?.payload.world.time ?? 0;
+    if (this.game.joinGame && payload?.world.time) {
+      this.lifecyle.elapsed = payload.world.time;
+    }
   }
 
   public getResourceExtractionSpeed() {
@@ -312,7 +463,6 @@ export class World extends Scene implements IWorld {
     const EnemyInstance = ENEMIES[variant];
     const positionAtMatrix = this.getEnemySpawnPosition();
     const enemy: IEnemy = new EnemyInstance(this, { positionAtMatrix });
-
     return enemy;
   }
 
@@ -454,11 +604,25 @@ export class World extends Scene implements IWorld {
     });
   }
 
-  private addPlayer() {
+  private addAttacker() {
+    this.attacker = new Attacker(this);
+
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.attacker.destroy();
+    });
+
+    this.game.events.once(GameEvents.FINISH, () => {
+      this.attacker.close();
+    });
+  }
+
+  private addPlayer(payload?: StorageSavePayload) {
     let positionAtMatrix: Vector2D;
 
     if (this.game.usedSave) {
       positionAtMatrix = this.game.usedSave.payload.player.position;
+    } else if (payload?.player.position) {
+      positionAtMatrix = payload.player.position;
     } else {
       positionAtMatrix = Phaser.Utils.Array.GetRandom(
         this.level.readSpawnPositions(SpawnTarget.PLAYER)
@@ -469,6 +633,9 @@ export class World extends Scene implements IWorld {
 
     if (this.game.usedSave) {
       this.player.loadDataPayload(this.game.usedSave.payload.player);
+    }
+    if (payload?.player) {
+      this.player.loadDataPayload(payload.player);
     }
 
     this.camera.focusOn(this.player);
@@ -518,10 +685,6 @@ export class World extends Scene implements IWorld {
       return Phaser.Utils.Array.GetRandom(freePositions);
     };
     const create = (position: Vector2D) => {
-      const positions = this.level.readSpawnPositions(SpawnTarget.CRYSTAL);
-      const freePositions = positions.filter((position) =>
-        this.level.isFreePoint({ ...position, z: 1 })
-      );
       const variants = LEVEL_PLANETS[this.level.planet].CRYSTAL_VARIANTS;
 
       new Crystal(this, {
@@ -548,14 +711,20 @@ export class World extends Scene implements IWorld {
         }
       }
     }
+
     this.wave.on(WaveEvents.COMPLETE, () => {
       const newCount =
         maxCount - this.getEntitiesGroup(EntityType.CRYSTAL).getTotalUsed();
 
       for (let i = 0; i < newCount; i++) {
         const position = getRandomPosition();
-
         create(position);
+      }
+      if (this.game.isPVP) {
+        const crystals = this.getEntities<ICrystal>(EntityType.CRYSTAL).map(
+          (crystal) => crystal.getDataPayload()
+        );
+        this.game.network.sendCrystalSpawnInfo(crystals);
       }
     });
   }
@@ -582,7 +751,7 @@ export class World extends Scene implements IWorld {
     };
 
     this.wave.on(WaveEvents.COMPLETE, () => {
-      if (this.wave.number === 11) {
+      if (this.wave.number === DIFFICULTY.GAME_GOAL_WAVE) {
         this.game.screen.notice(
           NoticeType.INFO,
           `Congratulations! Lets find the stair to the goal`
@@ -591,5 +760,25 @@ export class World extends Scene implements IWorld {
         this.setTimePause(true);
       }
     });
+  }
+  private upStairChange() {
+    this.stairNumber++;
+    this.builder.removeAllBuildings();
+    this.removeCrystals();
+    this.removeEnemies();
+    this.reCreateLevel();
+
+    const positions = this.level.readSpawnPositions(SpawnTarget.PLAYER);
+    this.player.changePosition(Phaser.Utils.Array.GetRandom(positions));
+    const positionAtMatrix = aroundPosition(this.player.positionAtMatrix).find(
+      (spawn) => {
+        const biome = this.level.map.getAt(spawn);
+        return biome?.solid;
+      }
+    );
+    this.assistant?.changePosition(positionAtMatrix!);
+    this.isUpStair = false;
+
+    this.getExtraTime();
   }
 }

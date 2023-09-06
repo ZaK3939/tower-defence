@@ -1,14 +1,28 @@
 import { IWorld } from "@type/world";
-import { EnemyVariantData, EnemyTexture } from "@type/world/entities/npc/enemy";
+import {
+  EnemyVariantData,
+  EnemyTexture,
+  EnemyParam,
+  EnemyVariant,
+} from "@type/world/entities/npc/enemy";
 
 import { Enemy } from "../enemy";
 
 export class EnemyRedCandle extends Enemy {
+  static Name = "RedCandle";
+
+  static Description = "Basic fire attack of enemies";
+  static Cost = 0;
+
+  static Params: EnemyParam[] = [];
+  static Texture = EnemyTexture.REDCANDLE;
+
   static SpawnWaveRange = [1, 4];
 
   constructor(scene: IWorld, data: EnemyVariantData) {
     super(scene, {
       ...data,
+      variant: EnemyVariant.REDCANDLE,
       texture: EnemyTexture.REDCANDLE,
       multipliers: {
         health: 0.35,

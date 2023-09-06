@@ -12,12 +12,12 @@ import {
 } from "@type/world/entities/building";
 
 export const BUILDINGS: Record<BuildingVariant, IBuildingFactory> = {
-  [BuildingVariant.WALL]: BuildingWall,
   [BuildingVariant.TOWER_FIRE]: BuildingTowerFire,
+  [BuildingVariant.STAKING]: BuildingStaking,
+  [BuildingVariant.WALL]: BuildingWall,
+  [BuildingVariant.AMMUNITION]: BuildingAmmunition,
   [BuildingVariant.TOWER_FROZEN]: BuildingTowerFrozen,
   [BuildingVariant.TOWER_LAZER]: BuildingTowerLazer,
-  [BuildingVariant.STAKING]: BuildingStaking,
-  [BuildingVariant.AMMUNITION]: BuildingAmmunition,
   [BuildingVariant.RADAR]: BuildingRadar,
   [BuildingVariant.STAIR]: BuildingStair,
 };

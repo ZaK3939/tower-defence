@@ -20,7 +20,7 @@ import {
 } from "@type/game";
 import { MenuPage } from "@type/menu";
 import { IScreen } from "@type/screen";
-import { IWorld } from "@type/world";
+import { IWorld, WorldEvents } from "@type/world";
 import { ITutorial } from "@type/tutorial";
 import { IAnalytics } from "@type/analytics";
 import { shaders } from "../shaders";
@@ -30,12 +30,16 @@ import { Screen } from "@game/scenes/screen";
 import { Menu } from "@game/scenes/menu";
 import { System } from "@game/scenes/system";
 import { World } from "@scene/world";
-import { IStorage, StorageSave } from "@type/storage";
+import { IStorage, StorageSave, StorageSavePayload } from "@type/storage";
+import { INetwork } from "@type/network";
+import { Network } from "@lib/network";
 
 export class Game extends Phaser.Game implements IGame {
   readonly tutorial: ITutorial;
 
   readonly analytics: IAnalytics;
+
+  readonly network: INetwork;
 
   readonly storage: IStorage;
 
@@ -93,6 +97,26 @@ export class Game extends Phaser.Game implements IGame {
     this._usedSave = v;
   }
 
+  private _isPVP: boolean = false;
+
+  public get isPVP() {
+    return this._isPVP;
+  }
+
+  private set isPVP(v) {
+    this._isPVP = v;
+  }
+
+  private _joinGame: boolean = false;
+
+  public get joinGame() {
+    return this._joinGame;
+  }
+
+  private set joinGame(v) {
+    this._joinGame = v;
+  }
+
   constructor() {
     super({
       scene: [System, World, Screen, Menu, Gameover, Gameclear],
@@ -119,6 +143,7 @@ export class Game extends Phaser.Game implements IGame {
     this.tutorial = new Tutorial();
     this.analytics = new Analytics();
     this.storage = new Storage();
+    this.network = new Network();
 
     this.readFlags();
     this.readSettings();
@@ -196,6 +221,7 @@ export class Game extends Phaser.Game implements IGame {
     this.world.scene.resume();
     this.screen.scene.resume();
   }
+
   public continueGame(save: StorageSave) {
     if (this.state !== GameState.IDLE) {
       return;
@@ -222,7 +248,56 @@ export class Game extends Phaser.Game implements IGame {
     this.startGame();
   }
 
-  private startGame() {
+  public startNewPvPGame() {
+    if (this.state !== GameState.IDLE) {
+      return;
+    }
+
+    this.usedSave = null;
+    this.isPVP = true;
+    this.network
+      .connect(this)
+      .then(() => {
+        console.log("Connected to the server successfully!");
+        this.startGame();
+
+        this.network.sendPlayerGameState(this);
+      })
+      .catch((error) => {
+        console.error("Failed to connect to the server:", error);
+      });
+  }
+
+  public joinPvPGame() {
+    if (this.state !== GameState.IDLE) {
+      return;
+    }
+
+    this.usedSave = null;
+    this.joinGame = true;
+
+    this.network
+      .connect(this)
+      .then(() => {
+        console.log("Connected to the server successfully!");
+        this.events.once(
+          WorldEvents.WORLD_UPDTAE,
+          (payload: StorageSavePayload) => {
+            console.log("game data", payload);
+            this.loadDataPayload(payload.game);
+            this.world.scene.restart(payload.level);
+            this.world.events.once(Phaser.Scenes.Events.CREATE, () => {
+              this.startGame(payload);
+            });
+          }
+        );
+      })
+      .catch((error) => {
+        console.error("Failed to connect to the server:", error);
+      });
+  }
+
+  private startGame(payload?: StorageSavePayload) {
     if (this.state !== GameState.IDLE) {
       return;
     }
@@ -232,15 +307,21 @@ export class Game extends Phaser.Game implements IGame {
     if (!this.isSettingEnabled(GameSettings.TUTORIAL)) {
       this.tutorial.disable();
     }
+    if (this.joinGame) {
+      this.tutorial.disable();
+    }
 
     this.scene.systemScene.scene.stop(GameScene.MENU);
     this.scene.systemScene.scene.launch(GameScene.SCREEN);
 
-    this.world.start();
-
+    if (!this.joinGame) {
+      this.world.start();
+    } else {
+      this.world.join(payload);
+    }
     if (!IS_DEV_MODE) {
       window.onbeforeunload = function confirmLeave() {
-        return "Leave game? No saves!";
+        return "Leave game?";
       };
     }
   }

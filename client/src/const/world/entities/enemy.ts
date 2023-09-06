@@ -24,7 +24,7 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 4,
     },
   },
-  [EnemyTexture.LILNOUNSVEHICLE]: {
+  [EnemyTexture.NOUNSVEHICLE]: {
     frameRate: 4,
     size: {
       width: 50,
@@ -64,7 +64,7 @@ export const ENEMY_TEXTURE_META: EnemyTexturesMeta = {
       gamut: 6,
     },
   },
-  [EnemyTexture.GITCOINSPACEFIGHTER]: {
+  [EnemyTexture.GITCOINFIGHTER]: {
     frameRate: 8,
     size: {
       width: 52,

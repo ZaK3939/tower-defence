@@ -7,6 +7,7 @@ export type MenuItem = {
 
 export enum MenuPage {
   NEW_GAME = "NEW_GAME",
+  PVP_GAME = "PVP_GAME",
   LOAD_GAME = "LOAD_GAME",
   SAVE_GAME = "SAVE_GAME",
   SETTINGS = "SETTINGS",

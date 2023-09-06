@@ -1,4 +1,5 @@
 export const DIFFICULTY = {
+  GAME_GOAL_WAVE: 11,
   /**
    * Player
    */
@@ -25,6 +26,12 @@ export const DIFFICULTY = {
   ASSISTANT_ATTACK_DISTANCE_GROWTH: 0.15, // Attack distance growth by upgrade level (Quadratic)
   ASSISTANT_ATTACK_PAUSE: 1000, // Attack pause
   ASSISTANT_ATTACK_PAUSE_GROWTH: -0.15, // Attack pause growth by upgrade level (Quadratic)
+
+  /**
+   *
+   */
+
+  ATTACKER_SPAWN_AREA: 500, // Radius of spawn area
 
   /**
    * Superskills

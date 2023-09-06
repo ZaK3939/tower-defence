@@ -24,6 +24,7 @@ import {
   WaveAudio,
   WaveDataPayload,
   WaveEvents,
+  WaveStartInfo,
 } from "@type/world/wave";
 
 export class Wave extends EventEmitter implements IWave {
@@ -59,15 +60,38 @@ export class Wave extends EventEmitter implements IWave {
     this._number = v;
   }
 
-  private spawnedEnemiesCount: number = 0;
+  private _spawnedEnemiesCount: number = 0;
+  public get spawnedEnemiesCount() {
+    return this._spawnedEnemiesCount;
+  }
 
-  private enemiesMaxCount: number = 0;
+  public set spawnedEnemiesCount(v) {
+    this._spawnedEnemiesCount = v;
+  }
+
+  private _enemiesMaxCount: number = 0;
+
+  public get enemiesMaxCount() {
+    return this._enemiesMaxCount;
+  }
+
+  private set enemiesMaxCount(v) {
+    this._enemiesMaxCount = v;
+  }
 
   private lastSpawnedEnemyVariant: Nullable<EnemyVariant> = null;
 
   private nextWaveTimestamp: number = 0;
 
-  private nextSpawnTimestamp: number = 0;
+  private _nextSpawnTimestamp: number = 0;
+
+  public get nextSpawnTimestamp() {
+    return this._nextSpawnTimestamp;
+  }
+
+  private set nextSpawnTimestamp(v) {
+    this._nextSpawnTimestamp = v;
+  }
 
   private alarmInterval: Nullable<NodeJS.Timeout> = null;
 
@@ -100,7 +124,9 @@ export class Wave extends EventEmitter implements IWave {
     if (this.isGoing) {
       if (this.spawnedEnemiesCount < this.enemiesMaxCount) {
         if (this.nextSpawnTimestamp <= now) {
-          this.spawnEnemy();
+          if (!this.scene.game.isPVP) {
+            this.spawnEnemy();
+          }
         }
       } else if (
         this.scene.getEntitiesGroup(EntityType.ENEMY).getTotalUsed() === 0
@@ -189,6 +215,12 @@ export class Wave extends EventEmitter implements IWave {
     if (this.number >= DIFFICULTY.SUPERSKILL_ALLOW_BY_WAVE) {
       this.scene.game.screen.notice(NoticeType.INFO, `Superskill is ready!`);
     }
+    if (this.scene.game.isPVP) {
+      const payload: WaveStartInfo = {
+        enemiesMaxCount: this.enemiesMaxCount,
+      };
+      this.scene.game.network.sendWaveStartInfo(payload);
+    }
     // Emit an event indicating the start of the wave
     this.emit(WaveEvents.START, this.number);
   }
@@ -215,6 +247,9 @@ export class Wave extends EventEmitter implements IWave {
     this.scene.sound.play(WaveAudio.COMPLETE);
 
     // Emit an event indicating the completion of the wave
+    if (this.scene.game.isPVP) {
+      this.scene.game.network.sendWaveCompleteInfo(prevNumber);
+    }
     this.emit(WaveEvents.COMPLETE, prevNumber);
 
     // Execute any level-specific effects upon wave completion
@@ -226,7 +261,7 @@ export class Wave extends EventEmitter implements IWave {
       this.scene.game.tutorial.start(TutorialStep.UPGRADE_BUILDING);
     } else if (this.number === 3) {
       this.scene.game.tutorial.start(TutorialStep.BUILD_AMMUNITION);
-    } else if (this.number === 6) {
+    } else if (this.number === 6 && !this.scene.game.isPVP) {
       this.scene.game.world.setTimePause(true);
       this.scene.game.tutorial.start(TutorialStep.BUILD_STAIR);
     } else if (this.number === 8) {

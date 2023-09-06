@@ -13,6 +13,7 @@ import { ICamera } from "./camera";
 import { CrystalDataPayload } from "./entities/crystal";
 import { BuildingDataPayload } from "./entities/building";
 import { StorageSavePayload } from "@type/storage";
+import { IAttacker } from "./attacker";
 
 export interface IWorld extends IScene {
   /**
@@ -46,6 +47,11 @@ export interface IWorld extends IScene {
   readonly builder: IBuilder;
 
   /**
+   * Attacker.
+   */
+  readonly attacker: IAttacker;
+
+  /**
    * Delta time of frame update.
    */
   readonly deltaTime: number;
@@ -59,6 +65,11 @@ export interface IWorld extends IScene {
    * Start world.
    */
   start(data?: StorageSavePayload): void;
+
+  /**
+   * join world
+   */
+  join(data?: StorageSavePayload): void;
 
   /**
    * Change Level screen.
@@ -152,6 +163,16 @@ export enum WorldEvents {
   SHOW_HINT = "show_hint",
   HIDE_HINT = "hide_hint",
   USE_SUPERSKILL = "use_superskill",
+  PLAYER_IS_READY = "player_is_ready",
+  PLAYER_IS_LEFT = "player_is_left",
+  PLAYER_GAME_STATE = "player_game_state",
+  WORLD_UPDTAE = "world_update",
+  ENEMY_ENTITY_UPDATE = "enemy_entity_update",
+  ENEMY_SPAWN_INFO = "enemy_spawn_info",
+  ENTITY_DESTROY_INFO = "entity_destroy_info",
+  ASSISTANT_DESTROY_INFO = "assistant_destroy_info",
+  CRYSTAL_SPAWN_INFO = "crystal_spawn_info",
+  CRYSTAL_PICKUP_INFO = "crystal_pickup_info",
 }
 
 export type WorldHint = {

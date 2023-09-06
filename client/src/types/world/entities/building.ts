@@ -159,12 +159,12 @@ export enum BuildingEvents {
 }
 
 export enum BuildingVariant {
-  WALL = "WALL",
   TOWER_FIRE = "TOWER_FIRE",
-  TOWER_LAZER = "TOWER_LAZER",
-  TOWER_FROZEN = "TOWER_FROZEN",
   STAKING = "STAKING",
+  WALL = "WALL",
   AMMUNITION = "AMMUNITION",
+  TOWER_FROZEN = "TOWER_FROZEN",
+  TOWER_LAZER = "TOWER_LAZER",
   RADAR = "RADAR",
   STAIR = "STAIR",
 }

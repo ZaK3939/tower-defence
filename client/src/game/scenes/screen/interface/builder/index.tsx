@@ -9,7 +9,6 @@ import { BuildingVariant } from "@type/world/entities/building";
 import { BuilderInfo } from "./info";
 import { BuilderPreview } from "./preview";
 import { Variant, Info, Wrapper } from "./styles";
-import { WaveEvents } from "@type/world/wave";
 import { GameScene } from "@type/game";
 import { IWorld } from "@type/world";
 

@@ -96,6 +96,29 @@ export class NPC extends Sprite implements INPC {
     this.isPathPassed = true;
   }
 
+  public changePosition(positionAtMatrix: Vector2D) {
+    this.positionAtMatrix = positionAtMatrix;
+    const positionOfTop = this.getTopCenter();
+
+    const positionOnGround = Level.ToPositionAtWorld(positionAtMatrix);
+    const depth = Level.GetDepth(positionOnGround.y, 1);
+    this.currentBiome = this.scene.level.map.getAt(positionAtMatrix);
+
+    this.setDepth(depth);
+
+    this.container.setDepth(depth + 19);
+    this.container.setPosition(positionOfTop.x, (positionOfTop?.y ?? 0) - 10);
+    this.container.setAlpha(this.alpha);
+    this.container.setVisible(this.visible);
+
+    const positionAtWorld = Level.ToWorldPosition({
+      ...positionAtMatrix,
+      z: 0,
+    });
+
+    this.setPosition(positionAtWorld.x, positionAtWorld.y);
+  }
+
   public freeze(duration: number, effects = false) {
     this.freezeTimestamp = this.scene.getTime() + duration;
 

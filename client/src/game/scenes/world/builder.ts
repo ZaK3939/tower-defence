@@ -206,7 +206,9 @@ export class Builder extends EventEmitter implements IBuilder {
 
     if (variant === BuildingVariant.STAIR) {
       return (
-        this.scene.wave.number == 6 && this.scene.game.world.isTimePaused()
+        !this.scene.game.isPVP &&
+        this.scene.wave.number == DIFFICULTY.BUILDING_STAIR_ALLOW_BY_WAVE &&
+        this.scene.game.world.isTimePaused()
       );
     }
 
@@ -394,6 +396,7 @@ export class Builder extends EventEmitter implements IBuilder {
   public createBuilding(data: BuildingBuildData) {
     const BuildingInstance = BUILDINGS[data.variant];
     const building = new BuildingInstance(this.scene, {
+      instant: data.instant,
       positionAtMatrix: data.positionAtMatrix,
     });
 
