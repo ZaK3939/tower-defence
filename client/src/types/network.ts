@@ -10,6 +10,7 @@ import { Vector2D } from "./world/level";
 export interface INetwork extends EventEmmiter {
   client: Client;
   room?: Room;
+  sessionId?: string;
   connect(arg0: IGame): Promise<void>;
   getAvailableRooms(roomName?: string): Promise<RoomAvailable<any>[]>;
   sendPlayerGameState(state: IGame): void;

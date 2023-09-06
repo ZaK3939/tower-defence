@@ -1,16 +1,28 @@
 import { DIFFICULTY } from "@const/world/difficulty";
 import { progressionQuadratic } from "@lib/difficulty";
 import { IWorld } from "@type/world";
-import { EnemyVariantData, EnemyTexture } from "@type/world/entities/npc/enemy";
+import {
+  EnemyVariantData,
+  EnemyTexture,
+  EnemyParam,
+  EnemyVariant,
+} from "@type/world/entities/npc/enemy";
 
 import { Enemy } from "../enemy";
 
 export class EnemyGnosisTruck extends Enemy {
+  static Name = "GnosisTruck";
+
+  static Description = "Basic attack of enemies";
+  static Cost = 0;
+  static Params: EnemyParam[] = [];
+  static Texture = EnemyTexture.GNOSISTRUCK;
   static SpawnWaveRange = [7, 10];
 
   constructor(scene: IWorld, data: EnemyVariantData) {
     super(scene, {
       ...data,
+      variant: EnemyVariant.GNOSISTRUCK,
       texture: EnemyTexture.GNOSISTRUCK,
       multipliers: {
         health: 1.0,

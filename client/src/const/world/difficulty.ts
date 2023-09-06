@@ -28,6 +28,12 @@ export const DIFFICULTY = {
   ASSISTANT_ATTACK_PAUSE_GROWTH: -0.15, // Attack pause growth by upgrade level (Quadratic)
 
   /**
+   *
+   */
+
+  ATTACKER_SPAWN_AREA: 500, // Radius of spawn area
+
+  /**
    * Superskills
    */
 

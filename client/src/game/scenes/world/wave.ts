@@ -83,7 +83,15 @@ export class Wave extends EventEmitter implements IWave {
 
   private nextWaveTimestamp: number = 0;
 
-  private nextSpawnTimestamp: number = 0;
+  private _nextSpawnTimestamp: number = 0;
+
+  public get nextSpawnTimestamp() {
+    return this._nextSpawnTimestamp;
+  }
+
+  private set nextSpawnTimestamp(v) {
+    this._nextSpawnTimestamp = v;
+  }
 
   private alarmInterval: Nullable<NodeJS.Timeout> = null;
 
@@ -116,7 +124,9 @@ export class Wave extends EventEmitter implements IWave {
     if (this.isGoing) {
       if (this.spawnedEnemiesCount < this.enemiesMaxCount) {
         if (this.nextSpawnTimestamp <= now) {
-          this.spawnEnemy();
+          if (!this.scene.game.isPVP) {
+            this.spawnEnemy();
+          }
         }
       } else if (
         this.scene.getEntitiesGroup(EntityType.ENEMY).getTotalUsed() === 0
@@ -251,7 +261,7 @@ export class Wave extends EventEmitter implements IWave {
       this.scene.game.tutorial.start(TutorialStep.UPGRADE_BUILDING);
     } else if (this.number === 3) {
       this.scene.game.tutorial.start(TutorialStep.BUILD_AMMUNITION);
-    } else if (this.number === 6) {
+    } else if (this.number === 6 && !this.scene.game.isPVP) {
       this.scene.game.world.setTimePause(true);
       this.scene.game.tutorial.start(TutorialStep.BUILD_STAIR);
     } else if (this.number === 8) {

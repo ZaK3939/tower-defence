@@ -49,6 +49,8 @@ import { Wave } from "./wave";
 import { NoticeType } from "@type/screen";
 import { CrystalDataPayload, ICrystal } from "@type/world/entities/crystal";
 import { StorageSavePayload } from "@type/storage";
+import { IAttacker } from "@type/world/attacker";
+import { Attacker } from "./attacker";
 
 export class World extends Scene implements IWorld {
   private entityGroups: Record<EntityType, Phaser.GameObjects.Group>;
@@ -101,6 +103,16 @@ export class World extends Scene implements IWorld {
 
   private set builder(v) {
     this._builder = v;
+  }
+
+  private _attacker: IAttacker;
+
+  public get attacker() {
+    return this._attacker;
+  }
+
+  private set attacker(v) {
+    this._attacker = v;
   }
 
   private _camera: ICamera;
@@ -188,32 +200,53 @@ export class World extends Scene implements IWorld {
     if (this.game.usedSave) {
       this.loadDataPayload(this.game.usedSave.payload.world);
     }
+
+    if (this.game.isPVP) {
+      this.setTimePause(true);
+      this.game.screen.notice(
+        NoticeType.INFO,
+        `Waiting for player to join the game`
+      );
+
+      this.game.events.on(WorldEvents.PLAYER_IS_READY, (sessionId: string) => {
+        if (sessionId !== this.game.network.sessionId) {
+          this.game.screen.notice(
+            NoticeType.INFO,
+            `Player ${sessionId} is joined. Game started`
+          );
+          this.setTimePause(false);
+        }
+      });
+
+      this.game.events.on(
+        WorldEvents.ENEMY_SPAWN_INFO,
+        (payload: EnemySpawnPayload) => {
+          const EnemyInstance = ENEMIES[payload.variant];
+          const enemy: IEnemy = new EnemyInstance(this, {
+            positionAtMatrix: payload.positionAtMatrix,
+          });
+          this.wave.spawnedEnemiesCount++;
+        }
+      );
+    }
   }
 
   public join(payload: StorageSavePayload) {
     new Interface(this, WorldUI);
 
     this.camera.addZoomControl();
-
+    this.camera.zoomOut();
     this.resetTime(payload);
 
     this.addWaveManager();
     this.addBuilder();
+    this.addAttacker();
+
     this.addEntityGroups();
 
     this.addPlayer(payload);
     this.addAssistant();
 
-    this.game.events.on(
-      WorldEvents.ENEMY_SPAWN_INFO,
-      (payload: EnemySpawnPayload) => {
-        const EnemyInstance = ENEMIES[payload.variant];
-        const enemy: IEnemy = new EnemyInstance(this, {
-          positionAtMatrix: payload.positionAtMatrix,
-        });
-        this.wave.spawnedEnemiesCount++;
-      }
-    );
     this.game.events.on(WorldEvents.ENTITY_DESTROY_INFO, (payload: any) => {
       const entity = this.getEntities<IEnemy>(EntityType.ENEMY).find(
         (entity: IEnemy) => {
@@ -291,24 +324,26 @@ export class World extends Scene implements IWorld {
 
       if (this.game.isPVP) {
         this.game.network.sendPlayerGameState(this.game);
-        if (this.game.world.wave.isGoing) {
-          this.game.network.sendEnemyGameState(
-            this.getEntitiesGroup(EntityType.ENEMY).getChildren()
-          );
-        }
       }
       if (this.isUpStair) {
         this.upStairChange();
       }
     } else {
+      this.attacker.update();
       this.updatebyData(time, delta);
     }
   }
 
   public updatebyData(time: number, delta: number) {
     this.deltaTime = delta;
+
     if (this.game.state !== GameState.STARTED) {
       return;
+    }
+    if (this.game.world.wave.isGoing) {
+      this.game.network.sendEnemyGameState(
+        this.getEntitiesGroup(EntityType.ENEMY).getChildren()
+      );
     }
     this.game.events.once(
       WorldEvents.WORLD_UPDTAE,
@@ -336,7 +371,7 @@ export class World extends Scene implements IWorld {
     this.game.events.once(
       WorldEvents.CRYSTAL_SPAWN_INFO,
       (payload: CrystalDataPayload[]) => {
-        const variants = LEVEL_PLANETS[this.level.planet].STAIR_VARIANTS;
+        const variants = LEVEL_PLANETS[this.level.planet].CRYSTAL_VARIANTS;
         payload.forEach((crystal: CrystalDataPayload) => {
           new Crystal(this, {
             positionAtMatrix: crystal.position,
@@ -418,13 +453,6 @@ export class World extends Scene implements IWorld {
     const EnemyInstance = ENEMIES[variant];
     const positionAtMatrix = this.getEnemySpawnPosition();
     const enemy: IEnemy = new EnemyInstance(this, { positionAtMatrix });
-    if (this.game.isPVP) {
-      const enemySpawnInfo: EnemySpawnPayload = {
-        variant,
-        positionAtMatrix,
-      };
-      this.game.network.sendEnemySpawnInfo(enemySpawnInfo);
-    }
     return enemy;
   }
 
@@ -563,6 +591,18 @@ export class World extends Scene implements IWorld {
 
     this.game.events.once(GameEvents.FINISH, () => {
       this.builder.close();
+    });
+  }
+
+  private addAttacker() {
+    this.attacker = new Attacker(this);
+
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      this.attacker.destroy();
+    });
+
+    this.game.events.once(GameEvents.FINISH, () => {
+      this.attacker.close();
     });
   }
 

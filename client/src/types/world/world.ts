@@ -13,6 +13,7 @@ import { ICamera } from "./camera";
 import { CrystalDataPayload } from "./entities/crystal";
 import { BuildingDataPayload } from "./entities/building";
 import { StorageSavePayload } from "@type/storage";
+import { IAttacker } from "./attacker";
 
 export interface IWorld extends IScene {
   /**
@@ -44,6 +45,11 @@ export interface IWorld extends IScene {
    * Builder.
    */
   readonly builder: IBuilder;
+
+  /**
+   * Attacker.
+   */
+  readonly attacker: IAttacker;
 
   /**
    * Delta time of frame update.
@@ -157,6 +163,9 @@ export enum WorldEvents {
   SHOW_HINT = "show_hint",
   HIDE_HINT = "hide_hint",
   USE_SUPERSKILL = "use_superskill",
+  PLAYER_IS_READY = "player_is_ready",
+  PLAYER_IS_LEFT = "player_is_left",
+  PLAYER_GAME_STATE = "player_game_state",
   WORLD_UPDTAE = "world_update",
   ENEMY_ENTITY_UPDATE = "enemy_entity_update",
   ENEMY_SPAWN_INFO = "enemy_spawn_info",

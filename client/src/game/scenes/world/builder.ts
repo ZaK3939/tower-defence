@@ -206,7 +206,9 @@ export class Builder extends EventEmitter implements IBuilder {
 
     if (variant === BuildingVariant.STAIR) {
       return (
-        this.scene.wave.number == 6 && this.scene.game.world.isTimePaused()
+        !this.scene.game.isPVP &&
+        this.scene.wave.number == DIFFICULTY.BUILDING_STAIR_ALLOW_BY_WAVE &&
+        this.scene.game.world.isTimePaused()
       );
     }
 
@@ -419,6 +421,7 @@ export class Builder extends EventEmitter implements IBuilder {
 
     return building;
   }
+
   public isBuildingLimitReached(variant: BuildingVariant) {
     const limit = this.getBuildingLimit(variant);
 

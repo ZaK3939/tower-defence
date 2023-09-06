@@ -27,6 +27,11 @@ export interface IWave extends EventEmitter {
   spawnedEnemiesCount: number;
 
   /**
+   * Timestamp of next spawn.
+   */
+  nextSpawnTimestamp: number;
+
+  /**
    * Max count of enemies.
    */
   enemiesMaxCount: number;

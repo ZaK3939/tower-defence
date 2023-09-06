@@ -1,12 +1,25 @@
 import { IWorld } from "@type/world";
-import { EnemyVariantData, EnemyTexture } from "@type/world/entities/npc/enemy";
+import {
+  EnemyVariantData,
+  EnemyTexture,
+  EnemyParam,
+  EnemyVariant,
+} from "@type/world/entities/npc/enemy";
 
 import { Enemy } from "../enemy";
 
 export class EnemyBoss extends Enemy {
+  static Name = "Boss";
+
+  static Description = "Basic attack of enemies";
+  static Cost = 0;
+  static SpawnWaveRange = [6, 10];
+  static Params: EnemyParam[] = [];
+  static Texture = EnemyTexture.BOSS;
   constructor(scene: IWorld, data: EnemyVariantData) {
     super(scene, {
       ...data,
+      variant: EnemyVariant.BOSS,
       texture: EnemyTexture.BOSS,
       score: 50,
       multipliers: {
