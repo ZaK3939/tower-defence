@@ -26,8 +26,11 @@ export class Network extends EventEmitter implements INetwork {
     this.client = new Client(endpoint);
   }
 
-  async connect(game: IGame) {
-    this.room = await this.client.joinOrCreate("my_room", {
+  async connect(game: IGame, roomName?: string) {
+    if (roomName === undefined) {
+      roomName = "my_room";
+    }
+    this.room = await this.client.joinOrCreate(roomName, {
       // your join options here...
     });
     this.sessionId = this.room.sessionId;

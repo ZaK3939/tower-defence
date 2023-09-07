@@ -19,3 +19,15 @@ export const Params = styled.div`
     margin-bottom: 25px;
   }
 `;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  & > Button {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+`;

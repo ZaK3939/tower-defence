@@ -1,23 +1,21 @@
-import Phaser from "phaser";
-import { useGame } from "phaser-react-ui";
 import React, { useState, useEffect, useMemo } from "react";
-
 import { Button } from "@game/scenes/system/interface/button";
+import { useGame } from "phaser-react-ui";
 import { GameDifficulty, IGame } from "@type/game";
-
-import { Param } from "./param";
-import { Wrapper, Params } from "./styles";
 import { LevelPlanet } from "@type/world/level";
+import { Wrapper, Params, ButtonWrapper } from "./styles";
+import { Param } from "./param";
 
 export const PvpGame: React.FC = () => {
   const game = useGame<IGame>();
   const [hasAvailableRooms, setHasAvailableRooms] = useState(false);
   const [availableRoomIds, setAvailableRoomIds] = useState<string[]>([]);
+  const [isJoinMode, setIsJoinMode] = useState(true); // true for join mode, false for start mode
 
   useEffect(() => {
     game.network.getAvailableRooms().then((rooms) => {
       setHasAvailableRooms(rooms.length > 0);
-      setAvailableRoomIds(rooms.map((room) => room.roomId));
+      setAvailableRoomIds(rooms.map((room) => room.name));
     });
   }, [game]);
 
@@ -27,47 +25,46 @@ export const PvpGame: React.FC = () => {
     []
   );
 
-  const onChangePlanet = (planet: LevelPlanet) => {
+  const roomNames = ["my_room", "my_room2"];
+
+  const availableStartRoomNames = roomNames.filter(
+    (name) => !availableRoomIds.includes(name)
+  );
+
+  const onChangePlanet = (planet: LevelPlanet) =>
     game.world.scene.restart({ planet });
-
-    game.world.events.once(Phaser.Scenes.Events.CREATE, () => {
-      game.world.camera.focusOnLevel();
-    });
-  };
-
-  const onChangeDifficulty = (difficulty: GameDifficulty) => {
-    game.difficulty = difficulty;
-  };
-
-  const onClickStart = () => {
-    game.startNewPvPGame();
-  };
-
-  const onClickJoin = () => {
-    game.joinPvPGame();
-  };
+  const onChangeDifficulty = (difficulty: GameDifficulty) =>
+    (game.difficulty = difficulty);
 
   return (
     <Wrapper>
-      {hasAvailableRooms ? (
-        <>
-          <h3>Select a Room to Join As Attacker:</h3>
-          <ul>
-            {availableRoomIds.map((roomId) => (
-              <li key={roomId}>
-                <Button
-                  onClick={() => game.joinPvPGame()}
-                  view="primary"
-                  size="medium"
-                >
-                  Join Room {roomId}
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </>
+      <Button onClick={() => setIsJoinMode(!isJoinMode)}>
+        {isJoinMode ? "Switch to Start Mode" : "Switch to Join Mode"}
+      </Button>
+
+      {isJoinMode ? (
+        hasAvailableRooms ? (
+          <>
+            <h3>Select a Room to Join As a Tower Attacker:</h3>
+            <br />
+            <ul>
+              {availableRoomIds.map((name) => (
+                <li key={name}>
+                  <Button
+                    onClick={() => game.joinPvPGame(name)}
+                    view="primary"
+                    size="small"
+                  >
+                    Join Room {name}
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null
       ) : (
         <>
+          <br />
           <Params>
             <Param
               label="Planet"
@@ -82,9 +79,18 @@ export const PvpGame: React.FC = () => {
               onChange={onChangeDifficulty}
             />
           </Params>
-          <Button onClick={onClickStart} view="primary" size="medium">
-            Start
-          </Button>
+          <ButtonWrapper>
+            {availableStartRoomNames.map((room) => (
+              <Button
+                key={room}
+                onClick={() => game.startNewPvPGame(room)}
+                view="primary"
+                size="small"
+              >
+                Start {room}
+              </Button>
+            ))}
+          </ButtonWrapper>
         </>
       )}
     </Wrapper>

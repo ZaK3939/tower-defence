@@ -248,7 +248,7 @@ export class Game extends Phaser.Game implements IGame {
     this.startGame();
   }
 
-  public startNewPvPGame() {
+  public startNewPvPGame(name?: string) {
     if (this.state !== GameState.IDLE) {
       return;
     }
@@ -256,7 +256,7 @@ export class Game extends Phaser.Game implements IGame {
     this.usedSave = null;
     this.isPVP = true;
     this.network
-      .connect(this)
+      .connect(this, name)
       .then(() => {
         console.log("Connected to the server successfully!");
         this.startGame();
@@ -268,7 +268,7 @@ export class Game extends Phaser.Game implements IGame {
       });
   }
 
-  public joinPvPGame() {
+  public joinPvPGame(name?: string) {
     if (this.state !== GameState.IDLE) {
       return;
     }
@@ -277,7 +277,7 @@ export class Game extends Phaser.Game implements IGame {
     this.joinGame = true;
 
     this.network
-      .connect(this)
+      .connect(this, name)
       .then(() => {
         console.log("Connected to the server successfully!");
         this.events.once(
