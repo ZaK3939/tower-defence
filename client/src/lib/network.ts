@@ -44,7 +44,7 @@ export class Network extends EventEmitter implements INetwork {
     });
 
     this.room.onMessage(NOTIFICATION_TYPE.PLAYER_GAME_STATE, (payload) => {
-      game.events.emit(WorldEvents.WORLD_UPDTAE, payload);
+      game.events.emit(WorldEvents.WORLD_UPDATE, payload);
     });
 
     this.room.onMessage(NOTIFICATION_TYPE.ENEMY_ENTITY_UPDATE, (payload) => {

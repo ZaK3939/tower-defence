@@ -7,6 +7,8 @@ import {
   TutorialStep,
   TutorialBindCallbacks,
   TutorialBindAllCallbacks,
+  AttackerTutorialStep,
+  AttackerTutorialBindAllCallbacks,
 } from "@type/tutorial";
 
 export class Tutorial extends EventEmitter implements ITutorial {
@@ -103,7 +105,9 @@ export class Tutorial extends EventEmitter implements ITutorial {
     };
   }
 
-  public bindAll(callbacks: TutorialBindAllCallbacks) {
+  public bindAll(
+    callbacks: TutorialBindAllCallbacks | AttackerTutorialBindAllCallbacks
+  ) {
     if (callbacks.beg) {
       this.on(TutorialEvents.BEG, callbacks.beg);
     }

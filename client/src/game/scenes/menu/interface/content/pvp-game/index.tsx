@@ -51,7 +51,7 @@ export const PvpGame: React.FC = () => {
     <Wrapper>
       {hasAvailableRooms ? (
         <>
-          <h3>Select a Room to Join:</h3>
+          <h3>Select a Room to Join As Attacker:</h3>
           <ul>
             {availableRoomIds.map((roomId) => (
               <li key={roomId}>

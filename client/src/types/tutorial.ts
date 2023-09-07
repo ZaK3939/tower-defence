@@ -61,9 +61,10 @@ export interface ITutorial extends EventEmitter {
    * Bind callbacks on tutorial any progress.
    * @param callback - Callbacks functions
    */
-  bindAll(callbacks: TutorialBindAllCallbacks): () => void;
+  bindAll(
+    callbacks: TutorialBindAllCallbacks | AttackerTutorialBindAllCallbacks
+  ): () => void;
 }
-
 export type TutorialBindCallbacks = {
   beg?: () => void;
   end?: () => void;
@@ -97,4 +98,21 @@ export enum TutorialStepState {
 export enum TutorialEvents {
   BEG = "beg",
   END = "end",
+}
+
+export type AttackerTutorialBindAllCallbacks = {
+  beg?: (step: AttackerTutorialStep) => void;
+  end?: (step: AttackerTutorialStep) => void;
+};
+
+export enum AttackerTutorialStep {
+  REDCANDLE = "REDCANDLE",
+  SONICBAT = "SONICBAT",
+  NOUNSVEHICLE = "NOUNSVEHICLE",
+  GREENCANDLE = "GREENCANDLE",
+  GNOSISTRUCK = "GNOSISTRUCK",
+  BOSS = "BOSS",
+  AAVEDJ = "AAVEDJ",
+  GITCOINFIGHTER = "GITCOINFIGHTER",
+  BEARMONSTER = "BEARMONSTER",
 }

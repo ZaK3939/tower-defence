@@ -281,7 +281,7 @@ export class Game extends Phaser.Game implements IGame {
       .then(() => {
         console.log("Connected to the server successfully!");
         this.events.once(
-          WorldEvents.WORLD_UPDTAE,
+          WorldEvents.WORLD_UPDATE,
           (payload: StorageSavePayload) => {
             console.log("game data", payload);
             this.loadDataPayload(payload.game);
@@ -305,9 +305,6 @@ export class Game extends Phaser.Game implements IGame {
     this.state = GameState.STARTED;
 
     if (!this.isSettingEnabled(GameSettings.TUTORIAL)) {
-      this.tutorial.disable();
-    }
-    if (this.joinGame) {
       this.tutorial.disable();
     }
 

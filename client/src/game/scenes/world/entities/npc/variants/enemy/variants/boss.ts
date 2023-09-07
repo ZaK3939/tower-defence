@@ -13,9 +13,10 @@ export class EnemyBoss extends Enemy {
 
   static Description = "Basic attack of enemies";
   static Cost = 0;
-  static SpawnWaveRange = [6, 10];
+  static SpawnWaveRange = [5, 10];
   static Params: EnemyParam[] = [];
   static Texture = EnemyTexture.BOSS;
+  static Limit = 1;
   constructor(scene: IWorld, data: EnemyVariantData) {
     super(scene, {
       ...data,

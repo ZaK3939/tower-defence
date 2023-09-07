@@ -1,19 +1,27 @@
-import { useGame } from "phaser-react-ui";
+import { useGame, useScene, useSceneUpdate } from "phaser-react-ui";
 import React, { useEffect, useState } from "react";
 
 import { Button } from "@scene/system/interface/button";
 import { Hint } from "@scene/system/interface/hint";
-import { IGame } from "@type/game";
+import { GameScene, IGame } from "@type/game";
 import { TutorialStep } from "@type/tutorial";
 
 import { UpgradesList } from "./list";
 import { Wrapper } from "./styles";
+import { IWorld } from "@type/world";
 
 export const Skills: React.FC = () => {
+  const world = useScene<IWorld>(GameScene.WORLD);
   const game = useGame<IGame>();
 
   const [isOpened, setOpened] = useState(false);
   const [hint, setHint] = useState(false);
+  const [isjoinGame, setJoinGame] = useState<boolean>(false);
+
+  useSceneUpdate(world, () => {
+    const joinGame = world.game.joinGame;
+    setJoinGame(joinGame);
+  });
 
   const onClickButton = (event: React.MouseEvent<HTMLDivElement>) => {
     setOpened(!isOpened);
@@ -33,7 +41,7 @@ export const Skills: React.FC = () => {
     []
   );
 
-  return (
+  return !isjoinGame ? (
     <Wrapper>
       <Button
         onClick={onClickButton}
@@ -49,5 +57,5 @@ export const Skills: React.FC = () => {
         </Hint>
       )}
     </Wrapper>
-  );
+  ) : null;
 };

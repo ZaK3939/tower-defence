@@ -25,7 +25,7 @@ export interface IEnemyFactory {
   Name: string;
   Description: string;
   Cost: number;
-  Limit?: boolean;
+  Limit?: number;
   Params: EnemyParam[];
   Texture: EnemyTexture;
   SpawnWaveRange?: number[];

@@ -11,7 +11,7 @@ import { Enemy } from "../enemy";
 export class EnemyRedCandle extends Enemy {
   static Name = "RedCandle";
 
-  static Description = "Basic fire attack of enemies";
+  static Description = "Basic attack of enemies";
   static Cost = 0;
 
   static Params: EnemyParam[] = [];

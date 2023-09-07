@@ -224,6 +224,9 @@ export class World extends Scene implements IWorld {
             NoticeType.INFO,
             `Player ${sessionId} left. Game paused`
           );
+          if (this.wave.isGoing) {
+            this.wave.complete();
+          }
           this.setTimePause(true);
         }
       });
@@ -355,8 +358,9 @@ export class World extends Scene implements IWorld {
         this.getEntitiesGroup(EntityType.ENEMY).getChildren()
       );
     }
+
     this.game.events.once(
-      WorldEvents.WORLD_UPDTAE,
+      WorldEvents.WORLD_UPDATE,
       (payload: StorageSavePayload) => {
         this.player.loadDataPayload(payload.player);
         this.player.changePosition(payload.player.position);
@@ -366,6 +370,10 @@ export class World extends Scene implements IWorld {
     );
     this.game.events.once(WaveEvents.START, (payload: WaveStartInfo) => {
       this.wave.scene.sound.play(WaveAudio.START);
+      this.game.screen.notice(
+        NoticeType.INFO,
+        `It's time to unleash the monsters upon our challengers!`
+      );
       this.wave.isGoing = true;
       this.wave.spawnedEnemiesCount = 0;
       this.wave.enemiesMaxCount = payload.enemiesMaxCount;

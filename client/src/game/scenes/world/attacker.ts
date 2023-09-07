@@ -171,15 +171,14 @@ export class Attacker extends EventEmitter implements IAttacker {
   public getEnemyLimit(variant: EnemyVariant): Nullable<number> {
     if (!ENEMIES[variant].Limit) {
       return null;
+    } else {
+      const limit = progressionQuadraticMixed({
+        defaultValue: ENEMIES[variant].Limit ?? 1,
+        scale: DIFFICULTY.WAVE_ENEMIES_COUNT_GROWTH,
+        level: this.scene.wave.number,
+      });
+      return limit;
     }
-
-    const limit = progressionQuadraticMixed({
-      defaultValue: DIFFICULTY.WAVE_ENEMIES_COUNT,
-      scale: DIFFICULTY.WAVE_ENEMIES_COUNT_GROWTH,
-      level: this.scene.wave.number,
-    });
-
-    return limit;
   }
 
   public getEnemiesByVariant<T extends IEnemy>(variant: EnemyVariant) {
@@ -274,6 +273,10 @@ export class Attacker extends EventEmitter implements IAttacker {
 
   private isAllowSpawn() {
     if (!this.scene.wave.isGoing) {
+      this.scene.game.screen.notice(
+        NoticeType.WARN,
+        `You cant spawn enemies before wave start`
+      );
       return false;
     }
     const now = this.scene.getTime();
@@ -281,6 +284,10 @@ export class Attacker extends EventEmitter implements IAttacker {
     if (
       this.scene.wave.spawnedEnemiesCount >= this.scene.wave.enemiesMaxCount
     ) {
+      this.scene.game.screen.notice(
+        NoticeType.WARN,
+        `You have maximum ${this.scene.wave.enemiesMaxCount} enemies on this wave`
+      );
       return false;
     }
     if (this.scene.wave.nextSpawnTimestamp > now) {
@@ -359,6 +366,7 @@ export class Attacker extends EventEmitter implements IAttacker {
       this.scene.game.screen.notice(NoticeType.ERROR, "Not enough ethereum");
       return;
     }
+
     this.createEnemy({
       variant: this.variant,
       positionAtMatrix: this.getAssumedPosition(),

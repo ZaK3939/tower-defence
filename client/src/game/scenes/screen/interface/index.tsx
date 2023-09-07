@@ -44,10 +44,8 @@ export const ScreenUI: React.FC = () => {
           <Wave />
           <AdsReward />
           <GeneralHints />
-          <Superskills />
+          {isjoinGame ? null : <Superskills />}
         </Column>
-        {/* <Column $side="right"> */}
-        {/* <Attaker /> */}
         <Column $side="right">{isjoinGame ? <Attaker /> : <Builder />}</Column>
       </Grid>
 
