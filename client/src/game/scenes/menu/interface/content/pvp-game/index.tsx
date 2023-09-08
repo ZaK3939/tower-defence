@@ -38,62 +38,55 @@ export const PvpGame: React.FC = () => {
 
   return (
     <Wrapper>
-      <Button onClick={() => setIsJoinMode(!isJoinMode)}>
-        {isJoinMode ? "Switch to Start Mode" : "Switch to Join Mode"}
-      </Button>
+      <br />
+      <Params>
+        <Param
+          label="Planet"
+          values={planets}
+          defaultValue={game.world.level.planet}
+          onChange={onChangePlanet}
+        />
+        <Param
+          label="Difficulty"
+          values={difficulties}
+          defaultValue={game.difficulty}
+          onChange={onChangeDifficulty}
+        />
+      </Params>
+      <ButtonWrapper>
+        {availableStartRoomNames.length > 0 ? (
+          <Button
+            onClick={() => game.startNewPvPGame(availableStartRoomNames[0])}
+            view="primary"
+            size="small"
+          >
+            Start {availableStartRoomNames[0]}
+          </Button>
+        ) : (
+          <span>Rooms are currently full.</span>
+        )}
+      </ButtonWrapper>
 
-      {isJoinMode ? (
-        hasAvailableRooms ? (
-          <>
-            <h3>Select a Room to Join As a Tower Attacker:</h3>
-            <br />
-            <ul>
-              {availableRoomIds.map((name) => (
-                <li key={name}>
-                  <Button
-                    onClick={() => game.joinPvPGame(name)}
-                    view="primary"
-                    size="small"
-                  >
-                    Join Room {name}
-                  </Button>
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : null
-      ) : (
+      {hasAvailableRooms ? (
         <>
+          <hr />
+          <h3>Select a Room to Join</h3>
           <br />
-          <Params>
-            <Param
-              label="Planet"
-              values={planets}
-              defaultValue={game.world.level.planet}
-              onChange={onChangePlanet}
-            />
-            <Param
-              label="Difficulty"
-              values={difficulties}
-              defaultValue={game.difficulty}
-              onChange={onChangeDifficulty}
-            />
-          </Params>
-          <ButtonWrapper>
-            {availableStartRoomNames.length > 0 ? (
-              <Button
-                onClick={() => game.startNewPvPGame(availableStartRoomNames[0])}
-                view="primary"
-                size="small"
-              >
-                Start {availableStartRoomNames[0]}
-              </Button>
-            ) : (
-              <span>Rooms are currently full.</span>
-            )}
-          </ButtonWrapper>
+          <ul>
+            {availableRoomIds.map((name) => (
+              <li key={name}>
+                <Button
+                  onClick={() => game.joinPvPGame(name)}
+                  view="primary"
+                  size="small"
+                >
+                  Join {name}
+                </Button>
+              </li>
+            ))}
+          </ul>
         </>
-      )}
+      ) : null}
     </Wrapper>
   );
 };

@@ -6,10 +6,15 @@ export class MyRoom extends Room<MyRoomState> {
   maxClients = 2;
 
   onCreate(options: any) {
+    this.autoDispose = true;
     this.setState(new MyRoomState());
 
     this.onMessage(NOTIFICATION_TYPE.PLAYER_GAME_STATE, (client, data: any) => {
       this.broadcast(NOTIFICATION_TYPE.PLAYER_GAME_STATE, data);
+    });
+
+    this.onMessage(NOTIFICATION_TYPE.PLAYER_IS_DEAD, (client, data: any) => {
+      this.broadcast(NOTIFICATION_TYPE.PLAYER_IS_DEAD, data);
     });
 
     this.onMessage(

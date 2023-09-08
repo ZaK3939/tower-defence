@@ -278,7 +278,7 @@ export class Game extends Phaser.Game implements IGame {
     this.joinGame = true;
 
     this.network
-      .connect(this, name)
+      .join(this, name)
       .then(() => {
         console.log("Connected to the server successfully!");
         this.events.once(

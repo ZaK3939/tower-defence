@@ -295,6 +295,12 @@ export class World extends Scene implements IWorld {
         }
       }
     );
+    this.game.events.on(WorldEvents.PLAYER_IS_LEFT, (sessionId: string) => {
+      if (sessionId !== this.game.network.sessionId) {
+        this.game.screen.notice(NoticeType.INFO, `Player ${sessionId} left.`);
+        this.game.finishGame();
+      }
+    });
     this.game.events.on(WorldEvents.ASSISTANT_DESTROY_INFO, (payload: any) => {
       this.assistant?.destroy();
     });
@@ -375,7 +381,7 @@ export class World extends Scene implements IWorld {
       this.wave.scene.sound.play(WaveAudio.START);
       this.game.screen.notice(
         NoticeType.INFO,
-        `It's time to unleash the monsters upon our challengers!`
+        `Spawn the monsters upon our challengers!`
       );
       this.wave.isGoing = true;
       this.wave.spawnedEnemiesCount = 0;

@@ -30,12 +30,38 @@ export class Network extends EventEmitter implements INetwork {
     if (roomName === undefined) {
       roomName = "my_room";
     }
-    this.room = await this.client.joinOrCreate(roomName, {
+    this.room = await this.client.create(roomName, {
+      // your join options here...
+    });
+    this.sessionId = this.room.sessionId;
+    console.log("created successfully", this.room);
+    this.initialize(game);
+  }
+
+  async join(game: IGame, roomName?: string) {
+    if (roomName === undefined) {
+      roomName = "my_room";
+    }
+    this.room = await this.client.join(roomName, {
       // your join options here...
     });
     this.sessionId = this.room.sessionId;
     console.log("joined successfully", this.room);
+    this.initialize(game);
+  }
 
+  async getAvailableRooms(roomName?: string): Promise<RoomAvailable<any>[]> {
+    try {
+      const rooms = await this.client.getAvailableRooms(roomName);
+      return rooms;
+    } catch (error) {
+      console.error("Error fetching available rooms:", error);
+      return [];
+    }
+  }
+
+  initialize(game: IGame) {
+    if (this.room == null) return;
     this.room.onMessage(NOTIFICATION_TYPE.PLAYER_IS_READY, (sessionId) => {
       console.log("player is ready", sessionId);
       game.events.emit(WorldEvents.PLAYER_IS_READY, sessionId);
@@ -91,91 +117,6 @@ export class Network extends EventEmitter implements INetwork {
       console.log("left");
     });
   }
-
-  async getAvailableRooms(roomName?: string): Promise<RoomAvailable<any>[]> {
-    try {
-      const rooms = await this.client.getAvailableRooms(roomName);
-      return rooms;
-    } catch (error) {
-      console.error("Error fetching available rooms:", error);
-      return [];
-    }
-  }
-
-  // initialize() {
-  //   if (this.room == null) return;
-  //   this.room.onMessage(
-  //     NOTIFICATION_TYPE.PLAYER_IS_READY,
-  //     (sessionId: string) => {
-  //       const player = this.room?.state.players.get(sessionId);
-  //       if (player === undefined) return;
-  //       console.log(player);
-  //       this.emit(WorldEvents.PLAYER_IS_READY, sessionId);
-  //     }
-  //   );
-
-  //   this.room.onMessage(
-  //     NOTIFICATION_TYPE.PLAYER_IS_LEFT,
-  //     (sessionId: string) => {
-  //       const player = this.room?.state.players.get(sessionId);
-  //       if (player === undefined) return;
-  //       console.log(player);
-  //       this.emit(WorldEvents.PLAYER_IS_LEFT, sessionId);
-  //     }
-  //   );
-
-  //   this.room.onMessage(
-  //     NOTIFICATION_TYPE.PLAYER_GAME_STATE,
-  //     (payload: StorageSavePayload) => {
-  //       this.emit(WorldEvents.WORLD_UPDTAE, payload);
-  //     }
-  //   );
-  //   this.room.onMessage(
-  //     NOTIFICATION_TYPE.ENEMY_ENTITY_UPDATE,
-  //     (payload: Phaser.GameObjects.GameObject[]) => {
-  //       this.emit(WorldEvents.ENEMY_ENTITY_UPDATE, payload);
-  //     }
-  //   );
-  //   this.room.onMessage(
-  //     NOTIFICATION_TYPE.ENEMY_SPAWN_INFO,
-  //     (payload: Phaser.GameObjects.GameObject[]) => {
-  //       this.emit(WorldEvents.ENEMY_SPAWN_INFO, payload);
-  //     }
-  //   );
-  //   this.room.onMessage(
-  //     NOTIFICATION_TYPE.ENTITY_DESTROY_INFO,
-  //     (payload: ISprite) => {
-  //       this.emit(WorldEvents.ENTITY_DESTROY_INFO, payload);
-  //     }
-  //   );
-  //   this.room.onMessage(
-  //     NOTIFICATION_TYPE.ASSISTANT_DESTROY_INFO,
-  //     (payload: ISprite) => {
-  //       this.emit(WorldEvents.ASSISTANT_DESTROY_INFO, payload);
-  //     }
-  //   );
-  //   this.room.onMessage(NOTIFICATION_TYPE.WAVE_START_INFO, (number: number) => {
-  //     this.emit(WaveEvents.START, number);
-  //   });
-  //   this.room.onMessage(
-  //     NOTIFICATION_TYPE.WAVE_COMPLETE_INFO,
-  //     (number: number) => {
-  //       this.emit(WaveEvents.COMPLETE, number);
-  //     }
-  //   );
-  //   this.room.onMessage(
-  //     NOTIFICATION_TYPE.CRYSTAL_SPAWN_INFO,
-  //     (payload: CrystalDataPayload[]) => {
-  //       this.emit(WorldEvents.CRYSTAL_SPAWN_INFO, payload);
-  //     }
-  //   );
-  //   this.room.onMessage(
-  //     NOTIFICATION_TYPE.CRYSTAL_PICKUP_INFO,
-  //     (payload: Vector2D) => {
-  //       this.emit(WorldEvents.CRYSTAL_PICKUP_INFO, payload);
-  //     }
-  //   );
-  // }
 
   sendPlayerGameState(state: IGame) {
     const payload: StorageSavePayload = {

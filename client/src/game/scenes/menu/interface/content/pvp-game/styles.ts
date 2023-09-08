@@ -10,6 +10,12 @@ export const Wrapper = styled.div`
     line-height: 26px;
     margin-bottom: 10px;
   }
+  hr {
+    border: 1px solid #fff;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const Params = styled.div`
@@ -23,11 +29,4 @@ export const Params = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  & > Button {
-    margin-right: 15px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
 `;
