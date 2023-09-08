@@ -10,7 +10,7 @@ export const PvpGame: React.FC = () => {
   const game = useGame<IGame>();
   const [hasAvailableRooms, setHasAvailableRooms] = useState(false);
   const [availableRoomIds, setAvailableRoomIds] = useState<string[]>([]);
-  const [isJoinMode, setIsJoinMode] = useState(true); // true for join mode, false for start mode
+  const [isJoinMode, setIsJoinMode] = useState(false); // true for join mode, false for start mode
 
   useEffect(() => {
     game.network.getAvailableRooms().then((rooms) => {
@@ -80,16 +80,17 @@ export const PvpGame: React.FC = () => {
             />
           </Params>
           <ButtonWrapper>
-            {availableStartRoomNames.map((room) => (
+            {availableStartRoomNames.length > 0 ? (
               <Button
-                key={room}
-                onClick={() => game.startNewPvPGame(room)}
+                onClick={() => game.startNewPvPGame(availableStartRoomNames[0])}
                 view="primary"
                 size="small"
               >
-                Start {room}
+                Start {availableStartRoomNames[0]}
               </Button>
-            ))}
+            ) : (
+              <span>Rooms are currently full.</span>
+            )}
           </ButtonWrapper>
         </>
       )}

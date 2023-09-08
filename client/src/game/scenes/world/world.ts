@@ -34,7 +34,7 @@ import {
   EnemyVariant,
   IEnemy,
 } from "@type/world/entities/npc/enemy";
-import { IPlayer, PlayerSkill } from "@type/world/entities/player";
+import { IPlayer, PlayerAudio, PlayerSkill } from "@type/world/entities/player";
 import { ISprite } from "@type/world/entities/sprite";
 import {
   ILevel,
@@ -194,6 +194,8 @@ export class World extends Scene implements IWorld {
 
     this.addEntityGroups();
     this.addPlayer();
+    this.camera.focusOn(this.player);
+
     this.addAssistant();
     this.addCrystals();
     this.addStair();
@@ -248,7 +250,8 @@ export class World extends Scene implements IWorld {
     new Interface(this, WorldUI);
 
     this.camera.addZoomControl();
-    this.camera.zoomOut();
+    this.camera.focusOnMapCenterAndZoomOut();
+
     this.resetTime(payload);
 
     this.addWaveManager();
@@ -501,6 +504,7 @@ export class World extends Scene implements IWorld {
         }
       }
     }
+    console.log("generateEnemySpawnPositions", this.enemySpawnPositions.length);
   }
 
   public getEnemySpawnPosition() {
@@ -646,12 +650,21 @@ export class World extends Scene implements IWorld {
       this.player.loadDataPayload(payload.player);
     }
 
-    this.camera.focusOn(this.player);
-
-    this.player.live.on(LiveEvents.DEAD, () => {
-      this.camera.zoomOut();
-      this.game.finishGame();
-    });
+    if (this.game.joinGame) {
+      this.game.events.on(WorldEvents.PLAYER_IS_DEAD, () => {
+        this.sound.play(PlayerAudio.DEAD);
+        this.camera.zoomOut();
+        this.game.clearGame();
+      });
+    } else {
+      this.player.live.on(LiveEvents.DEAD, () => {
+        if (this.game.isPVP) {
+          this.game.network.sendPlayerIsDead();
+        }
+        this.camera.zoomOut();
+        this.game.finishGame();
+      });
+    }
   }
 
   private addAssistant() {

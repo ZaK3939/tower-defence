@@ -166,6 +166,7 @@ export enum WorldEvents {
   PLAYER_IS_READY = "player_is_ready",
   PLAYER_IS_LEFT = "player_is_left",
   PLAYER_GAME_STATE = "player_game_state",
+  PLAYER_IS_DEAD = "player_is_dead",
   WORLD_UPDATE = "world_update",
   ENEMY_ENTITY_UPDATE = "enemy_entity_update",
   ENEMY_SPAWN_INFO = "enemy_spawn_info",

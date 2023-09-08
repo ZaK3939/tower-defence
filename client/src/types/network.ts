@@ -14,6 +14,7 @@ export interface INetwork extends EventEmmiter {
   connect(arg0: IGame, name?: string): Promise<void>;
   getAvailableRooms(roomName?: string): Promise<RoomAvailable<any>[]>;
   sendPlayerGameState(state: IGame): void;
+  sendPlayerIsDead(): void;
   sendEnemyGameState(state: Phaser.GameObjects.GameObject[]): void;
   sendEnemySpawnInfo(state: EnemySpawnPayload): void;
   sendEntityDestroyInfo(state: ISprite): void;

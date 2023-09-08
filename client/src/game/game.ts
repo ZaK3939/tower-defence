@@ -274,6 +274,7 @@ export class Game extends Phaser.Game implements IGame {
     }
 
     this.usedSave = null;
+    this.isPVP = true;
     this.joinGame = true;
 
     this.network
@@ -304,7 +305,7 @@ export class Game extends Phaser.Game implements IGame {
 
     this.state = GameState.STARTED;
 
-    if (!this.isSettingEnabled(GameSettings.TUTORIAL)) {
+    if (!this.isSettingEnabled(GameSettings.TUTORIAL) || this.isPVP) {
       this.tutorial.disable();
     }
 

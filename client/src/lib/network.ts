@@ -50,6 +50,11 @@ export class Network extends EventEmitter implements INetwork {
       game.events.emit(WorldEvents.WORLD_UPDATE, payload);
     });
 
+    this.room.onMessage(NOTIFICATION_TYPE.PLAYER_IS_DEAD, (sessionId) => {
+      console.log("player is dead", sessionId);
+      game.events.emit(WorldEvents.PLAYER_IS_DEAD, sessionId);
+    });
+
     this.room.onMessage(NOTIFICATION_TYPE.ENEMY_ENTITY_UPDATE, (payload) => {
       game.events.emit(WorldEvents.ENEMY_ENTITY_UPDATE, payload);
     });
@@ -185,6 +190,10 @@ export class Network extends EventEmitter implements INetwork {
 
   sendEnemyGameState(state: Phaser.GameObjects.GameObject[]) {
     this.room?.send(NOTIFICATION_TYPE.ENEMY_ENTITY_UPDATE, state);
+  }
+
+  sendPlayerIsDead() {
+    this.room?.send(NOTIFICATION_TYPE.PLAYER_IS_DEAD, {});
   }
 
   sendEnemySpawnInfo(state: EnemySpawnPayload) {

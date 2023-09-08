@@ -45,8 +45,6 @@ export class Attacker extends EventEmitter implements IAttacker {
     this._isBuild = v;
   }
 
-  public enemySpawnPositions: Vector2D[] = [];
-
   private enemyPreview: Nullable<Phaser.GameObjects.Image> = null;
 
   private enemies: Partial<Record<EnemyVariant, IEnemy[]>> = {};
@@ -312,22 +310,31 @@ export class Attacker extends EventEmitter implements IAttacker {
     }
 
     const buildings = this.scene.getEntities<IBuilding>(EntityType.BUILDING);
-    let freePositions = this.enemySpawnPositions.filter(
-      (position) =>
-        Phaser.Math.Distance.BetweenPoints(
-          position,
-          this.scene.player.positionAtMatrix
-        ) >= ENEMY_SPAWN_DISTANCE_FROM_PLAYER &&
-        buildings.every(
-          (building) =>
-            Phaser.Math.Distance.BetweenPoints(
-              position,
-              building.positionAtMatrix
-            ) >= ENEMY_SPAWN_DISTANCE_FROM_BUILDING
-        )
+
+    const distanceFromPlayer = Phaser.Math.Distance.BetweenPoints(
+      positionAtMatrix,
+      this.scene.player.positionAtMatrix
     );
 
-    let spritePositionsAtMatrix = freePositions;
+    // Calculate if positionAtMatrix is far enough from all buildings
+    const isFarFromAllBuildings = buildings.every(
+      (building) =>
+        Phaser.Math.Distance.BetweenPoints(
+          positionAtMatrix,
+          building.positionAtMatrix
+        ) >= ENEMY_SPAWN_DISTANCE_FROM_BUILDING
+    );
+
+    // Check if positionAtMatrix meets both conditions
+    if (
+      distanceFromPlayer < ENEMY_SPAWN_DISTANCE_FROM_PLAYER ||
+      !isFarFromAllBuildings
+    ) {
+      // positionAtMatrix doesn't meet all conditions
+      return false;
+    }
+
+    let spritePositionsAtMatrix = this.scene.player.getAllPositionsAtMatrix();
 
     this.scene.getEntities<INPC>(EntityType.NPC).forEach((npc) => {
       spritePositionsAtMatrix = spritePositionsAtMatrix.concat(

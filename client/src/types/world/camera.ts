@@ -25,4 +25,9 @@ export interface ICamera {
    * Add zoom control.
    */
   addZoomControl(): void;
+
+  /**
+   * Focus on map center and zoom out.
+   */
+  focusOnMapCenterAndZoomOut(): void;
 }

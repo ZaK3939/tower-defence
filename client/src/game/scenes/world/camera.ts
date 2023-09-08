@@ -4,6 +4,7 @@ import { CAMERA_ZOOM } from "@const/world/camera";
 import { Level } from "@game/scenes/world/level";
 import { IWorld } from "@type/world";
 import { ICamera } from "@type/world/camera";
+import { LEVEL_MAP_SIZE } from "@const/world/level";
 
 export class Camera implements ICamera {
   private scene: IWorld;
@@ -58,5 +59,28 @@ export class Camera implements ICamera {
         camera.zoomTo(clampZoom, 10);
       }
     );
+  }
+
+  public focusOnMapCenterAndZoomOut() {
+    const camera = this.scene.cameras.main;
+    const size = LEVEL_MAP_SIZE;
+
+    // Calculate the map's center position in world coordinates
+    const centerX =
+      (Level.ToWorldPosition({ x: 0, y: size, z: 0 }).x +
+        Level.ToWorldPosition({ x: size, y: 0, z: 0 }).x) /
+      2;
+    const centerY =
+      (Level.ToWorldPosition({ x: 0, y: size, z: 0 }).y +
+        Level.ToWorldPosition({ x: size, y: 0, z: 0 }).y) /
+      2;
+
+    // Pan the camera to the center of the map
+    camera.pan(centerX, centerY, 0);
+
+    // Perform the zoom out after panning
+    setTimeout(() => {
+      camera.zoomTo(CAMERA_ZOOM * 0.5, 10 * 1000);
+    }, 0);
   }
 }
