@@ -15,11 +15,11 @@ import { Game } from "./game";
     ].join("\n")
   );
 
-  if (!IS_DEV_MODE && isMobileDevice()) {
-    throwFailure(FailureType.BAD_DEVICE);
+  // if (!IS_DEV_MODE && isMobileDevice()) {
+  //   throwFailure(FailureType.BAD_DEVICE);
 
-    return;
-  }
+  //   return;
+  // }
 
   function checkScreenSize() {
     if (isValidScreenSize()) {
