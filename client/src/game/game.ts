@@ -332,7 +332,9 @@ export class Game extends Phaser.Game implements IGame {
     if (this.state === GameState.FINISHED) {
       this.scene.systemScene.scene.stop(GameScene.GAMEOVER);
     }
-
+    if (this.isPVP) {
+      this.network.leave();
+    }
     this.state = GameState.IDLE;
 
     this.world.stop();
@@ -356,7 +358,9 @@ export class Game extends Phaser.Game implements IGame {
     if (this.state !== GameState.STARTED) {
       return;
     }
-
+    if (this.isPVP) {
+      this.network.leave();
+    }
     this.state = GameState.FINISHED;
 
     this.events.emit(GameEvents.FINISH);
@@ -382,7 +386,9 @@ export class Game extends Phaser.Game implements IGame {
     if (this.state !== GameState.STARTED) {
       return;
     }
-
+    if (this.isPVP) {
+      this.network.leave();
+    }
     this.state = GameState.FINISHED;
 
     this.events.emit(GameEvents.FINISH);

@@ -13,6 +13,7 @@ export interface INetwork extends EventEmmiter {
   sessionId?: string;
   connect(arg0: IGame, name?: string): Promise<void>;
   join(arg0: IGame, name?: string): Promise<void>;
+  leave(): Promise<void>;
   getAvailableRooms(roomName?: string): Promise<RoomAvailable<any>[]>;
   sendPlayerGameState(state: IGame): void;
   sendPlayerIsDead(): void;

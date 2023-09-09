@@ -50,6 +50,11 @@ export class Network extends EventEmitter implements INetwork {
     this.initialize(game);
   }
 
+  async leave() {
+    this.room?.leave();
+    console.log("left successfully", this.room);
+  }
+
   async getAvailableRooms(roomName?: string): Promise<RoomAvailable<any>[]> {
     try {
       const rooms = await this.client.getAvailableRooms(roomName);

@@ -109,6 +109,8 @@ export class Player extends Sprite implements IPlayer {
 
   private _activeSuperskills: Partial<Record<PlayerSuperskill, boolean>> = {};
 
+  private inactivityTimeout: NodeJS.Timeout | null = null;
+
   public get activeSuperskills() {
     return this._activeSuperskills;
   }
@@ -614,9 +616,26 @@ export class Player extends Sprite implements IPlayer {
     const oldMoving = this.isMoving;
     const oldDirection = this.direction;
     if (x !== 0 || y !== 0) {
+      // Clear the timeout if there's any activity
+      if (this.inactivityTimeout) {
+        clearTimeout(this.inactivityTimeout);
+        this.inactivityTimeout = null;
+      }
+
       this.isMoving = true;
       this.direction = PLAYER_MOVE_DIRECTIONS[key];
     } else {
+      if (
+        this.inactivityTimeout === null &&
+        this.scene.game.isPVP &&
+        !this.scene.game.joinGame
+      ) {
+        this.inactivityTimeout = setTimeout(() => {
+          console.log("No activity for a while"); // Replace with your own logic
+          this.scene.game.stopGame();
+        }, 300000); // 5 minutes (300,000 milliseconds) of no activity triggers the above logic
+      }
+
       this.isMoving = false;
     }
 
