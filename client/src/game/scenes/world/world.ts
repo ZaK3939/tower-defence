@@ -195,7 +195,6 @@ export class World extends Scene implements IWorld {
     this.addEntityGroups();
     this.addPlayer();
     this.camera.focusOn(this.player);
-
     this.addAssistant();
     this.addCrystals();
     this.addStair();

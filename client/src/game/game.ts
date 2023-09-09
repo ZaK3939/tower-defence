@@ -33,6 +33,7 @@ import { World } from "@scene/world";
 import { IStorage, StorageSave, StorageSavePayload } from "@type/storage";
 import { INetwork } from "@type/network";
 import { Network } from "@lib/network";
+import VirtualJoystickPlugin from "phaser3-rex-plugins/plugins/virtualjoystick-plugin.js";
 
 export class Game extends Phaser.Game implements IGame {
   readonly tutorial: ITutorial;
@@ -120,6 +121,15 @@ export class Game extends Phaser.Game implements IGame {
   constructor() {
     super({
       scene: [System, World, Screen, Menu, Gameover, Gameclear],
+      plugins: {
+        global: [
+          {
+            key: "rexVirtualJoystick",
+            plugin: VirtualJoystickPlugin,
+            start: true,
+          },
+        ],
+      },
       pixelArt: true,
       autoRound: true,
       disableContextMenu: true,

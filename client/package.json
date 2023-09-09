@@ -1,6 +1,6 @@
 {
   "name": "tower-defense",
-  "version": "0.0.28",
+  "version": "0.0.30",
   "description": "Build and Defence in the onchain crypto world",
   "main": "./dist/index.html",
   "scripts": {
@@ -63,17 +63,18 @@
     "worker-loader": "^3.0.8"
   },
   "dependencies": {
+    "colyseus.js": "^0.15.9",
     "gen-biome": "2.3.2",
     "heap": "0.2.7",
     "idb": "^7.1.1",
     "path-browserify": "^1.0.1",
     "phaser": "3.60.0",
     "phaser-react-ui": "1.4.2",
+    "phaser3-rex-plugins": "^1.60.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "6.0.1",
     "util": "^0.12.5",
-    "uuid": "9.0.0",
-    "colyseus.js": "^0.15.9"
+    "uuid": "9.0.0"
   }
 }

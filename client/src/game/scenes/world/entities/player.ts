@@ -39,9 +39,12 @@ import { WaveEvents } from "@type/world/wave";
 import { Level } from "../level";
 import { Building } from "./building";
 import { BuildingStair } from "./building/variants/stair";
-import { eachEntries } from "@lib/utils";
+import { eachEntries, isMobileDevice } from "@lib/utils";
+import VirtualJoystick from "phaser3-rex-plugins/plugins/virtualjoystick.js";
 
 export class Player extends Sprite implements IPlayer {
+  public joystick: VirtualJoystick;
+
   private _experience: number = 0;
 
   public get experience() {
@@ -144,6 +147,24 @@ export class Player extends Sprite implements IPlayer {
     this.addDustEffect();
     if (!this.scene.game.joinGame) {
       this.handleKeyboard();
+      if (isMobileDevice()) {
+        const marginPercent = 7;
+        const xMargin = (window.innerWidth * marginPercent) / 100;
+        const yMargin = (window.innerHeight * marginPercent) / 100;
+        this.joystick = new VirtualJoystick(this.scene.game.world, {
+          x: xMargin,
+          y: window.innerHeight - yMargin * 2,
+          radius: 50,
+          base: this.scene.game.world.add
+            .circle(0, 0, 50, 0x888888)
+            .setDepth(1000),
+          thumb: this.scene.game.world.add
+            .circle(0, 0, 20, 0xcccccc)
+            .setDepth(1000),
+          forceMin: 3,
+        });
+        this.joystick.setScrollFactor(0);
+      }
     }
     this.addIndicator({
       color: 0xd0ff4f,
@@ -213,6 +234,9 @@ export class Player extends Sprite implements IPlayer {
       this.setVelocity(0, 0);
     }
 
+    if (isMobileDevice()) {
+      this.handleJoystick();
+    }
     this.updateDirection();
     this.updateVelocity();
   }
@@ -581,6 +605,51 @@ export class Player extends Sprite implements IPlayer {
       }
     );
     this.handleSuperskillKeyboard();
+  }
+
+  private handleJoystick() {
+    type DirectionRange = {
+      min: number;
+      max: number;
+      directions: (keyof typeof MovementDirection)[];
+    };
+
+    const angle = this.joystick.angle;
+    const force = this.joystick.force;
+    console.log(angle, force);
+
+    const allDirections: (keyof typeof MovementDirection)[] = [
+      "UP",
+      "DOWN",
+      "LEFT",
+      "RIGHT",
+    ];
+    const angleToDirectionMap: DirectionRange[] = [
+      { min: -67.5, max: -22.5, directions: ["UP", "RIGHT"] },
+      { min: -112.5, max: -67.5, directions: ["UP"] },
+      { min: -157.5, max: -112.5, directions: ["UP", "LEFT"] },
+      { min: -180, max: -157.5, directions: ["LEFT"] },
+      { min: 157.5, max: 180, directions: ["LEFT"] },
+      { min: 112.5, max: 157.5, directions: ["DOWN", "LEFT"] },
+      { min: 67.5, max: 112.5, directions: ["DOWN"] },
+      { min: 22.5, max: 67.5, directions: ["DOWN", "RIGHT"] },
+      { min: -22.5, max: 22.5, directions: ["RIGHT"] },
+    ];
+    // Reset all directions to false initially
+    for (const direction of allDirections) {
+      this.movementKeysState[direction] = false;
+    }
+
+    if (force > 3) {
+      for (const { min, max, directions } of angleToDirectionMap) {
+        if (angle >= min && angle < max) {
+          for (const direction of directions) {
+            this.movementKeysState[direction] = true;
+          }
+          break; // No need to check other ranges once we've found our match
+        }
+      }
+    }
   }
 
   private updateVelocity() {

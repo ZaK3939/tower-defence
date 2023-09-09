@@ -29,7 +29,7 @@ import { Game } from "./game";
     }
   }
 
-  checkScreenSize();
+  // checkScreenSize();
   window.addEventListener("resize", checkScreenSize);
 
   const game = new Game();

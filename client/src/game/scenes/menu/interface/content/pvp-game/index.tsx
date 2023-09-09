@@ -38,7 +38,6 @@ export const PvpGame: React.FC = () => {
 
   return (
     <Wrapper>
-      <br />
       <Params>
         <Param
           label="Planet"
@@ -58,7 +57,7 @@ export const PvpGame: React.FC = () => {
           <Button
             onClick={() => game.startNewPvPGame(availableStartRoomNames[0])}
             view="primary"
-            size="small"
+            size="medium"
           >
             Start {availableStartRoomNames[0]}
           </Button>

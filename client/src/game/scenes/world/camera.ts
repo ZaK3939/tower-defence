@@ -5,6 +5,7 @@ import { Level } from "@game/scenes/world/level";
 import { IWorld } from "@type/world";
 import { ICamera } from "@type/world/camera";
 import { LEVEL_MAP_SIZE } from "@const/world/level";
+import { isMobileDevice } from "@lib/utils";
 
 export class Camera implements ICamera {
   private scene: IWorld;
@@ -26,9 +27,7 @@ export class Camera implements ICamera {
 
     camera.resetFX();
     camera.startFollow(object);
-
-    camera.setZoom(CAMERA_ZOOM * 2);
-    camera.zoomTo(CAMERA_ZOOM, 200);
+    camera.zoomTo(CAMERA_ZOOM / 2, 200);
   }
 
   public focusOnLevel() {
