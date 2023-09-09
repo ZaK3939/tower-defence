@@ -27,7 +27,13 @@ export class Camera implements ICamera {
 
     camera.resetFX();
     camera.startFollow(object);
-    camera.zoomTo(CAMERA_ZOOM / 2, 200);
+
+    camera.setZoom(CAMERA_ZOOM * 2);
+    if (!isMobileDevice()) {
+      camera.zoomTo(CAMERA_ZOOM, 200);
+    } else {
+      camera.zoomTo(CAMERA_ZOOM / 2, 200);
+    }
   }
 
   public focusOnLevel() {
