@@ -18,3 +18,7 @@ export const Label = styled.div`
   line-height: 66px;
   margin-bottom: 40px;
 `;
+
+export const Spacer = styled.div`
+  height: 20px; // You can adjust this height based on your requirements
+`;
