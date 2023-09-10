@@ -11,6 +11,7 @@ import {
 } from "@type/world/entities/building";
 
 import { BuildingTower } from "../tower";
+import { isMobileDevice } from "@lib/utils";
 
 export class BuildingTowerFire extends BuildingTower {
   static Name = "Fire tower";
@@ -84,11 +85,19 @@ export class BuildingTowerFire extends BuildingTower {
       TutorialStep.UPGRADE_BUILDING,
       {
         beg: () => {
-          hintId = this.scene.showHint({
-            side: "top",
-            text: "Hover and press [E] to upgrade",
-            position: this.getPositionOnGround(),
-          });
+          if (!isMobileDevice()) {
+            hintId = this.scene.showHint({
+              side: "top",
+              text: "Hover and press [E] to upgrade",
+              position: this.getPositionOnGround(),
+            });
+          } else {
+            hintId = this.scene.showHint({
+              side: "top",
+              text: "Hover and long press to upgrade",
+              position: this.getPositionOnGround(),
+            });
+          }
         },
         end: hideCurrentHint,
       }

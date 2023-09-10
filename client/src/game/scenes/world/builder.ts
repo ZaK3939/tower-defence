@@ -45,6 +45,9 @@ export class Builder extends EventEmitter implements IBuilder {
 
   private _variant: Nullable<BuildingVariant> = null;
 
+  private lastTapTime: number = 0;
+  private touchStartTimestamp: number | null = null;
+
   public get variant() {
     return this._variant;
   }
@@ -71,6 +74,7 @@ export class Builder extends EventEmitter implements IBuilder {
     this.setMaxListeners(0);
     this.handleKeyboard();
     this.handleTutorial();
+    this.handleMobile();
   }
 
   public destroy() {
@@ -542,6 +546,29 @@ export class Builder extends EventEmitter implements IBuilder {
         }
       }
     );
+  }
+
+  private onTouchStart(pointer: Phaser.Input.Pointer) {
+    this.touchStartTimestamp = pointer.time;
+  }
+
+  private onTouchEnd(pointer: Phaser.Input.Pointer) {
+    const currentTime = pointer.time;
+
+    if (currentTime - this.lastTapTime < 500) {
+      // Consider it a double tap; equivalent to a right mouse click
+      this.unsetBuildingVariant();
+    } else {
+      // Consider it a single tap; equivalent to a left mouse click
+      this.build();
+    }
+
+    this.lastTapTime = currentTime;
+  }
+
+  private handleMobile() {
+    this.scene.input.on("pointerdown", this.onTouchStart, this);
+    this.scene.input.on("pointerup", this.onTouchEnd, this);
   }
 
   private handleTutorial() {

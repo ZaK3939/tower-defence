@@ -5,6 +5,18 @@ import { FailureType } from "@type/states";
 import pkg from "../package.json";
 import { Game } from "./game";
 
+function isPortrait() {
+  return window.innerHeight > window.innerWidth;
+}
+
+function checkScreenSize() {
+  if (isValidScreenSize()) {
+    removeFailure(FailureType.BAD_SCREEN_SIZE);
+  } else {
+    throwFailure(FailureType.BAD_SCREEN_SIZE);
+  }
+}
+
 (async () => {
   console.clear();
   console.log(
@@ -15,21 +27,15 @@ import { Game } from "./game";
     ].join("\n")
   );
 
-  // if (!IS_DEV_MODE && isMobileDevice()) {
-  //   throwFailure(FailureType.BAD_DEVICE);
+  if (!IS_DEV_MODE && isMobileDevice()) {
+    if (isPortrait()) {
+      throwFailure(FailureType.BAD_DEVICE);
 
-  //   return;
-  // }
-
-  function checkScreenSize() {
-    if (isValidScreenSize()) {
-      removeFailure(FailureType.BAD_SCREEN_SIZE);
-    } else {
-      throwFailure(FailureType.BAD_SCREEN_SIZE);
+      return;
     }
   }
 
-  // checkScreenSize();
+  checkScreenSize();
   window.addEventListener("resize", checkScreenSize);
 
   const game = new Game();
