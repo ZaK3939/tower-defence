@@ -1,3 +1,4 @@
+import { useQuery } from "wagmi";
 import { parseAbiItem } from "viem";
 import { FactionId, PetId, Tier, Swatch, Metadata, Wawa } from "@type/wawa";
 import { client } from "./wagmi";
@@ -113,3 +114,19 @@ export async function getWawa(tokenId: number): Promise<Wawa> {
     ...(await getMetadata(res.tokenURI)),
   };
 }
+
+export const useOwnedWawas = (address?: `0x${string}`) => {
+  const { data, isFetched } = useQuery(
+    ["owned-wawas", address],
+    async () => {
+      if (!address) return [];
+      const tokenIds = await getERC721TokenIds(address);
+      return Promise.all(tokenIds.map((tokenId) => getWawa(tokenId)));
+    },
+    { initialData: [] }
+  );
+
+  return { data, isFetched };
+};
+
+

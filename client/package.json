@@ -63,8 +63,8 @@
     "worker-loader": "^3.0.8"
   },
   "dependencies": {
-    "@rainbow-me/rainbowkit": "^1.0.11",
     "colyseus.js": "^0.15.9",
+    "connectkit": "^1.5.3",
     "gen-biome": "2.3.2",
     "heap": "0.2.7",
     "idb": "^7.1.1",

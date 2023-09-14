@@ -51,6 +51,7 @@ import { CrystalDataPayload, ICrystal } from "@type/world/entities/crystal";
 import { StorageSavePayload } from "@type/storage";
 import { IAttacker } from "@type/world/attacker";
 import { Attacker } from "./attacker";
+import { Wawa } from "@type/wawa";
 
 export class World extends Scene implements IWorld {
   private entityGroups: Record<EntityType, Phaser.GameObjects.Group>;
@@ -182,7 +183,7 @@ export class World extends Scene implements IWorld {
     this.generateEnemySpawnPositions();
   }
 
-  public start() {
+  public start(wawa?: Wawa) {
     new Interface(this, WorldUI);
 
     this.camera.addZoomControl();
@@ -193,9 +194,9 @@ export class World extends Scene implements IWorld {
     this.addBuilder();
 
     this.addEntityGroups();
-    this.addPlayer();
+    this.addPlayer(undefined, wawa);
     this.camera.focusOn(this.player);
-    this.addAssistant();
+    this.addAssistant(wawa);
     this.addCrystals();
     this.addStair();
     if (this.game.usedSave) {
@@ -633,7 +634,7 @@ export class World extends Scene implements IWorld {
     });
   }
 
-  private addPlayer(payload?: StorageSavePayload) {
+  private addPlayer(payload?: StorageSavePayload, wawa?: Wawa) {
     let positionAtMatrix: Vector2D;
 
     if (this.game.usedSave) {
@@ -646,7 +647,7 @@ export class World extends Scene implements IWorld {
       );
     }
 
-    this.player = new Player(this, { positionAtMatrix });
+    this.player = new Player(this, { positionAtMatrix, wawa });
 
     if (this.game.usedSave) {
       this.player.loadDataPayload(this.game.usedSave.payload.player);
@@ -672,7 +673,7 @@ export class World extends Scene implements IWorld {
     }
   }
 
-  private addAssistant() {
+  private addAssistant(wawa?: Wawa) {
     const create = () => {
       const positionAtMatrix = aroundPosition(
         this.player.positionAtMatrix
@@ -688,6 +689,7 @@ export class World extends Scene implements IWorld {
         speed: this.player.speed,
         health: this.player.live.maxHealth,
         level: this.player.upgradeLevel[PlayerSkill.ASSISTANT],
+        wawa
       });
 
       this.assistant.once(Phaser.Scenes.Events.DESTROY, () => {

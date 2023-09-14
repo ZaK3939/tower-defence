@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Overlay } from "@game/scenes/system/interface/overlay";
+import { WalletProvider } from "@scene/wallet-provider";
 import { MenuPage } from "@type/menu";
 
 import { Content } from "./content";
@@ -25,16 +26,18 @@ export const MenuUI: React.FC<Props> = ({ defaultPage }) => {
             <Copyright />
           </Block>
         </Header>
-        <Menu>
-          <Block centerContent>
-            <Navigation page={page} onSelect={setPage} />
-          </Block>
-        </Menu>
-        <Main>
-          <Block>
-            <Content page={page} />
-          </Block>
-        </Main>
+        <WalletProvider>
+          <Menu>
+            <Block centerContent>
+              <Navigation page={page} onSelect={setPage} />
+            </Block>
+          </Menu>
+          <Main>
+            <Block>
+              <Content page={page} />
+            </Block>
+          </Main>
+        </WalletProvider>
       </Wrapper>
     </Overlay>
   );

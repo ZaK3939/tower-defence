@@ -34,6 +34,7 @@ import { IStorage, StorageSave, StorageSavePayload } from "@type/storage";
 import { INetwork } from "@type/network";
 import { Network } from "@lib/network";
 import VirtualJoystickPlugin from "phaser3-rex-plugins/plugins/virtualjoystick-plugin.js";
+import { Wawa } from "@type/wawa";
 
 export class Game extends Phaser.Game implements IGame {
   readonly tutorial: ITutorial;
@@ -248,14 +249,14 @@ export class Game extends Phaser.Game implements IGame {
     });
   }
 
-  public startNewGame() {
+  public startNewGame(wawa?: Wawa) {
     if (this.state !== GameState.IDLE) {
       return;
     }
 
     this.usedSave = null;
 
-    this.startGame();
+    this.startGame(undefined, wawa);
   }
 
   public startNewPvPGame(name?: string) {
@@ -308,7 +309,7 @@ export class Game extends Phaser.Game implements IGame {
       });
   }
 
-  private startGame(payload?: StorageSavePayload) {
+  private startGame(payload?: StorageSavePayload, wawa?: Wawa) {
     if (this.state !== GameState.IDLE) {
       return;
     }
@@ -323,7 +324,7 @@ export class Game extends Phaser.Game implements IGame {
     this.scene.systemScene.scene.launch(GameScene.SCREEN);
 
     if (!this.joinGame) {
-      this.world.start();
+      this.world.start(wawa);
     } else {
       this.world.join(payload);
     }

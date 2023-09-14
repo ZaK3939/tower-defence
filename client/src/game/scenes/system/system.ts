@@ -1,11 +1,12 @@
 import { CONTROL_KEY } from "@const/controls";
 
-import { getAssetsPack, loadFontFace } from "@lib/assets";
+import { getAssetsPack, loadFontFace, loadAtlas } from "@lib/assets";
 import { removeLoading, setLoadingStatus } from "@lib/state";
 import { GameScene, GameState } from "@type/game";
 import { InterfaceFont } from "@type/interface";
 import { Scene } from "..";
 import { MenuPage } from "@type/menu";
+import { WawaAtlas } from "@type/world/entities/player";
 
 export class System extends Scene {
   constructor() {
@@ -15,6 +16,10 @@ export class System extends Scene {
     });
 
     setLoadingStatus("ASSETS LOADING");
+  }
+
+  preload() {
+    loadAtlas(this, WawaAtlas)
   }
 
   public async create() {

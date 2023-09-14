@@ -8,6 +8,7 @@ import { ShotBallFire } from "@entity/shot/ball/variants/fire";
 import { registerAudioAssets, registerSpriteAssets } from "@lib/assets";
 import { progressionQuadratic } from "@lib/difficulty";
 import { getClosest } from "@lib/utils";
+import { getWawaPetTextureKey } from "@lib/wawa-texture";
 import { Effect } from "@scene/world/effects";
 import { Level } from "@scene/world/level";
 import { GameSettings } from "@type/game";
@@ -39,10 +40,11 @@ export class Assistant extends NPC implements IAssistant {
 
   constructor(
     scene: IWorld,
-    { owner, positionAtMatrix, speed, health, level }: AssistantData
+    { owner, positionAtMatrix, speed, health, level, wawa }: AssistantData
   ) {
     super(scene, {
-      texture: AssistantTexture.ASSISTANT,
+      // @ts-ignore
+      texture: wawa ? getWawaPetTextureKey(wawa) : AssistantTexture.ASSISTANT,
       positionAtMatrix,
       speed,
       health,

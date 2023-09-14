@@ -6,7 +6,7 @@ import {
   PlayerSuperskill,
   PlayerSuperskillData,
 } from "@type/world/entities/player";
-
+import { wawaHeight, wawaWidth } from "@lib/wawa-texture";
 import { DIFFICULTY } from "../difficulty";
 
 // export const PLAYER_TILE_SIZE = {
@@ -14,9 +14,14 @@ import { DIFFICULTY } from "../difficulty";
 //   height: 30,
 //   gamut: 4,
 // };
+// export const PLAYER_TILE_SIZE = {
+//   width: 40,
+//   height: 51.59,
+//   gamut: 4,
+// };
 export const PLAYER_TILE_SIZE = {
-  width: 40,
-  height: 51.59,
+  width: wawaWidth,
+  height: wawaHeight,
   gamut: 4,
 };
 

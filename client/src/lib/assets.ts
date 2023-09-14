@@ -1,5 +1,5 @@
 import { AssetsSource, AssetsSpriteParams } from "@type/assets";
-import Phaser from "phaser";
+import Phaser, { Scene } from "phaser";
 
 const ASSETS_PACK: {
   files: Phaser.Types.Loader.FileConfig[];
@@ -68,5 +68,12 @@ export async function loadFontFace(name: string, file: string) {
     document.fonts.add(font);
 
     return font;
+  });
+}
+
+// note: Scene's asset pack doesn't support atlas
+export function loadAtlas<T extends string>(scene: Scene, files: AssetsSource<T>) {
+  normalizeAssetsFiles(files).forEach(name => {
+    scene.load.atlas(name, `assets/atlas/${name}.png`, `assets/atlas/${name}.json`);
   });
 }

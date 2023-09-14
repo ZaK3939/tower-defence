@@ -6,6 +6,7 @@ import { IWorld } from "./world";
 import { IAnalytics } from "./analytics";
 import { IStorage, StorageSave } from "./storage";
 import { INetwork } from "./network";
+import { Wawa } from "./wawa";
 
 export interface IGame extends Phaser.Game {
   /**
@@ -88,7 +89,7 @@ export interface IGame extends Phaser.Game {
   /**
    * Start new game.
    */
-  startNewGame(): void;
+  startNewGame(wawa?: Wawa): void;
 
   /**
    * Start New vs game.
