@@ -196,9 +196,9 @@ export class World extends Scene implements IWorld {
     this.addEntityGroups();
     this.addPlayer(undefined, wawa);
     this.camera.focusOn(this.player);
-
-    this.addAssistant(wawa);
-
+    if (wawa?.petId) {
+      this.addAssistant(wawa);
+    }
     this.addCrystals();
     this.addStair();
     if (this.game.usedSave) {
@@ -276,11 +276,15 @@ export class World extends Scene implements IWorld {
       }
     });
 
-    this.addAssistant(payload.player.wawa);
-    this.game.events.on(WorldEvents.ASSISTANT_DESTROY_INFO, (payload: any) => {
-      this.assistant?.destroy();
-    });
-
+    if (payload.player.wawa?.petId) {
+      this.addAssistant(payload.player.wawa);
+      this.game.events.on(
+        WorldEvents.ASSISTANT_DESTROY_INFO,
+        (payload: any) => {
+          this.assistant?.destroy();
+        }
+      );
+    }
     this.game.events.on(
       WorldEvents.CRYSTAL_PICKUP_INFO,
       (payload: Vector2D) => {
