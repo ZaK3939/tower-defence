@@ -7,8 +7,8 @@ export const About: React.FC = () => (
     Welcome to our experimental game powered by phi assets!
     <br />
     <br />
-    Don't forget to enhance the abilities of your avatar and its aide, utilizing
-    the unique features of phi assets.
+    Don't forget to enhance the abilities of your avatar and pets, utilizing the
+    unique features of phi assets.
     <br />
     <br />
     Dive in and experience the next generation of gaming!
