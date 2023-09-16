@@ -34,7 +34,7 @@ export const Block = styled.div.withConfig({
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  padding: 3px;
+  padding: 5px;
   margin: 5px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 `;

@@ -1,19 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import { Wrapper } from './styles';
+import { Wrapper } from "./styles";
 
 export const About: React.FC = () => (
   <Wrapper>
-    Your task is to survive on chosen planet as many waves as possible.
-    <br />
-    With each wave count of enemies and their characteristics will grow.
+    Welcome to our experimental game powered by phi assets!
     <br />
     <br />
-    Build walls to defend, towers to attack, ammunitions to reload towers
+    Don't forget to enhance the abilities of your avatar and its aide, utilizing
+    the unique features of phi assets.
     <br />
-    and generators to get more resources.
     <br />
-    <br />
-    And also upgrade skills of your character and his assistant.
+    Dive in and experience the next generation of gaming!
   </Wrapper>
 );
