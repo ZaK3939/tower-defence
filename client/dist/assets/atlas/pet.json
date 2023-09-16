@@ -1,0 +1,986 @@
+{
+	"textures": [
+		{
+			"image": "pet.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 868,
+				"h": 31
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "pet-1-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-1-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-2-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-3-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-4-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-5-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-10-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-11-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-12-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-14-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-15-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-17-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-18-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-19-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-20-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-22-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-23-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 32,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-2-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 63,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-3-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 94,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-4-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 125,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-5-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 156,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-6-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 187,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-6-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 218,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-13-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 218,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-7-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 249,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-7-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 280,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-8-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 311,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-8-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 342,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-9-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 342,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-21-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 342,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-9-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 373,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-10-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 404,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-11-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 435,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-12-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 466,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-13-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 497,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-14-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 528,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-15-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 559,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-16-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 590,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-16-shadows.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 621,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-17-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 652,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-18-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 683,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-19-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 714,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-20-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 745,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-21-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 776,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-22-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 807,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				},
+				{
+					"filename": "pet-23-body.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 29,
+						"h": 29
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 29,
+						"h": 29
+					},
+					"frame": {
+						"x": 838,
+						"y": 1,
+						"w": 29,
+						"h": 29
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:8c9e61d9f211bf8d502153c693cf31fc:a22343107c62ebfadb19efd9baeb8bcc:af16e077019f3aac7bfcda548a456f16$"
+	}
+}

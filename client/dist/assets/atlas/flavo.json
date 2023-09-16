@@ -1,0 +1,1028 @@
+{
+	"textures": [
+		{
+			"image": "flavo.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1278,
+				"h": 182
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "flavo-body-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-body-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-body-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-body-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-body-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-body-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-body-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-body-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-chest-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-chest-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 72,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-chest-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 72,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-chest-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 143,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-chest-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 143,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-chest-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 214,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-chest-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 214,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-chest-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 285,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-eyes-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 285,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-eyes-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 356,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-eyes-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 356,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-eyes-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 427,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-eyes-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 427,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-eyes-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 498,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-eyes-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 498,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-eyes-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 569,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-headwear-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 569,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-headwear-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 640,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-headwear-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 640,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-headwear-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 711,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-headwear-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 711,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-headwear-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 782,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-headwear-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 782,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-headwear-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 853,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-legs-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 853,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-legs-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 924,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-legs-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 924,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-legs-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 995,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-legs-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 995,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-legs-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1066,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-legs-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1066,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-legs-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1137,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-shadows-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1137,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-shadows-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1137,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-shadows-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-shadows-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-shadows-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-shadows-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-shadows-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "flavo-shadows-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:3afb1390194a76897504a3d935440d75:596daa96f96d6f9a59cb689c0a60a956:f812122bea35deb731128cd1c13f12d3$"
+	}
+}
