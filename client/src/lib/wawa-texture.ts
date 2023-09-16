@@ -9,12 +9,29 @@ function hexToRgb (hex: string) {
   return { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) };
 };
 
-function replaceColor(ctx: CanvasRenderingContext2D, hexOld: string, hexNew: string) {
+// function replaceColor(ctx: CanvasRenderingContext2D, hexOld: string, hexNew: string) {
+//   const imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+//   const { r: oldRed, g: oldGreen, b: oldBlue } = hexToRgb(hexOld);
+//   const { r: newRed, g: newGreen, b: newBlue } = hexToRgb(hexNew);
+//   for (let i = 0; i < imageData.data.length; i += 4) {
+//     if (imageData.data[i] === oldRed && imageData.data[i + 1] === oldGreen && imageData.data[i + 2] === oldBlue) {
+//       imageData.data[i] = newRed;
+//       imageData.data[i + 1] = newGreen;
+//       imageData.data[i + 2] = newBlue;
+//     }
+//   }
+//   ctx.putImageData(imageData, 0, 0);
+// };
+
+function colorDistance (r1: number, g1: number, b1: number, r2: number, g2: number, b2: number): number {
+  return Math.sqrt((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2);
+};
+function replaceColor (ctx: CanvasRenderingContext2D, hexOld: string, hexNew: string, tolerance: number = 2) {
   const imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   const { r: oldRed, g: oldGreen, b: oldBlue } = hexToRgb(hexOld);
   const { r: newRed, g: newGreen, b: newBlue } = hexToRgb(hexNew);
   for (let i = 0; i < imageData.data.length; i += 4) {
-    if (imageData.data[i] === oldRed && imageData.data[i + 1] === oldGreen && imageData.data[i + 2] === oldBlue) {
+    if (colorDistance(imageData.data[i], imageData.data[i + 1], imageData.data[i + 2], oldRed, oldGreen, oldBlue) <= tolerance) {
       imageData.data[i] = newRed;
       imageData.data[i + 1] = newGreen;
       imageData.data[i + 2] = newBlue;
