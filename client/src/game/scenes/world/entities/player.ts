@@ -12,7 +12,7 @@ import {
 import { Crystal } from "@game/scenes/world/entities/crystal";
 import { Stair } from "@game/scenes/world/entities/stair";
 import { Sprite } from "@game/scenes/world/entities/sprite";
-import { getAssetsPack, registerAudioAssets, registerSpriteAssets } from "@lib/assets";
+import { registerAudioAssets, registerSpriteAssets } from "@lib/assets";
 import { progressionLinear, progressionQuadratic } from "@lib/difficulty";
 import { Particles } from "@game/scenes/world/effects";
 import { GameSettings } from "@type/game";
