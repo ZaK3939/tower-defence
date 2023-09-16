@@ -1,19 +1,26 @@
 # PHI Material [![Github Actions][gha-badge]][gha][![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-[gha]: https://github.com/ZaK3939/tower-defence/actions
-[gha-badge]: https://github.com/ZaK3939/tower-defence/workflows/ci.yml/badge.svg
+[gha]: https://github.com/ZaK3939/tower-defense/actions
+[gha-badge]: https://github.com/ZaK3939/tower-defense/workflows/ci.yml/badge.svg
 
 ## 🏁 OverView
 
-![OverView](/asset/)
+- `crypto-defense` is an experimental game project that leverages the power of phi assets. The game challenges players to survive waves of enemies
+
+![OverView](image.png)
 
 ## 🧐 Architecture
+
+- Frontend: The game's user interface is built using React/phaser 3, providing a responsive and interactive experience.
+
+- Backend: The backend logic is handled by colyseus, ensuring efficient game mechanics and real-time updates.
 
 ## ✍️ Related Link
 
 - [Phi CC0 Assets](https://github.com/PHI-LABS-INC/phi-objects)
 - [Phi Quest](https://quest.philand.xyz/)
 - [Phi Land](https://land.philand.xyz/)
+- [Wawa](https://wawa.philand.xyz/)
 
 ## Available Commands
 

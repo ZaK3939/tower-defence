@@ -6,7 +6,7 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 .env
-
+.colyseus-cloud.json
 
 # Vendors
 node_modules/
