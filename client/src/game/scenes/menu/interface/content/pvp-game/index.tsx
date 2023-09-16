@@ -1,13 +1,20 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { useAccount } from "wagmi";
+import { ConnectKitButton } from "connectkit";
 import { Button } from "@game/scenes/system/interface/button";
 import { useGame } from "phaser-react-ui";
 import { GameDifficulty, IGame } from "@type/game";
 import { LevelPlanet } from "@type/world/level";
 import { Wrapper, Params, ButtonWrapper } from "./styles";
+import { WawaContainer } from "@game/scenes/menu/interface/styles";
 import { Param } from "./param";
+import { useOwnedWawas } from "@lib/wawa";
+import { Wawa, defaultWawa } from "@type/wawa";
 
 export const PvpGame: React.FC = () => {
   const game = useGame<IGame>();
+  const { address } = useAccount()
+  const { data: wawas, isFetched } = useOwnedWawas(address)
   const [hasAvailableRooms, setHasAvailableRooms] = useState(false);
   const [availableRoomIds, setAvailableRoomIds] = useState<string[]>([]);
   const [isJoinMode, setIsJoinMode] = useState(false); // true for join mode, false for start mode
@@ -52,19 +59,28 @@ export const PvpGame: React.FC = () => {
           onChange={onChangeDifficulty}
         />
       </Params>
-      <ButtonWrapper>
-        {availableStartRoomNames.length > 0 ? (
-          <Button
-            onClick={() => game.startNewPvPGame(availableStartRoomNames[0])}
-            view="primary"
-            size="medium"
-          >
-            Start {availableStartRoomNames[0]}
+      {wawas.length > 0 ? (
+        <WawaContainer>
+          {wawas.map((wawa) => (
+            <Button key={wawa.tokenId} onClick={() => game.startNewPvPGame(availableStartRoomNames[0], wawa)}>
+              <img src={wawa.image.x10bg} width="100px" height="100px" />
+            </Button>
+          ))}
+          <Button onClick={() => game.startNewPvPGame(availableStartRoomNames[0])} view="primary" size="medium">
+            Start
           </Button>
-        ) : (
-          <span>Rooms are currently full.</span>
-        )}
-      </ButtonWrapper>
+        </WawaContainer>
+      ) : (
+        isFetched && (
+          address ? (
+            <Button onClick={() => game.startNewPvPGame(availableStartRoomNames[0])} view="primary" size="medium">
+              Start
+            </Button>
+          ) : (
+            <ConnectKitButton />
+          )
+        )
+      )}
 
       {hasAvailableRooms ? (
         <>

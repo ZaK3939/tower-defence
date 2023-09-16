@@ -8,22 +8,11 @@ import { Button } from "@game/scenes/system/interface/button";
 import { GameDifficulty, IGame } from "@type/game";
 
 import { Param } from "./param";
-import { Wrapper, Params, WawaContainer } from "./styles";
+import { Wrapper, Params } from "./styles";
+import { WawaContainer } from "@game/scenes/menu/interface/styles";
 import { LevelPlanet } from "@type/world/level";
 import { useOwnedWawas } from "@lib/wawa";
-import { Wawa } from "@type/wawa";
-
-const defaultWawa: Wawa = {
-  tokenId: 0,
-  factionId: 0,
-  petId: 1,
-  tiers: { headwear: 1, eyes: 1, chest: 1, legs: 1, },
-  name: "#Wawa WAWAWAWA",
-  image: { x1: "", x10: "", x10bg: "" },
-  swatches: { body: "#ffcfb5,#f5bc87", headwear: "#226688,#226688", eyes: "#ab40f6,#f83737", chest: "#907f74,#f83737", legs: "#ff8800,#fed41d", pet: "#f2f0ed,#8080ff" },
-  gene: "0x0000000000",
-}
-
+import { Wawa, defaultWawa } from "@type/wawa";
 
 export const NewGame: React.FC = () => {
   const game = useGame<IGame>();

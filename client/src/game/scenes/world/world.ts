@@ -260,8 +260,8 @@ export class World extends Scene implements IWorld {
 
     this.addEntityGroups();
 
-    this.addPlayer(payload);
-    this.addAssistant();
+    this.addPlayer(payload, payload.player.wawa);
+    this.addAssistant(payload.player.wawa);
 
     this.game.events.on(WorldEvents.ENTITY_DESTROY_INFO, (payload: any) => {
       const entity = this.getEntities<IEnemy>(EntityType.ENEMY).find(

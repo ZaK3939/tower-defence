@@ -190,5 +190,5 @@ export type PlayerDataPayload = {
   kills: number;
   health: number;
   upgradeLevel: Record<PlayerSkill, number>;
-  // wawa?: Wawa;
+  wawa?: Wawa;
 };

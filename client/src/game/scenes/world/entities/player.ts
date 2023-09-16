@@ -42,6 +42,7 @@ import { BuildingStair } from "./building/variants/stair";
 import { eachEntries, isMobileDevice } from "@lib/utils";
 import VirtualJoystick from "phaser3-rex-plugins/plugins/virtualjoystick.js";
 import { getWawaTextureKey, registerWawaTexture } from "@lib/wawa-texture";
+import { Wawa } from "@type/wawa";
 
 export class Player extends Sprite implements IPlayer {
   public joystick: VirtualJoystick;
@@ -133,6 +134,8 @@ export class Player extends Sprite implements IPlayer {
     this._coolDownSuperskills = v;
   }
 
+  private wawa?: Wawa;
+
   constructor(scene: IWorld, data: PlayerData) {
     if (data.wawa) registerWawaTexture(scene, data.wawa);
 
@@ -142,6 +145,7 @@ export class Player extends Sprite implements IPlayer {
       health: DIFFICULTY.PLAYER_HEALTH,
       speed: DIFFICULTY.PLAYER_SPEED,
     });
+    if (data.wawa) this.wawa = data.wawa;
 
     scene.add.existing(this);
 
@@ -519,6 +523,7 @@ export class Player extends Sprite implements IPlayer {
       kills: this.kills,
       health: this.live.health,
       upgradeLevel: this.upgradeLevel,
+      wawa: this.wawa,
     };
   }
 

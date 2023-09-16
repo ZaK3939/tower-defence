@@ -259,7 +259,7 @@ export class Game extends Phaser.Game implements IGame {
     this.startGame(undefined, wawa);
   }
 
-  public startNewPvPGame(name?: string) {
+  public startNewPvPGame(name?: string, wawa?: Wawa) {
     if (this.state !== GameState.IDLE) {
       return;
     }
@@ -270,7 +270,7 @@ export class Game extends Phaser.Game implements IGame {
       .connect(this, name)
       .then(() => {
         console.log("Connected to the server successfully!");
-        this.startGame();
+        this.startGame(undefined, wawa);
 
         this.network.sendPlayerGameState(this);
       })
@@ -299,7 +299,7 @@ export class Game extends Phaser.Game implements IGame {
             this.loadDataPayload(payload.game);
             this.world.scene.restart(payload.level);
             this.world.events.once(Phaser.Scenes.Events.CREATE, () => {
-              this.startGame(payload);
+              this.startGame(payload, payload.player?.wawa);
             });
           }
         );

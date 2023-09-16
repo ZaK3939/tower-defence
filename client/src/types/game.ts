@@ -94,7 +94,7 @@ export interface IGame extends Phaser.Game {
   /**
    * Start New vs game.
    */
-  startNewPvPGame(name?: string): void;
+  startNewPvPGame(name?: string, wawa?: Wawa): void;
 
   /**
    * Join New vs game.

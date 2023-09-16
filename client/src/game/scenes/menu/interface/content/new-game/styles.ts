@@ -13,10 +13,3 @@ export const Params = styled.div`
     margin-bottom: 25px;
   }
 `;
-
-export const WawaContainer = styled.div`
-  display: grid;
-  grid-gap: 15px;
-  grid-template-columns: repeat(5, 1fr);
-  align-items: center;
-`;
