@@ -17,6 +17,7 @@ export interface IAnalytics {
 
 export type AnalyticEventData = {
   world: IWorld;
+  address?: `0x${string}` | undefined;
   stat?: GameStat;
   success: boolean;
 };

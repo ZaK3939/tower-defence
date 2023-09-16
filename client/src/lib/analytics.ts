@@ -54,8 +54,8 @@ export class Analytics implements IAnalytics {
               color: embedColor,
               fields: [
                 {
-                  name: "Game Clear",
-                  value: payload.success.toString(),
+                  name: "Address",
+                  value: payload.address ?? "N/A",
                   inline: true,
                 },
                 { name: "Difficulty", value: payload.difficulty, inline: true },
@@ -137,6 +137,9 @@ export class Analytics implements IAnalytics {
 
   private getEventPayload(data: AnalyticEventData) {
     return {
+      // Address
+      address: data.address,
+
       // Game progress
       success: data.success,
       difficulty: data.world.game.difficulty,

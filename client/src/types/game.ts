@@ -89,7 +89,7 @@ export interface IGame extends Phaser.Game {
   /**
    * Start new game.
    */
-  startNewGame(wawa?: Wawa): void;
+  startNewGame(wawa?: Wawa, address?: string | undefined): void;
 
   /**
    * Start New vs game.

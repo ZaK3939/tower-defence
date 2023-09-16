@@ -196,7 +196,9 @@ export class World extends Scene implements IWorld {
     this.addEntityGroups();
     this.addPlayer(undefined, wawa);
     this.camera.focusOn(this.player);
+
     this.addAssistant(wawa);
+
     this.addCrystals();
     this.addStair();
     if (this.game.usedSave) {
@@ -261,7 +263,6 @@ export class World extends Scene implements IWorld {
     this.addEntityGroups();
 
     this.addPlayer(payload, payload.player.wawa);
-    this.addAssistant(payload.player.wawa);
 
     this.game.events.on(WorldEvents.ENTITY_DESTROY_INFO, (payload: any) => {
       const entity = this.getEntities<IEnemy>(EntityType.ENEMY).find(
@@ -274,6 +275,8 @@ export class World extends Scene implements IWorld {
         entity.destroy();
       }
     });
+
+    this.addAssistant(payload.player.wawa);
     this.game.events.on(WorldEvents.ASSISTANT_DESTROY_INFO, (payload: any) => {
       this.assistant?.destroy();
     });
@@ -689,7 +692,7 @@ export class World extends Scene implements IWorld {
         speed: this.player.speed,
         health: this.player.live.maxHealth,
         level: this.player.upgradeLevel[PlayerSkill.ASSISTANT],
-        wawa
+        wawa,
       });
 
       this.assistant.once(Phaser.Scenes.Events.DESTROY, () => {

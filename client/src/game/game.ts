@@ -119,6 +119,16 @@ export class Game extends Phaser.Game implements IGame {
     this._joinGame = v;
   }
 
+  private _address: `0x${string}` | undefined = undefined;
+
+  public get address() {
+    return this._address;
+  }
+
+  private set address(v) {
+    this._address = v;
+  }
+
   constructor() {
     super({
       scene: [System, World, Screen, Menu, Gameover, Gameclear],
@@ -249,13 +259,13 @@ export class Game extends Phaser.Game implements IGame {
     });
   }
 
-  public startNewGame(wawa?: Wawa) {
+  public startNewGame(wawa?: Wawa, address?: `0x${string}` | undefined) {
     if (this.state !== GameState.IDLE) {
       return;
     }
 
     this.usedSave = null;
-
+    this.address = address;
     this.startGame(undefined, wawa);
   }
 
@@ -388,6 +398,7 @@ export class Game extends Phaser.Game implements IGame {
 
     this.analytics.trackEvent({
       world: this.world,
+      address: this.address,
       stat: stat,
       success: false,
     });
@@ -416,6 +427,7 @@ export class Game extends Phaser.Game implements IGame {
 
     this.analytics.trackEvent({
       world: this.world,
+      address: this.address,
       success: true,
     });
   }
