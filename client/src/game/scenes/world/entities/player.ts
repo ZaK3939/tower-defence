@@ -134,7 +134,7 @@ export class Player extends Sprite implements IPlayer {
     this._coolDownSuperskills = v;
   }
 
-  private wawa?: Wawa;
+  public wawa?: Wawa;
 
   constructor(scene: IWorld, data: PlayerData) {
     if (data.wawa) registerWawaTexture(scene, data.wawa);

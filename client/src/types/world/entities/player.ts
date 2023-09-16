@@ -46,6 +46,11 @@ export interface IPlayer extends ISprite, IEnemyTarget {
   readonly coolDownSuperskills: Partial<Record<PlayerSuperskill, boolean>>;
 
   /**
+   * wawa.
+   */
+  readonly wawa?: Wawa;
+
+  /**
    * Upgrade player skill.
    */
   upgrade(type: PlayerSkill): void;
