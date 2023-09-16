@@ -1,0 +1,1028 @@
+{
+	"textures": [
+		{
+			"image": "prima.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1278,
+				"h": 182
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "prima-body-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-body-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-body-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-body-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-body-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-body-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-body-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-body-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-chest-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-headwear-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-chest-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 72,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-chest-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 72,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-chest-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 143,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-chest-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 143,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-chest-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 214,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-chest-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 214,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-chest-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 285,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-eyes-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 285,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-eyes-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 356,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-eyes-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 356,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-eyes-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 427,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-eyes-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 427,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-eyes-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 498,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-eyes-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 498,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-eyes-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 569,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-headwear-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 569,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-headwear-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 640,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-headwear-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 640,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-headwear-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 711,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-headwear-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 711,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-headwear-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 782,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-headwear-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 782,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-legs-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 853,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-legs-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 853,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-legs-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 924,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-legs-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 924,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-legs-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 995,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-legs-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 995,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-legs-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1066,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-legs-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1066,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-shadows-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1137,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-shadows-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1137,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-shadows-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1137,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-shadows-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-shadows-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-shadows-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-shadows-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "prima-shadows-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:19aaa8693ad91af9d5b0194498350e77:5db026b72740c5f91bd8485775809207:b90629f6dc54e5b796ff9301d7a87897$"
+	}
+}

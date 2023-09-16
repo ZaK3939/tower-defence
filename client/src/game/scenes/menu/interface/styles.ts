@@ -69,3 +69,10 @@ export const Logotype = styled.img`
   height: 70px;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.8)); // ロゴの影をより濃く
 `;
+
+export const WawaContainer = styled.div`
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+`;

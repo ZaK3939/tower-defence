@@ -2,6 +2,7 @@ import { ILive } from "./utils/live";
 import { Vector2D } from "@type/world/level";
 import { ISprite } from "./utils/sprite";
 import { IEnemyTarget } from "./npc/enemy";
+import { Wawa } from "@type/wawa";
 
 export interface IPlayer extends ISprite, IEnemyTarget {
   /**
@@ -43,6 +44,11 @@ export interface IPlayer extends ISprite, IEnemyTarget {
    * cooltime superskills.
    */
   readonly coolDownSuperskills: Partial<Record<PlayerSuperskill, boolean>>;
+
+  /**
+   * wawa.
+   */
+  readonly wawa?: Wawa;
 
   /**
    * Upgrade player skill.
@@ -125,6 +131,14 @@ export enum PlayerAudio {
   DAMAGE_3 = "player/damage_3",
 }
 
+export enum WawaAtlas {
+  PRIMA = "prima",
+  ZOOK = "zook",
+  MECHA = "mecha",
+  FLAVO = "flavo",
+  PET = "pet",
+}
+
 export enum PlayerSkillAudio {
   FROST = "player/superskill_frost",
   RAGE = "player/superskill_rage",
@@ -148,6 +162,7 @@ export enum MovementDirection {
 
 export type PlayerData = {
   positionAtMatrix: Vector2D;
+  wawa?: Wawa;
 };
 
 export type PlayerSkillData = {
@@ -180,4 +195,5 @@ export type PlayerDataPayload = {
   kills: number;
   health: number;
   upgradeLevel: Record<PlayerSkill, number>;
+  wawa?: Wawa;
 };

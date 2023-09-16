@@ -1,0 +1,1028 @@
+{
+	"textures": [
+		{
+			"image": "mecha.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1278,
+				"h": 182
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "mecha-body-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-body-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-body-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-body-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-body-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-body-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-body-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-body-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-chest-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-chest-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 72,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-chest-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 72,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-chest-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 143,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-chest-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 143,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-chest-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 214,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-chest-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 214,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-chest-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 285,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-eyes-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 285,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-eyes-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 356,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-eyes-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 356,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-eyes-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 427,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-eyes-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 427,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-eyes-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 498,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-eyes-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 498,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-eyes-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 569,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-headwear-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 569,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-headwear-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 640,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-headwear-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 640,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-headwear-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 711,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-headwear-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 711,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-headwear-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 782,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-headwear-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 782,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-headwear-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 853,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-legs-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 853,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-legs-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 924,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-legs-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 924,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-legs-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 995,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-legs-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 995,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-legs-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1066,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-legs-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1066,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-legs-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1137,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-shadows-1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1137,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-shadows-2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1137,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-shadows-3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1137,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-shadows-4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-shadows-5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 1,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-shadows-6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-shadows-7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				},
+				{
+					"filename": "mecha-shadows-8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 89
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 89
+					},
+					"frame": {
+						"x": 1208,
+						"y": 92,
+						"w": 69,
+						"h": 89
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:69f304c36ff9cf7e2bb180ca7a146382:13a0f9f66ae540cdb23627e7850253ca:5d60b7fe5e8278e0a9000ba41a65e586$"
+	}
+}

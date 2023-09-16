@@ -14,6 +14,7 @@ import { CrystalDataPayload } from "./entities/crystal";
 import { BuildingDataPayload } from "./entities/building";
 import { StorageSavePayload } from "@type/storage";
 import { IAttacker } from "./attacker";
+import { Wawa } from "@type/wawa";
 
 export interface IWorld extends IScene {
   /**
@@ -64,7 +65,7 @@ export interface IWorld extends IScene {
   /**
    * Start world.
    */
-  start(data?: StorageSavePayload): void;
+  start(wawa?: Wawa): void;
 
   /**
    * join world

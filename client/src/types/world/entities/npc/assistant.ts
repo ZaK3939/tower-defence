@@ -5,6 +5,7 @@ import { IEnemyTarget } from "@type/world/entities/npc/enemy";
 import { IPlayer } from "@type/world/entities/player";
 import { IShotInitiator } from "@type/world/entities/shot";
 import { Vector2D } from "@type/world/level";
+import { Wawa } from "@type/wawa";
 
 export interface IAssistant extends INPC, IShotInitiator, IEnemyTarget {
   readonly body: Phaser.Physics.Arcade.Body;
@@ -31,4 +32,5 @@ export type AssistantData = {
   speed: number;
   health: number;
   level: number;
+  wawa?: Wawa
 };

@@ -55,14 +55,14 @@ export class NPC extends Sprite implements INPC {
 
     this.addDebugPath();
 
-    this.anims.create({
-      key: "idle",
-      frames: this.anims.generateFrameNumbers(texture, {}),
-      frameRate,
-      repeat: -1,
-      delay: Math.random() * 500,
-    });
-    this.anims.play("idle");
+    // this.anims.create({
+    //   key: "idle",
+    //   frames: this.anims.generateFrameNumbers(texture, {}),
+    //   frameRate,
+    //   repeat: -1,
+    //   delay: Math.random() * 500,
+    // });
+    // this.anims.play("idle");
 
     this.on(Phaser.GameObjects.Events.DESTROY, () => {
       if (this.freezeEffectTimer) {

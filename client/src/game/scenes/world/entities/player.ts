@@ -41,6 +41,8 @@ import { Building } from "./building";
 import { BuildingStair } from "./building/variants/stair";
 import { eachEntries, isMobileDevice } from "@lib/utils";
 import VirtualJoystick from "phaser3-rex-plugins/plugins/virtualjoystick.js";
+import { getWawaTextureKey, registerWawaTexture } from "@lib/wawa-texture";
+import { Wawa } from "@type/wawa";
 
 export class Player extends Sprite implements IPlayer {
   public joystick: VirtualJoystick;
@@ -132,13 +134,18 @@ export class Player extends Sprite implements IPlayer {
     this._coolDownSuperskills = v;
   }
 
+  public wawa?: Wawa;
+
   constructor(scene: IWorld, data: PlayerData) {
+    if (data.wawa) registerWawaTexture(scene, data.wawa);
+
     super(scene, {
       ...data,
-      texture: PlayerTexture.PLAYER,
+      texture: data.wawa ? getWawaTextureKey(data.wawa) : PlayerTexture.PLAYER,
       health: DIFFICULTY.PLAYER_HEALTH,
       speed: DIFFICULTY.PLAYER_SPEED,
     });
+    if (data.wawa) this.wawa = data.wawa;
 
     scene.add.existing(this);
 
@@ -516,6 +523,7 @@ export class Player extends Sprite implements IPlayer {
       kills: this.kills,
       health: this.live.health,
       upgradeLevel: this.upgradeLevel,
+      wawa: this.wawa,
     };
   }
 
@@ -778,18 +786,18 @@ export class Player extends Sprite implements IPlayer {
   }
 
   private registerAnimations() {
-    Object.values(PLAYER_MOVE_ANIMATIONS).forEach((key, index) => {
-      this.anims.create({
-        key,
-        // frames: this.anims.generateFrameNumbers(PlayerTexture.PLAYER, {
-        //   start: index * 4,
-        //   end: (index + 1) * 4 - 1,
-        // }),
-        frames: this.anims.generateFrameNumbers(PlayerTexture.PLAYER, {}),
-        frameRate: 8,
-        repeat: -1,
-      });
-    });
+    // Object.values(PLAYER_MOVE_ANIMATIONS).forEach((key, index) => {
+    //   this.anims.create({
+    //     key,
+    //     // frames: this.anims.generateFrameNumbers(PlayerTexture.PLAYER, {
+    //     //   start: index * 4,
+    //     //   end: (index + 1) * 4 - 1,
+    //     // }),
+    //     frames: this.anims.generateFrameNumbers(PlayerTexture.PLAYER, {}),
+    //     frameRate: 8,
+    //     repeat: -1,
+    //   });
+    // });
   }
   private addFireEffect(duration: number) {
     if (!this.scene.game.isSettingEnabled(GameSettings.EFFECTS)) {
