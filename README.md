@@ -1,6 +1,5 @@
-# PHI Material [![Github Actions][gha-badge]][gha][![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+# Crypto Defense [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-[gha]: https://github.com/ZaK3939/tower-defense/actions
 [gha-badge]: https://github.com/ZaK3939/tower-defense/workflows/ci.yml/badge.svg
 
 ## 🏁 OverView
