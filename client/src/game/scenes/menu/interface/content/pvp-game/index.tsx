@@ -9,7 +9,7 @@ import { Wrapper, Params, ButtonWrapper } from "./styles";
 import { WawaContainer } from "@game/scenes/menu/interface/styles";
 import { Param } from "./param";
 import { useOwnedWawas } from "@lib/wawa";
-import { Wawa, defaultWawa } from "@type/wawa";
+import { defaultWawa } from "@type/wawa";
 
 export const PvpGame: React.FC = () => {
   const game = useGame<IGame>();
@@ -17,7 +17,6 @@ export const PvpGame: React.FC = () => {
   const { data: wawas, isFetched } = useOwnedWawas(address);
   const [hasAvailableRooms, setHasAvailableRooms] = useState(false);
   const [availableRoomIds, setAvailableRoomIds] = useState<string[]>([]);
-  const [isJoinMode, setIsJoinMode] = useState(false); // true for join mode, false for start mode
 
   useEffect(() => {
     game.network.getAvailableRooms().then((rooms) => {
@@ -26,7 +25,9 @@ export const PvpGame: React.FC = () => {
     });
   }, [game]);
 
-  const planets = useMemo(() => Object.keys(LevelPlanet) as LevelPlanet[], []);
+  // const planets = useMemo(() => Object.keys(LevelPlanet) as LevelPlanet[], []);
+  const planets = useMemo(() => [LevelPlanet.DUNGEONS], []);
+
   const difficulties = useMemo(
     () => Object.keys(GameDifficulty) as GameDifficulty[],
     []

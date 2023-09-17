@@ -19,7 +19,9 @@ export const NewGame: React.FC = () => {
   const { address } = useAccount();
   const { data: wawas, isFetched } = useOwnedWawas(address);
 
-  const planets = useMemo(() => Object.keys(LevelPlanet) as LevelPlanet[], []);
+  // const planets = useMemo(() => Object.keys(LevelPlanet) as LevelPlanet[], []);
+  const planets = useMemo(() => [LevelPlanet.DUNGEONS], []);
+
   const difficulties = useMemo(
     () => Object.keys(GameDifficulty) as GameDifficulty[],
     []
