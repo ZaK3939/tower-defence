@@ -86,6 +86,15 @@ export class Enemy extends NPC implements IEnemy {
     this.body.setCircle(this.width * 0.5 - 2);
     this.body.setOffset(2, 2);
 
+    this.anims.create({
+      key: "idle",
+      frames: this.anims.generateFrameNumbers(texture, {}),
+      frameRate: ENEMY_TEXTURE_META[texture].frameRate,
+      repeat: -1,
+      delay: Math.random() * 500,
+    });
+    this.anims.play("idle");
+
     this.addIndicator({
       color: 0xdb2323,
       value: () => this.live.health / this.live.maxHealth,
