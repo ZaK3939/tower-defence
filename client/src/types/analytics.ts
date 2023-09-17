@@ -1,5 +1,6 @@
 import { IWorld } from "@type/world";
 import { GameStat } from "./game";
+import { Wawa } from "./wawa";
 
 export interface IAnalytics {
   /**
@@ -18,6 +19,7 @@ export interface IAnalytics {
 export type AnalyticEventData = {
   world: IWorld;
   address?: `0x${string}` | undefined;
+  wawa?: Wawa | undefined;
   stat?: GameStat;
   success: boolean;
 };

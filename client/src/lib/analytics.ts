@@ -6,6 +6,21 @@ import { AnalyticEventData, IAnalytics } from "@type/analytics";
 
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
 
+function convertFactionId(factionId: number | undefined) {
+  switch (factionId) {
+    case 0:
+      return "prima";
+    case 1:
+      return "zook";
+    case 2:
+      return "mecha";
+    case 3:
+      return "flavo";
+    default:
+      return "Unknown";
+  }
+}
+
 export class Analytics implements IAnalytics {
   private userId: string;
 
@@ -56,6 +71,16 @@ export class Analytics implements IAnalytics {
                 {
                   name: "Address",
                   value: payload.address ?? "N/A",
+                  inline: true,
+                },
+                {
+                  name: "faction",
+                  value: payload.faction ?? "N/A",
+                  inline: true,
+                },
+                {
+                  name: "tokenId",
+                  value: payload.tokenId ?? "N/A",
                   inline: true,
                 },
                 { name: "Difficulty", value: payload.difficulty, inline: true },
@@ -140,6 +165,8 @@ export class Analytics implements IAnalytics {
       // Address
       address: data.address,
 
+      faction: convertFactionId(data.wawa?.factionId),
+      tokenId: data.wawa?.tokenId,
       // Game progress
       success: data.success,
       difficulty: data.world.game.difficulty,

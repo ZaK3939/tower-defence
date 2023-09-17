@@ -34,7 +34,7 @@ import { IStorage, StorageSave, StorageSavePayload } from "@type/storage";
 import { INetwork } from "@type/network";
 import { Network } from "@lib/network";
 import VirtualJoystickPlugin from "phaser3-rex-plugins/plugins/virtualjoystick-plugin.js";
-import { Wawa } from "@type/wawa";
+import { Wawa, defaultWawa } from "@type/wawa";
 
 export class Game extends Phaser.Game implements IGame {
   readonly tutorial: ITutorial;
@@ -127,6 +127,16 @@ export class Game extends Phaser.Game implements IGame {
 
   private set address(v) {
     this._address = v;
+  }
+
+  private _wawa: Wawa | undefined = undefined;
+
+  public get wawa() {
+    return this._wawa;
+  }
+
+  private set wawa(v) {
+    this._wawa = v;
   }
 
   constructor() {
@@ -266,6 +276,7 @@ export class Game extends Phaser.Game implements IGame {
 
     this.usedSave = null;
     this.address = address;
+    this.wawa = wawa === defaultWawa ? undefined : wawa;
     this.startGame(undefined, wawa);
   }
 
@@ -276,6 +287,7 @@ export class Game extends Phaser.Game implements IGame {
 
     this.usedSave = null;
     this.isPVP = true;
+    this.wawa = wawa === defaultWawa ? undefined : wawa;
     this.network
       .connect(this, name)
       .then(() => {
@@ -399,6 +411,7 @@ export class Game extends Phaser.Game implements IGame {
     this.analytics.trackEvent({
       world: this.world,
       address: this.address,
+      wawa: this.wawa,
       stat: stat,
       success: false,
     });
@@ -428,6 +441,8 @@ export class Game extends Phaser.Game implements IGame {
     this.analytics.trackEvent({
       world: this.world,
       address: this.address,
+      wawa: this.wawa,
+      stat: stat,
       success: true,
     });
   }
