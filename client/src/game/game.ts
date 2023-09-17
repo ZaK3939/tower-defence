@@ -408,13 +408,15 @@ export class Game extends Phaser.Game implements IGame {
     this.scene.systemScene.scene.stop(GameScene.SCREEN);
     this.scene.systemScene.scene.launch(GameScene.GAMEOVER, { stat, record });
 
-    this.analytics.trackEvent({
-      world: this.world,
-      address: this.address,
-      wawa: this.wawa,
-      stat: stat,
-      success: false,
-    });
+    if (!this.isPVP) {
+      this.analytics.trackEvent({
+        world: this.world,
+        address: this.address,
+        wawa: this.wawa,
+        stat: stat,
+        success: false,
+      });
+    }
   }
 
   public clearGame() {
@@ -438,13 +440,15 @@ export class Game extends Phaser.Game implements IGame {
     this.scene.systemScene.scene.stop(GameScene.SCREEN);
     this.scene.systemScene.scene.launch(GameScene.GAMECLEAR, { stat, record });
 
-    this.analytics.trackEvent({
-      world: this.world,
-      address: this.address,
-      wawa: this.wawa,
-      stat: stat,
-      success: true,
-    });
+    if (!this.isPVP) {
+      this.analytics.trackEvent({
+        world: this.world,
+        address: this.address,
+        wawa: this.wawa,
+        stat: stat,
+        success: true,
+      });
+    }
   }
 
   public getDifficultyMultiplier() {

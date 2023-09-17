@@ -100,7 +100,7 @@ export class Analytics implements IAnalytics {
                 { name: "Version", value: payload.version, inline: true },
                 {
                   name: "Score",
-                  value: payload.score ? payload.score.toString() : "playing",
+                  value: payload.score ? payload.score.toString() : "0",
                   inline: true,
                 },
               ],
