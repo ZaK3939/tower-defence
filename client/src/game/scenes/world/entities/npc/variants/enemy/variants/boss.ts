@@ -13,7 +13,7 @@ export class EnemyBoss extends Enemy {
 
   static Description = "Basic attack of enemies";
   static Cost = 0;
-  static SpawnWaveRange = [5, 10];
+  static SpawnWaveRange = [5];
   static Params: EnemyParam[] = [];
   static Texture = EnemyTexture.BOSS;
   static Limit = 1;
