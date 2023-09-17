@@ -221,6 +221,12 @@ export class Wave extends EventEmitter implements IWave {
       };
       this.scene.game.network.sendWaveStartInfo(payload);
     }
+
+    if (this.number === 5 || this.number === 10) {
+      this.scene.sound.play(WaveAudio.BATTLE2);
+    } else {
+      this.scene.sound.play(WaveAudio.BATTLE1);
+    }
     // Emit an event indicating the start of the wave
     this.emit(WaveEvents.START, this.number);
   }
@@ -245,7 +251,8 @@ export class Wave extends EventEmitter implements IWave {
 
     // Play the wave completion sound
     this.scene.sound.play(WaveAudio.COMPLETE);
-
+    this.scene.sound.stopByKey(WaveAudio.BATTLE1);
+    this.scene.sound.stopByKey(WaveAudio.BATTLE2);
     // Emit an event indicating the completion of the wave
     if (this.scene.game.isPVP) {
       this.scene.game.network.sendWaveCompleteInfo(prevNumber);

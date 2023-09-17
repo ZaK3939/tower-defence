@@ -39,3 +39,4 @@ This project is licensed under GNU.
 - [izowave](https://github.com/neki-dev/izowave)
 - [phaser3-typescript-project-template](https://github.com/photonstorm/phaser3-typescript-project-template)
 - [Bom Bom Panic](https://github.com/recursion-team-v/bomb/)
+- [まんぼう探検隊](http://www.manbou2ndclass.net/p/index.html)
