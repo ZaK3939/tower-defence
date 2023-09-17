@@ -39,17 +39,23 @@ const wawaNftABI = [
 
 const filter = (from?: `0x${string}`, to?: `0x${string}`) => ({
   address: wawaNftAddress,
-  event: parseAbiItem(["event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)"]),
+  event: parseAbiItem([
+    "event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)",
+  ]),
   fromBlock: BigInt(18089473),
   // todo: set toBlock after mint period
   args: { from, to },
 });
 
-export const getERC721TokenIds = async (address: `0x${string}`): Promise<number[]> => {
+export const getERC721TokenIds = async (
+  address: `0x${string}`
+): Promise<number[]> => {
   const sentLogs = await client.getLogs(filter(address, undefined));
   const receivedLogs = await client.getLogs(filter(undefined, address));
   // @ts-ignore
-  const logs = sentLogs.concat(receivedLogs).sort((a, b) => Number(a.blockNumber - b.blockNumber));
+  const logs = sentLogs
+    .concat(receivedLogs)
+    .sort((a, b) => Number(a.blockNumber - b.blockNumber));
 
   const owned = new Set<number>();
   for (const {
@@ -128,5 +134,3 @@ export const useOwnedWawas = (address?: `0x${string}`) => {
 
   return { data, isFetched };
 };
-
-

@@ -17,7 +17,7 @@ export const GameoverUI: React.FC<Props> = ({ stat, record }) => {
   const game = useGame<IGame>();
 
   const shareOnTwitter = () => {
-    const text = `[Test] I scored ${stat.score} points! Can you beat my score?`;
+    const text = `I scored ${stat.score} points! Can you beat my score? https://crypto-defense.vercel.app/ #CryptoDefense`;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
       text
     )}`;

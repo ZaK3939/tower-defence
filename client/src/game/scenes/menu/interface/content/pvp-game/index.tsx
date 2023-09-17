@@ -13,8 +13,8 @@ import { Wawa, defaultWawa } from "@type/wawa";
 
 export const PvpGame: React.FC = () => {
   const game = useGame<IGame>();
-  const { address } = useAccount()
-  const { data: wawas, isFetched } = useOwnedWawas(address)
+  const { address } = useAccount();
+  const { data: wawas, isFetched } = useOwnedWawas(address);
   const [hasAvailableRooms, setHasAvailableRooms] = useState(false);
   const [availableRoomIds, setAvailableRoomIds] = useState<string[]>([]);
   const [isJoinMode, setIsJoinMode] = useState(false); // true for join mode, false for start mode
@@ -62,24 +62,40 @@ export const PvpGame: React.FC = () => {
       {wawas.length > 0 ? (
         <WawaContainer>
           {wawas.map((wawa) => (
-            <Button key={wawa.tokenId} onClick={() => game.startNewPvPGame(availableStartRoomNames[0], wawa)}>
+            <Button
+              key={wawa.tokenId}
+              onClick={() =>
+                game.startNewPvPGame(availableStartRoomNames[0], wawa)
+              }
+            >
               <img src={wawa.image.x10bg} width="100px" height="100px" />
             </Button>
           ))}
-          <Button onClick={() => game.startNewPvPGame(availableStartRoomNames[0])} view="primary" size="medium">
+          <Button
+            onClick={() =>
+              game.startNewPvPGame(availableStartRoomNames[0], defaultWawa)
+            }
+            view="primary"
+            size="medium"
+          >
             Start
           </Button>
         </WawaContainer>
       ) : (
-        isFetched && (
-          address ? (
-            <Button onClick={() => game.startNewPvPGame(availableStartRoomNames[0])} view="primary" size="medium">
-              Start
-            </Button>
-          ) : (
-            <ConnectKitButton />
-          )
-        )
+        isFetched &&
+        (address ? (
+          <Button
+            onClick={() =>
+              game.startNewPvPGame(availableStartRoomNames[0], defaultWawa)
+            }
+            view="primary"
+            size="medium"
+          >
+            Start
+          </Button>
+        ) : (
+          <ConnectKitButton />
+        ))
       )}
 
       {hasAvailableRooms ? (

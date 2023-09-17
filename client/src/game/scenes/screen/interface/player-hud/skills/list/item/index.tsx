@@ -26,13 +26,15 @@ export const UpgradesListItem: React.FC<Props> = ({ type }) => {
   };
 
   useSceneUpdate(world, () => {
-    const newData: PlayerSkillData = {
-      ...PLAYER_SKILLS[type],
-      experience: world.player.getExperienceToUpgrade(type),
-      currentLevel: world.player.upgradeLevel[type],
-    };
+    if (type !== PlayerSkill.ASSISTANT || world.player.wawa?.petId) {
+      const newData: PlayerSkillData = {
+        ...PLAYER_SKILLS[type],
+        experience: world.player.getExperienceToUpgrade(type),
+        currentLevel: world.player.upgradeLevel[type],
+      };
 
-    setData((current) => getModifiedObject(current, newData));
+      setData((current) => getModifiedObject(current, newData));
+    }
   });
 
   return (
