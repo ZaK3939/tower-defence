@@ -87,6 +87,8 @@ export enum WaveAudio {
   START = "wave/start",
   BATTLE1 = "wave/battle1",
   BATTLE2 = "wave/battle2",
+  BATTLE3 = "wave/battle3",
+  Stage1End = "wave/Stage1End",
   COMPLETE = "wave/complete",
   TICK = "wave/tick",
 }

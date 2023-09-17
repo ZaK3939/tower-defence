@@ -53,6 +53,7 @@ const world = {
   },
   sound: {
     play: jest.fn(),
+    stopByKey: jest.fn(),
   },
 };
 
