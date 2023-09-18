@@ -35,6 +35,7 @@ import { INetwork } from "@type/network";
 import { Network } from "@lib/network";
 import VirtualJoystickPlugin from "phaser3-rex-plugins/plugins/virtualjoystick-plugin.js";
 import { Wawa, defaultWawa } from "@type/wawa";
+import { stopBattleMusic } from "@lib/music";
 
 export class Game extends Phaser.Game implements IGame {
   readonly tutorial: ITutorial;
@@ -373,6 +374,7 @@ export class Game extends Phaser.Game implements IGame {
     this.world.stop();
     this.world.scene.restart();
 
+    stopBattleMusic(this.world);
     this.tutorial.reset();
 
     this.scene.systemScene.scene.stop(GameScene.SCREEN);

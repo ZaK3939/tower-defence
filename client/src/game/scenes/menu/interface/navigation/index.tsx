@@ -14,7 +14,6 @@ type Props = {
 
 export const Navigation: React.FC<Props> = ({ page, onSelect }) => {
   const game = useGame<IGame>();
-
   const menuItems = useMemo(() => {
     const items: (MenuItem | null)[] = [];
 
