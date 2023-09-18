@@ -4,4 +4,4 @@ export const WORLD_DEPTH_DEBUG = 9999;
 
 export const WORLD_DEPTH_EFFECT = 9998;
 
-export const WAWA_SCALING_FACTOR = 0.4;
+export const WAWA_SCALING_FACTOR = 0.6;
