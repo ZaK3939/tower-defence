@@ -715,7 +715,7 @@ export class Player extends Sprite implements IPlayer {
       ) {
         this.inactivityTimeout = setTimeout(() => {
           console.log("No activity for a while"); // Replace with your own logic
-          stopBattleMusic(this.scene);
+
           this.scene.game.stopGame();
         }, 300000); // 5 minutes (300,000 milliseconds) of no activity triggers the above logic
       }
