@@ -517,7 +517,6 @@ export class World extends Scene implements IWorld {
         }
       }
     }
-    console.log("generateEnemySpawnPositions", this.enemySpawnPositions.length);
   }
 
   public getEnemySpawnPosition() {
@@ -791,6 +790,9 @@ export class World extends Scene implements IWorld {
           NoticeType.INFO,
           `Congratulations! Lets find the stair to the goal`
         );
+        // わかりやすく3つぐらい表示する
+        create();
+        create();
         create();
         this.setTimePause(true);
       }
