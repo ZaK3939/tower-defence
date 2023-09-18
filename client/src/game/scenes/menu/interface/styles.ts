@@ -158,7 +158,7 @@ export const FactionText = styled.span<{ faction: string }>`
       case "flavo":
         return "yellow";
       default:
-        return "black";
+        return "white";
     }
   }};
 `;
