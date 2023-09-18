@@ -1,10 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 
 import pkg from "../../package.json";
-import { ANALYTICS_SERVER } from "@const/analytics";
+import { DISCORD_WEBHOOK_URL, SCORE_RECORD_ENDPOINT } from "@const/analytics";
 import { AnalyticEventData, IAnalytics } from "@type/analytics";
-
-const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
 
 function convertFactionId(factionId: number | undefined) {
   switch (factionId) {
@@ -119,6 +117,24 @@ export class Analytics implements IAnalytics {
     }
   }
 
+  public sendEvent(data: AnalyticEventData) {
+    const payload = this.getEventPayload(data);
+
+    if (IS_DEV_MODE) {
+      console.log("Track analytic event:", payload);
+    } else if (SCORE_RECORD_ENDPOINT) {
+      fetch(SCORE_RECORD_ENDPOINT!, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }).catch((error) => {
+        console.warn("Error:", error);
+      });
+    }
+  }
+
   public trackError(data: Error) {
     if (IS_DEV_MODE) {
       return;
@@ -132,7 +148,7 @@ export class Analytics implements IAnalytics {
         {
           title: "Error Event",
           description: payload.message,
-          color: 15158332, // 赤色
+          color: 15158332,
           fields: [
             { name: "Error Name", value: data.name, inline: true },
             {

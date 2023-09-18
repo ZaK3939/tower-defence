@@ -10,6 +10,11 @@ export interface IAnalytics {
   trackEvent(data: AnalyticEventData): void;
 
   /**
+   * Track progression event.
+   * @param data - Event data
+   */
+  sendEvent(data: AnalyticEventData): void;
+  /**
    * Track game error.
    * @param data - Error data
    */

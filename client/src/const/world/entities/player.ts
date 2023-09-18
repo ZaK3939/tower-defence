@@ -7,6 +7,8 @@ import {
   PlayerSuperskillData,
 } from "@type/world/entities/player";
 import { DIFFICULTY } from "../difficulty";
+import { WAWA_SCALING_FACTOR } from "@const/world";
+import { wawaWidth, wawaHeight } from "@lib/wawa-texture";
 
 // note
 // gamut is used for collision detection
@@ -17,12 +19,12 @@ import { DIFFICULTY } from "../difficulty";
 //   height: 30,
 //   gamut: 4,
 // };
+
 export const PLAYER_TILE_SIZE = {
-  width: 40,
-  height: 51.59,
+  width: wawaWidth * WAWA_SCALING_FACTOR,
+  height: wawaHeight * WAWA_SCALING_FACTOR,
   gamut: 4,
 };
-
 const { RIGHT, LEFT, UP, DOWN, NONE } = MovementDirection;
 
 export const PLAYER_SKILLS: Record<PlayerSkill, PlayerSkillData> = {

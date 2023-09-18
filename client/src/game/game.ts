@@ -418,6 +418,14 @@ export class Game extends Phaser.Game implements IGame {
         stat: stat,
         success: false,
       });
+
+      this.analytics.sendEvent({
+        world: this.world,
+        address: this.address,
+        wawa: this.wawa,
+        stat: stat,
+        success: false,
+      });
     }
   }
 
@@ -445,6 +453,14 @@ export class Game extends Phaser.Game implements IGame {
 
     if (!this.isPVP) {
       this.analytics.trackEvent({
+        world: this.world,
+        address: this.address,
+        wawa: this.wawa,
+        stat: stat,
+        success: true,
+      });
+
+      this.analytics.sendEvent({
         world: this.world,
         address: this.address,
         wawa: this.wawa,

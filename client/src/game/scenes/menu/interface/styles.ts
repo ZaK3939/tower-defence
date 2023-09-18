@@ -3,18 +3,18 @@ import styled from "styled-components";
 
 export const Title = styled.h1`
   font-family: ${InterfaceFont.PIXEL_TEXT};
-  font-size: 2.5em; // 大きなフォントサイズ
+  font-size: 2.5em;
   color: #e0e0e0;
   margin-left: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); // テキストに影を追加
-  margin: 5px 0; // 上下のマージンを追加
-  font-weight: bold; // 太字にする
-  letter-spacing: 2px; // 文字間隔を広げる
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  margin: 5px 0;
+  font-weight: bold;
+  letter-spacing: 2px;
 `;
 
 export const Wrapper = styled.div`
   height: 90vh;
-  max-height: 400px;
+  max-height: 700px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -34,8 +34,8 @@ export const Block = styled.div.withConfig({
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  padding: 5px;
-  margin: 5px 0;
+  padding: 10px;
+  margin: 10px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 `;
 
@@ -105,4 +105,60 @@ export const WawaBlock = styled.a`
   flex-direction: column;
   align-items: center;
   text-decoration: none;
+`;
+
+export const RankingContainer = styled.div`
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+`;
+
+export const RankingTitle = styled.h3`
+  font-family: ${InterfaceFont.PIXEL_TEXT};
+  color: #e0e0e0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  margin: 5px 0;
+  font-weight: bold;
+`;
+
+export const RankingList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+export const RankingItem = styled.li`
+  font-family: ${InterfaceFont.PIXEL_TEXT};
+  color: #e0e0e0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  margin: 5px 0;
+`;
+
+export const SmallText = styled.span`
+  font-size: 0.8em;
+`;
+
+export const FactionText = styled.span<{ faction: string }>`
+  color: ${(props) => {
+    switch (props.faction) {
+      case "prima":
+        return "blue";
+      case "zook":
+        return "green";
+      case "mecha":
+        return "red";
+      case "flavo":
+        return "yellow";
+      default:
+        return "black";
+    }
+  }};
 `;
