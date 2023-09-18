@@ -6,22 +6,20 @@ import {
   PlayerSuperskill,
   PlayerSuperskillData,
 } from "@type/world/entities/player";
-import { wawaHeight, wawaWidth } from "@lib/wawa-texture";
 import { DIFFICULTY } from "../difficulty";
+
+// note
+// gamut is used for collision detection
+// width and height are used for prev player sprite system (not used now)
 
 // export const PLAYER_TILE_SIZE = {
 //   width: 20,
 //   height: 30,
 //   gamut: 4,
 // };
-// export const PLAYER_TILE_SIZE = {
-//   width: 40,
-//   height: 51.59,
-//   gamut: 4,
-// };
 export const PLAYER_TILE_SIZE = {
-  width: wawaWidth,
-  height: wawaHeight,
+  width: 40,
+  height: 51.59,
   gamut: 4,
 };
 

@@ -43,6 +43,7 @@ import { eachEntries, isMobileDevice } from "@lib/utils";
 import VirtualJoystick from "phaser3-rex-plugins/plugins/virtualjoystick.js";
 import { getWawaTextureKey, registerWawaTexture } from "@lib/wawa-texture";
 import { Wawa } from "@type/wawa";
+import { WAWA_SCALING_FACTOR } from "@const/world";
 
 export class Player extends Sprite implements IPlayer {
   public joystick: VirtualJoystick;
@@ -145,7 +146,10 @@ export class Player extends Sprite implements IPlayer {
       health: DIFFICULTY.PLAYER_HEALTH,
       speed: DIFFICULTY.PLAYER_SPEED,
     });
-    if (data.wawa) this.wawa = data.wawa;
+    if (data.wawa) {
+      this.setScale(WAWA_SCALING_FACTOR);
+      this.wawa = data.wawa;
+    }
 
     scene.add.existing(this);
 
