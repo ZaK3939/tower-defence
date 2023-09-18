@@ -1,3 +1,4 @@
+import { WAWA_SCALING_FACTOR } from "@const/world";
 import { DIFFICULTY } from "@const/world/difficulty";
 import {
   ASSISTANT_PATH_BREAKPOINT,
@@ -50,6 +51,7 @@ export class Assistant extends NPC implements IAssistant {
       health,
       pathFindTriggerDistance: ASSISTANT_PATH_BREAKPOINT,
     });
+    if (wawa) this.setScale(WAWA_SCALING_FACTOR);
     scene.add.existing(this);
 
     this.shot = new ShotBallFire(
