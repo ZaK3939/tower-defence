@@ -26,6 +26,7 @@ import {
   WaveEvents,
   WaveStartInfo,
 } from "@type/world/wave";
+import { stopBattleMusic } from "@lib/music";
 
 export class Wave extends EventEmitter implements IWave {
   readonly scene: IWorld;
@@ -257,9 +258,8 @@ export class Wave extends EventEmitter implements IWave {
 
     // Play the wave completion sound
     this.scene.sound.play(WaveAudio.COMPLETE);
-    this.scene.sound.stopByKey(WaveAudio.BATTLE1);
-    this.scene.sound.stopByKey(WaveAudio.BATTLE2);
-    this.scene.sound.stopByKey(WaveAudio.BATTLE3);
+    stopBattleMusic(this.scene);
+
     if (this.number === 5 && !this.scene.game.isPVP) {
       this.scene.sound.play(WaveAudio.Stage1End);
     }

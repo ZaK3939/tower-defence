@@ -44,6 +44,7 @@ import VirtualJoystick from "phaser3-rex-plugins/plugins/virtualjoystick.js";
 import { getWawaTextureKey, registerWawaTexture } from "@lib/wawa-texture";
 import { Wawa } from "@type/wawa";
 import { WAWA_SCALING_FACTOR } from "@const/world";
+import { stopBattleMusic } from "@lib/music";
 
 export class Player extends Sprite implements IPlayer {
   public joystick: VirtualJoystick;
@@ -564,6 +565,7 @@ export class Player extends Sprite implements IPlayer {
 
   public onDead() {
     this.scene.sound.play(PlayerAudio.DEAD);
+    stopBattleMusic(this.scene);
 
     this.setVelocity(0, 0);
     this.stopMovement();
