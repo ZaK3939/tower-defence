@@ -406,7 +406,7 @@ export class Game extends Phaser.Game implements IGame {
     if (!IS_DEV_MODE) {
       this.writeBestStat(stat, record);
     }
-
+    stopBattleMusic(this.world);
     this.scene.systemScene.scene.stop(GameScene.SCREEN);
     this.scene.systemScene.scene.launch(GameScene.GAMEOVER, { stat, record });
 
@@ -438,6 +438,7 @@ export class Game extends Phaser.Game implements IGame {
     if (!IS_DEV_MODE) {
       this.writeBestStat(stat, record);
     }
+    stopBattleMusic(this.world);
 
     this.scene.systemScene.scene.stop(GameScene.SCREEN);
     this.scene.systemScene.scene.launch(GameScene.GAMECLEAR, { stat, record });

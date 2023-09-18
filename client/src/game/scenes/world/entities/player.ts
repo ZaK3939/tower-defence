@@ -565,7 +565,6 @@ export class Player extends Sprite implements IPlayer {
 
   public onDead() {
     this.scene.sound.play(PlayerAudio.DEAD);
-    stopBattleMusic(this.scene);
 
     this.setVelocity(0, 0);
     this.stopMovement();
