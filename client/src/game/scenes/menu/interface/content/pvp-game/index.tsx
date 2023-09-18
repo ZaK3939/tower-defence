@@ -46,6 +46,8 @@ export const PvpGame: React.FC = () => {
 
   return (
     <Wrapper>
+      <h3>This mode is Colyseus Test (Still Developing...)</h3>
+      <br />
       <Params>
         <Param
           label="Planet"
