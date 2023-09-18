@@ -6,7 +6,8 @@ import { Overlay } from "@game/scenes/system/interface/overlay";
 import { GameStat, IGame } from "@type/game";
 
 import { Result } from "./result";
-import { Wrapper, Label, Spacer } from "./styles";
+import { Wrapper, Label, Spacer, Container, Image, Label2 } from "./styles";
+import { defaultWawa } from "@type/wawa";
 
 type Props = {
   stat: GameStat;
@@ -15,7 +16,10 @@ type Props = {
 
 export const GameclearUI: React.FC<Props> = ({ stat, record }) => {
   const game = useGame<IGame>();
-
+  const tokenid =
+    game.world.player.wawa?.tokenId !== 0
+      ? game.world.player.wawa?.tokenId
+      : "Nothing";
   const onRestartClick = () => {
     game.stopGame();
   };
@@ -35,6 +39,14 @@ export const GameclearUI: React.FC<Props> = ({ stat, record }) => {
         <Button onClick={onRestartClick} size="large" view="confirm">
           Play again
         </Button>
+        {game.world.player.wawa !== defaultWawa ? (
+          <Label2>TokenId: {tokenid}</Label2>
+        ) : (
+          <></>
+        )}
+        <Container>
+          <Image src={game.world.player.wawa?.image.x1 || "assets/wawa.png"} />
+        </Container>
         <Result stat={stat} record={record} />
         <Spacer />
         <Button onClick={shareOnTwitter} size="medium" view="primary">

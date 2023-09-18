@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { InterfaceFont, InterfaceTextColor } from "@type/interface";
 
 export const Wrapper = styled.div`
-  margin-top: 100px;
+  margin-top: 20px;
   list-style: none;
 `;
 
