@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { InterfaceBackgroundColor } from "@type/interface";
 
 export const Container = styled.div`
+  display: flex;
+  justify-content: center;
   width: 80px;
   height: 80px;
   background: ${InterfaceBackgroundColor.BLACK_TRANSPARENT_50};
@@ -10,5 +12,5 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 100%;
+  height: 100%;
 `;
