@@ -8,7 +8,7 @@ export const Avatar: React.FC = () => {
   const game = useGame<IGame>();
   return (
     <Container>
-      <Image src={game.world.player.wawa?.image.x10bg || "assets/sprites/hud/avatar.png"} />
+      <Image src={game.world.player.wawa?.image.x10bg || "assets/wawa.png"} />
     </Container>
   )
 };
