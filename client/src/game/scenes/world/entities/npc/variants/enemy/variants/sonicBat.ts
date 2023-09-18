@@ -15,7 +15,7 @@ export class EnemySonicBat extends Enemy {
   static Cost = 0;
   static Params: EnemyParam[] = [];
   static Texture = EnemyTexture.SONICBAT;
-  static SpawnWaveRange = [2, 9];
+  static SpawnWaveRange = [2, 6];
 
   constructor(scene: IWorld, data: EnemyVariantData) {
     super(scene, {

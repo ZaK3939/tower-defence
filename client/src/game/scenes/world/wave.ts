@@ -313,11 +313,15 @@ export class Wave extends EventEmitter implements IWave {
     if (
       this.number % ENEMY_BOSS_SPAWN_WAVE_RATE === 0 &&
       this.spawnedEnemiesCount <
-        Math.ceil(this.number / ENEMY_BOSS_SPAWN_WAVE_RATE)
+        Math.ceil(this.number / ENEMY_BOSS_SPAWN_WAVE_RATE) &&
+      this.lastSpawnedEnemyVariant !== EnemyVariant.BOSS &&
+      this.lastSpawnedEnemyVariant !== EnemyVariant.BOSS2
     ) {
       if (this.number === 5) {
+        this.lastSpawnedEnemyVariant = EnemyVariant.BOSS;
         return EnemyVariant.BOSS;
       } else {
+        this.lastSpawnedEnemyVariant = EnemyVariant.BOSS2;
         return EnemyVariant.BOSS2;
       }
     }

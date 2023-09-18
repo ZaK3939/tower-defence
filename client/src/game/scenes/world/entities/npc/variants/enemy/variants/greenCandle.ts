@@ -15,7 +15,7 @@ export class EnemyGreenCandle extends Enemy {
   static Cost = 0;
   static Params: EnemyParam[] = [];
   static Texture = EnemyTexture.GREENCANDLE;
-  static SpawnWaveRange = [3, 5];
+  static SpawnWaveRange = [4, 8];
 
   constructor(scene: IWorld, data: EnemyVariantData) {
     super(scene, {

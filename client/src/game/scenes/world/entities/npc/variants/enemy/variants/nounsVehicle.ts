@@ -15,7 +15,7 @@ export class EnemyNounsVehicle extends Enemy {
   static Cost = 0;
   static Params: EnemyParam[] = [];
   static Texture = EnemyTexture.NOUNSVEHICLE;
-  static SpawnWaveRange = [4, 9];
+  static SpawnWaveRange = [3, 7];
 
   constructor(scene: IWorld, data: EnemyVariantData) {
     super(scene, {

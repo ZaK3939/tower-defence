@@ -15,7 +15,7 @@ export class EnemyAaveDJ extends Enemy {
   static Cost = 0;
   static Params: EnemyParam[] = [];
   static Texture = EnemyTexture.AAVEDJ;
-  static SpawnWaveRange = [3, 4];
+  static SpawnWaveRange = [5, 10];
 
   constructor(scene: IWorld, data: EnemyVariantData) {
     super(scene, {
