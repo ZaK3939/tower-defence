@@ -1,4 +1,4 @@
-import { InterfaceFont } from "@type/interface";
+import { InterfaceTextColor, InterfaceFont } from "@type/interface";
 import styled from "styled-components";
 
 export const Title = styled.h1`
@@ -75,4 +75,34 @@ export const WawaContainer = styled.div`
   grid-gap: 15px;
   grid-template-columns: repeat(5, 1fr);
   align-items: center;
+`;
+
+export const Icon = styled.img`
+  width: 16px;
+  margin-right: 8px;
+  display: inline-block;
+`;
+
+// For the gif image
+export const GifImage = styled.img`
+  width: 200px;
+  height: auto;
+  margin: 10px;
+  pointer-events: none;
+`;
+
+// For the text
+export const Link = styled.a`
+  color: #fff;
+  pointer-events: all;
+  &:hover {
+    color: ${InterfaceTextColor.HOVER};
+  }
+`;
+
+export const WawaBlock = styled.a`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
 `;

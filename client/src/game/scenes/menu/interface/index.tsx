@@ -7,7 +7,18 @@ import { MenuPage } from "@type/menu";
 import { Content } from "./content";
 import { Copyright } from "./copyright";
 import { Navigation } from "./navigation";
-import { Wrapper, Logotype, Header, Block, Main, Menu, Title } from "./styles";
+import {
+  Wrapper,
+  Logotype,
+  Header,
+  Block,
+  Main,
+  Menu,
+  Title,
+  Link,
+  GifImage,
+  WawaBlock,
+} from "./styles";
 
 type Props = {
   defaultPage?: MenuPage;
@@ -25,6 +36,12 @@ export const MenuUI: React.FC<Props> = ({ defaultPage }) => {
             <Title>Crypto Defense</Title>
             <Copyright />
           </Block>
+        </Header>
+        <Header>
+          <WawaBlock href="https://wawa.philand.xyz/" target="_blank">
+            <GifImage src="assets/wawa-idle.gif" alt="Wawa gif" />
+            <Link>Click and Mint Wawa from here</Link>
+          </WawaBlock>
         </Header>
         <WalletProvider>
           <Menu>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { InterfaceFont } from "@type/interface";
 
 export const Wrapper = styled.div`
   display: flex;

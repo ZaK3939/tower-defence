@@ -48,7 +48,7 @@ export class Game extends Phaser.Game implements IGame {
 
   private flags: string[];
 
-  public difficulty: GameDifficulty = GameDifficulty.NORMAL;
+  public difficulty: GameDifficulty = GameDifficulty.EASY;
 
   private _state: GameState = GameState.IDLE;
 

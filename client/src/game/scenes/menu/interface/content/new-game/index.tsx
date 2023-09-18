@@ -59,6 +59,7 @@ export const NewGame: React.FC = () => {
           onChange={onChangeDifficulty}
         />
       </Params>
+
       {wawas.length > 0 ? (
         <WawaContainer>
           {wawas.map((wawa) => (
