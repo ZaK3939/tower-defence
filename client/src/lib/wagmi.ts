@@ -13,8 +13,8 @@ const wagmiConfig = createConfig(
     walletConnectProjectId: walletConnectProjectID,
     appName: "Crypto Defense",
     appDescription: "Isometric game. Build and Defence in the onchain crypto world",
-    appUrl: "https://tower-defence-gamma.vercel.app",
-    appIcon: "https://tower-defence-gamma.vercel.app/assets/logotype.png",
+    appUrl: "https://crypto-defense.vercel.app",
+    appIcon: "https://crypto-defense.vercel.app//assets/logotype.png",
   }),
 );
 
