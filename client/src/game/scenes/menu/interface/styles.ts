@@ -14,7 +14,7 @@ export const Title = styled.h1`
 
 export const Wrapper = styled.div`
   height: 90vh;
-  max-height: 700px;
+  max-height: 1000px;
   width: 100%;
   display: flex;
   flex-direction: column;
