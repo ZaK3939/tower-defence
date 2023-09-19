@@ -57,7 +57,7 @@ export const MenuUI: React.FC<Props> = ({ defaultPage }) => {
     }
   };
   useEffect(() => {
-    if (IS_DEV_MODE && SCORE_RECORD_ENDPOINT) {
+    if (!IS_DEV_MODE && SCORE_RECORD_ENDPOINT) {
       fetch(SCORE_RECORD_ENDPOINT)
         .then((response) => response.json())
         .then((data) => setRankingData(data))
