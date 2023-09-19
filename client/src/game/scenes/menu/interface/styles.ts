@@ -13,8 +13,8 @@ export const Title = styled.h1`
 `;
 
 export const Wrapper = styled.div`
-  height: 90vh;
-  max-height: 1000px;
+  height: 95vh;
+  max-height: 800px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@ export const Block = styled.div.withConfig({
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  padding: 5px;
+  padding: ${(props) => (props.centerContent ? "2px" : "20px")};
   margin: 10px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 `;
@@ -54,7 +54,7 @@ export const Menu = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 30px 0 26px 0;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   border-radius: 8px;
 `;
 
@@ -67,7 +67,7 @@ export const Main = styled.div`
 
 export const Logotype = styled.img`
   height: 70px;
-  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.8)); // ロゴの影をより濃く
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.8));
 `;
 
 export const WawaContainer = styled.div`
@@ -105,16 +105,15 @@ export const WawaBlock = styled.a`
   flex-direction: column;
   align-items: center;
   text-decoration: none;
+  margin-bottom: 2px;
 `;
 
 export const RankingContainer = styled.div`
-  margin: auto;
-  display: flex;
+  width: 90%;
+  max-width: 1000px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 5px;
-  padding: 5px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.05);
@@ -127,6 +126,7 @@ export const RankingTitle = styled.h3`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   margin: 5px 0;
   font-weight: bold;
+  margin-left: 20px;
 `;
 
 export const RankingList = styled.ul`

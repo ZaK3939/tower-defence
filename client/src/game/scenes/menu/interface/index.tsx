@@ -75,13 +75,26 @@ export const MenuUI: React.FC<Props> = ({ defaultPage }) => {
             <Copyright />
           </Block>
         </Header>
-        <Header>
-          <WawaBlock href="https://wawa.philand.xyz/" target="_blank">
-            <GifImage src="assets/wawa-idle.gif" alt="Wawa gif" />
-            <Link>Click and Mint Wawa from here</Link>
-          </WawaBlock>
-        </Header>
-        {rankingData ? (
+
+        <WawaBlock href="https://wawa.philand.xyz/" target="_blank">
+          <GifImage src="assets/wawa-idle.gif" alt="Wawa gif" />
+          <Link>Click and Mint Wawa from here</Link>
+        </WawaBlock>
+
+        <WalletProvider>
+          <Menu>
+            <Block centerContent>
+              <Navigation page={page} onSelect={setPage} />
+            </Block>
+          </Menu>
+
+          <Main>
+            <Block>
+              <Content page={page} />
+            </Block>
+          </Main>
+        </WalletProvider>
+        {rankingData && page == MenuPage.NEW_GAME ? (
           <Main>
             <RankingContainer>
               <RankingTitle>Top Rankings</RankingTitle>
@@ -101,19 +114,6 @@ export const MenuUI: React.FC<Props> = ({ defaultPage }) => {
             </RankingContainer>
           </Main>
         ) : null}
-        <WalletProvider>
-          <Menu>
-            <Block centerContent>
-              <Navigation page={page} onSelect={setPage} />
-            </Block>
-          </Menu>
-
-          <Main>
-            <Block>
-              <Content page={page} />
-            </Block>
-          </Main>
-        </WalletProvider>
       </Wrapper>
     </Overlay>
   );
