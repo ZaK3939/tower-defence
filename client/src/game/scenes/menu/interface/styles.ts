@@ -26,7 +26,7 @@ export const Block = styled.div.withConfig({
   shouldForwardProp,
 })<{ centerContent?: boolean }>`
   width: 90%;
-  max-width: 900px;
+  max-width: 1000px;
   display: flex;
   flex-direction: row;
   justify-content: ${(props) =>
@@ -34,7 +34,7 @@ export const Block = styled.div.withConfig({
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  padding: 10px;
+  padding: 5px;
   margin: 10px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 `;
@@ -85,9 +85,9 @@ export const Icon = styled.img`
 
 // For the gif image
 export const GifImage = styled.img`
-  width: 200px;
+  width: 100px;
   height: auto;
-  margin: 10px;
+  margin: 5px;
   pointer-events: none;
 `;
 
@@ -113,8 +113,8 @@ export const RankingContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 10px;
-  padding: 10px;
+  margin: 5px;
+  padding: 5px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.05);
