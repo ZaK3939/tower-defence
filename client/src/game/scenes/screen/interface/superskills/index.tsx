@@ -20,10 +20,14 @@ export const Superskills: React.FC = () => {
   const [isWaveGoing, setWaveGoing] = useState(false);
   const [waveNumber, setWaveNumber] = useState(0);
 
-  useSceneUpdate(world, () => {
-    setWaveGoing(world.wave.isGoing);
-    setWaveNumber(world.wave.number);
-  });
+  useSceneUpdate(
+    world,
+    () => {
+      setWaveGoing(world.wave.isGoing);
+      setWaveNumber(world.wave.number);
+    },
+    []
+  );
 
   return isWaveGoing && waveNumber >= DIFFICULTY.SUPERSKILL_ALLOW_BY_WAVE ? (
     <Wrapper className="fade-in">

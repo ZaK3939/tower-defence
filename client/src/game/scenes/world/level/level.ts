@@ -180,6 +180,28 @@ export class Level extends TileMatrix implements ILevel {
     );
   }
 
+  public getFreeAdjacentTile(position: Vector3D) {
+    const positions: Vector2D[] = [
+      { x: position.x + 1, y: position.y },
+      { x: position.x, y: position.y + 1 },
+      { x: position.x - 1, y: position.y },
+      { x: position.x, y: position.y - 1 },
+      { x: position.x + 1, y: position.y - 1 },
+      { x: position.x + 1, y: position.y + 1 },
+      { x: position.x - 1, y: position.y + 1 },
+      { x: position.x - 1, y: position.y - 1 },
+    ];
+
+    return (
+      positions.find((p) =>
+        this.isFreePoint({
+          ...p,
+          z: position.z,
+        })
+      ) ?? null
+    );
+  }
+
   private addTilemap() {
     const data = new Phaser.Tilemaps.MapData({
       width: LEVEL_MAP_SIZE,

@@ -1,7 +1,3 @@
-import {
-  MIN_VALID_SCREEN_SIZE_DESKTOP,
-  MIN_VALID_SCREEN_SIZE_MOBILE,
-} from "@const/game";
 import { Vector2D, Vector3D } from "@type/world/level";
 
 /**
@@ -241,29 +237,6 @@ export function mapEntries<T extends Record<string, any>>(
 ) {
   return Object.entries(obj).map(([key, value], index) =>
     callback(key, value, index)
-  );
-}
-
-/**
- * Check device screen size.
- */
-export function isValidScreenSize() {
-  const minValidScreenSize = isMobileDevice()
-    ? MIN_VALID_SCREEN_SIZE_MOBILE
-    : MIN_VALID_SCREEN_SIZE_DESKTOP;
-  console.log("screen size", window.innerWidth, window.innerHeight);
-  return (
-    window.innerWidth >= minValidScreenSize[0] &&
-    window.innerHeight >= minValidScreenSize[1]
-  );
-}
-
-/**
- * Check device OS.
- */
-export function isMobileDevice() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
   );
 }
 

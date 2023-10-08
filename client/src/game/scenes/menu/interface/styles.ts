@@ -1,5 +1,6 @@
 import { InterfaceTextColor, InterfaceFont } from "@type/interface";
 import styled from "styled-components";
+import { INTERFACE_MOBILE_BREAKPOINT } from "@const/interface";
 
 export const Title = styled.h1`
   font-family: ${InterfaceFont.PIXEL_TEXT};
@@ -10,6 +11,10 @@ export const Title = styled.h1`
   margin: 5px 0;
   font-weight: bold;
   letter-spacing: 2px;
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    font-size: 2em;
+    margin: 2px 0;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -18,6 +23,12 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    margin-top: -100px;
+    height: 90vh;
+    max-height: 440px;
+  }
 `;
 
 const shouldForwardProp = (propName: any) => propName !== "centerContent";
@@ -37,6 +48,11 @@ export const Block = styled.div.withConfig({
   padding: ${(props) => (props.centerContent ? "2px" : "20px")};
   margin: 10px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    padding: ${(props) => (props.centerContent ? "1px" : "10px")};
+    margin: 2px 0;
+    flex-direction: row;
+  }
 `;
 
 export const Header = styled.div`
@@ -47,6 +63,9 @@ export const Header = styled.div`
   ${Block} {
     align-items: center;
   }
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    margin-bottom: 2px;
+  }
 `;
 
 export const Menu = styled.div`
@@ -56,6 +75,9 @@ export const Menu = styled.div`
   padding: 30px 0 26px 0;
   margin-bottom: 0px;
   border-radius: 8px;
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    padding: 5px 0 3px 0;
+  }
 `;
 
 export const Main = styled.div`
@@ -63,11 +85,17 @@ export const Main = styled.div`
   justify-content: center;
   flex: 1;
   border-radius: 8px;
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    padding: 5px 0 3px 0;
+  }
 `;
 
 export const Logotype = styled.img`
   height: 70px;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.8));
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    height: 40px;
+  }
 `;
 
 export const WawaContainer = styled.div`
@@ -75,12 +103,9 @@ export const WawaContainer = styled.div`
   grid-gap: 15px;
   grid-template-columns: repeat(5, 1fr);
   align-items: center;
-`;
-
-export const Icon = styled.img`
-  width: 16px;
-  margin-right: 8px;
-  display: inline-block;
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    grid-gap: 5px;
+  }
 `;
 
 // For the gif image
@@ -106,6 +131,9 @@ export const WawaBlock = styled.a`
   align-items: center;
   text-decoration: none;
   margin-bottom: 2px;
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    display: none;
+  }
 `;
 
 export const RankingContainer = styled.div`
@@ -118,6 +146,9 @@ export const RankingContainer = styled.div`
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    display: none;
+  }
 `;
 
 export const RankingTitle = styled.h3`

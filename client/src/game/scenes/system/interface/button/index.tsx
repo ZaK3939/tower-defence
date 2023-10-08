@@ -1,18 +1,35 @@
-import React from 'react';
+import { useMobilePlatform } from "phaser-react-ui";
+import React from "react";
 
-import { Container } from './styles';
+import { Container } from "./styles";
 
 type Props = {
-  size?: 'fixed' | 'small' | 'medium' | 'large'
-  view?: 'active' | 'primary' | 'confirm' | 'decline'
-  onClick: (event: React.MouseEvent<HTMLDivElement>) => void
-  children: React.ReactNode
+  size?: "small" | "medium" | "large";
+  view?: "active" | "primary" | "confirm" | "decline";
+  disabled?: boolean;
+  onClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+  children: React.ReactNode;
 };
 
 export const Button: React.FC<Props> = ({
-  size, view, onClick, children,
-}) => (
-  <Container onClick={onClick} $size={size} $view={view}>
-    {children}
-  </Container>
-);
+  size,
+  view,
+  disabled,
+  onClick,
+  children,
+}) => {
+  const isMobile = useMobilePlatform();
+
+  return (
+    <Container
+      $size={size}
+      $view={view}
+      $disabled={disabled}
+      {...{
+        [isMobile ? "onTouchEnd" : "onClick"]: onClick,
+      }}
+    >
+      {children}
+    </Container>
+  );
+};

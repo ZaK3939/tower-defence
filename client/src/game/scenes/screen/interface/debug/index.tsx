@@ -13,16 +13,20 @@ export const Debug: React.FC = () => {
   const [frames, setFrames] = useState(0);
   const [memory, setMemory] = useState<string>();
 
-  useSceneUpdate(world, () => {
-    setFrames(Math.round(game.loop.actualFps));
+  useSceneUpdate(
+    world,
+    () => {
+      setFrames(Math.round(game.loop.actualFps));
 
-    // @ts-ignore
-    const heapSize = performance?.memory?.usedJSHeapSize;
+      // @ts-ignore
+      const heapSize = performance?.memory?.usedJSHeapSize;
 
-    if (heapSize) {
-      setMemory((heapSize / 1024 / 1024).toFixed(2));
-    }
-  });
+      if (heapSize) {
+        setMemory((heapSize / 1024 / 1024).toFixed(2));
+      }
+    },
+    []
+  );
 
   return (
     <Value>

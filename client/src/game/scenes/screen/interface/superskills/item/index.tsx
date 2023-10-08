@@ -1,5 +1,11 @@
-import { useGame, useScene, useSceneUpdate } from "phaser-react-ui";
-import React, { useState } from "react";
+import {
+  useGame,
+  useMobilePlatform,
+  useOutsideClick,
+  useScene,
+  useSceneUpdate,
+} from "phaser-react-ui";
+import React, { useRef, useState } from "react";
 
 import { PLAYER_SUPERSKILLS } from "@const/world/entities/player";
 import { Cost } from "@scene/system/interface/cost";
@@ -28,27 +34,66 @@ export const SuperskillItem: React.FC<Props> = ({ type }) => {
   const world = useScene<IWorld>(GameScene.WORLD);
   const scene = useScene(GameScene.SYSTEM);
 
+  const isMobile = useMobilePlatform();
+
   const [isPaused, setPaused] = useState(false);
   const [isActive, setActive] = useState(false);
+  const [isSelected, setSelected] = useState(false);
   const [isCoolingDown, setCoolingDown] = useState(false);
   const [cost, setCost] = useState(0);
 
   const skillIndex = Object.values(PlayerSuperskill).indexOf(type) + 1;
 
+  const refContainer = useRef<HTMLDivElement>(null);
+
   const onClick = () => {
-    world.player.useSuperskill(type);
+    if (isSelected) {
+      world.player.useSuperskill(type);
+    } else {
+      setSelected(true);
+    }
   };
 
-  useSceneUpdate(scene, () => {
-    setPaused(game.state === GameState.PAUSED);
-    setActive(Boolean(world.player.activeSuperskills[type]));
-    setCoolingDown(Boolean(world.player.coolDownSuperskills[type]));
-    setCost(world.player.getSuperskillCost(type));
-  });
+  const onMouseEnter = () => {
+    setSelected(true);
+  };
+
+  const onMouseLeave = () => {
+    setSelected(false);
+  };
+
+  useOutsideClick(
+    refContainer,
+    () => {
+      setSelected(false);
+    },
+    []
+  );
+
+  useSceneUpdate(
+    scene,
+    () => {
+      setPaused(game.state === GameState.PAUSED);
+      setActive(Boolean(world.player.activeSuperskills[type]));
+      setCoolingDown(Boolean(world.player.coolDownSuperskills[type]));
+      setCost(world.player.getSuperskillCost(type));
+    },
+    []
+  );
 
   return (
     <Container
-      onClick={onClick}
+      ref={refContainer}
+      {...(isMobile
+        ? {
+            onTouchEnd: onClick,
+          }
+        : {
+            onClick,
+            onMouseEnter,
+            onMouseLeave,
+          })}
+      $selected={isSelected}
       $active={isActive}
       $coolingDown={isCoolingDown}
     >

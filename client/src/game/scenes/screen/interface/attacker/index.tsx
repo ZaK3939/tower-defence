@@ -111,10 +111,14 @@ export const Attaker: React.FC = () => {
     []
   );
 
-  useSceneUpdate(world, () => {
-    const waveIsGoing = world.wave.isGoing;
-    setIsGoing(waveIsGoing);
-  });
+  useSceneUpdate(
+    world,
+    () => {
+      const waveIsGoing = world.wave.isGoing;
+      setIsGoing(waveIsGoing);
+    },
+    []
+  );
 
   return (
     <Wrapper>

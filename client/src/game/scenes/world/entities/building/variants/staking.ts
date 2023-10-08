@@ -51,7 +51,9 @@ export class BuildingStaking extends Building {
       TutorialStepState.IN_PROGRESS
     ) {
       this.scene.game.tutorial.complete(TutorialStep.BUILD_STAKING);
-      this.scene.game.tutorial.start(TutorialStep.STOP_BUILD);
+      if (this.scene.game.device.os.desktop) {
+        this.scene.game.tutorial.start(TutorialStep.STOP_BUILD);
+      }
     }
   }
 

@@ -1,16 +1,20 @@
 import styled, { css } from "styled-components";
 
+import { INTERFACE_MOBILE_BREAKPOINT } from "@const/interface";
 import { InterfaceFont, InterfaceBackgroundColor } from "@type/interface";
 
 export const Container = styled.div<{
   $size?: "fixed" | "small" | "medium" | "large";
   $view?: "active" | "primary" | "confirm" | "decline";
+  $disabled?: boolean;
 }>`
   color: #fff;
   font-family: ${InterfaceFont.PIXEL_LABEL};
-  pointer-events: all;
   border-radius: 5px;
   letter-spacing: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   ${(props) => {
     switch (props.$view) {
       case "active":
@@ -49,13 +53,6 @@ export const Container = styled.div<{
   }}
   ${(props) => {
     switch (props.$size) {
-      case "fixed":
-        return css`
-          text-align: center;
-          font-size: 10px;
-          line-height: 24px;
-          width: 80px;
-        `;
       case "large":
         return css`
           font-size: 22px;
@@ -69,14 +66,32 @@ export const Container = styled.div<{
           padding: 10px 18px 11px 18px;
         `;
       case "small":
-      default:
         return css`
           font-size: 11px;
           line-height: 11px;
           padding: 7px 10px 8px 10px;
         `;
+      default:
+        return css`
+          font-size: 10px;
+          line-height: 10px;
+          padding: 6px 0 7px 0;
+          @media ${INTERFACE_MOBILE_BREAKPOINT} {
+            font-size: 8px;
+            line-height: 8px;
+            padding: 9px 0 10px 0;
+          }
+        `;
     }
   }}
+  ${(props) =>
+    props.$disabled
+      ? css`
+          opacity: 0.25;
+        `
+      : css`
+          pointer-events: all;
+        `};
   &:hover {
     cursor: pointer;
   }

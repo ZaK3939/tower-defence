@@ -4,9 +4,6 @@ export const CONTAINER_ID = "game-container";
 
 export const AUDIO_VOLUME = 0.1;
 
-export const MIN_VALID_SCREEN_SIZE_DESKTOP = [800, 480];
-export const MIN_VALID_SCREEN_SIZE_MOBILE = [640, 320];
-
 export const DEBUG_MODS = {
   basic: false,
   position: false,

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { InterfaceFont } from "@type/interface";
+import { INTERFACE_MOBILE_BREAKPOINT } from "@const/interface";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -12,5 +12,8 @@ export const Params = styled.div`
 
   > *:not(:last-child) {
     margin-bottom: 25px;
+  }
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    margin-bottom: 10px;
   }
 `;

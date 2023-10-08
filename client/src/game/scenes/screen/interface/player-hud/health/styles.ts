@@ -6,6 +6,8 @@ export const Container = styled.div`
   background: #000;
   width: 80px;
   position: relative;
+  border-radius: 0 0 5px 5px;
+  overflow: hidden;
 `;
 
 export const Progress = styled.div`

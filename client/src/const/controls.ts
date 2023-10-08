@@ -15,8 +15,8 @@ export const CONTROL_KEY = {
 
 export const CONTROLS: ControlItem[] = [
   { name: "W,A,S,D", description: "Movement" },
-  { name: "E", description: "Upgrade active building" },
   { name: "LEFT CLICK", description: "Build" },
+  { name: "E", description: "Upgrade active building" },
   { name: "R", description: "Repair active building" },
   { name: "RIGHT CLICK", description: "Stop build" },
   { name: "BACKSPACE", description: "Destroy active building" },

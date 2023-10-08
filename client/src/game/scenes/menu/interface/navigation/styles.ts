@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-
+import { INTERFACE_MOBILE_BREAKPOINT } from "@const/interface";
 import { InterfaceFont, InterfaceTextColor } from "@type/interface";
 
 export const Wrapper = styled.ul`
@@ -39,5 +39,8 @@ export const Item = styled.li<{
         `}
   &:not(:last-child) {
     margin-right: 30px;
+  }
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    font-size: 20px;
   }
 `;
