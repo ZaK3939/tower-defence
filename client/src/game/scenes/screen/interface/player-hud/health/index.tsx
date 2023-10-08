@@ -12,10 +12,14 @@ export const Health: React.FC = () => {
   const [health, setHealth] = useState(0);
   const [maxHealth, setMaxHealth] = useState(0);
 
-  useSceneUpdate(world, () => {
-    setHealth(world.player.live.health);
-    setMaxHealth(world.player.live.maxHealth);
-  });
+  useSceneUpdate(
+    world,
+    () => {
+      setHealth(world.player.live.health);
+      setMaxHealth(world.player.live.maxHealth);
+    },
+    []
+  );
 
   return (
     <Container>

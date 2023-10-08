@@ -8,7 +8,6 @@ import React, { useEffect, useState } from "react";
 
 import { INTERFACE_SCALE } from "@const/interface";
 import { IWorld } from "@type/world";
-import { IGame } from "@type/game";
 import { AdsReward } from "./ads-reward";
 import { Builder } from "./builder";
 import { Debug } from "./debug";
@@ -27,10 +26,14 @@ export const ScreenUI: React.FC = () => {
 
   const [isjoinGame, setJoinGame] = useState<boolean>(false);
 
-  useSceneUpdate(world, () => {
-    const joinGame = world.game.joinGame;
-    setJoinGame(joinGame);
-  });
+  useSceneUpdate(
+    world,
+    () => {
+      const joinGame = world.game.joinGame;
+      setJoinGame(joinGame);
+    },
+    []
+  );
 
   return (
     <Wrapper ref={refScale}>

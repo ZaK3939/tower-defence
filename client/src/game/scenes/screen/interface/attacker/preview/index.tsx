@@ -41,20 +41,24 @@ export const AttackerPreview: React.FC<Props> = ({ number, variant }) => {
     }
   };
 
-  useSceneUpdate(world, () => {
-    const currentIsActive = world.attacker.variant === variant;
-    const currentIsDisallow = !world.attacker.isEnemyAllowByWave(variant);
-    const currentIsUsable =
-      !currentIsDisallow &&
-      world.player.resources >= ENEMIES[variant].Cost &&
-      !world.attacker.isEnemyLimitReached(variant);
-    setActive(currentIsActive);
-    setDisallow(currentIsDisallow);
-    setUsable(currentIsUsable);
-    if (currentIsActive) {
-      setUsed(true);
-    }
-  });
+  useSceneUpdate(
+    world,
+    () => {
+      const currentIsActive = world.attacker.variant === variant;
+      const currentIsDisallow = !world.attacker.isEnemyAllowByWave(variant);
+      const currentIsUsable =
+        !currentIsDisallow &&
+        world.player.resources >= ENEMIES[variant].Cost &&
+        !world.attacker.isEnemyLimitReached(variant);
+      setActive(currentIsActive);
+      setDisallow(currentIsDisallow);
+      setUsable(currentIsUsable);
+      if (currentIsActive) {
+        setUsed(true);
+      }
+    },
+    []
+  );
 
   return (
     <Container

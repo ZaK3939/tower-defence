@@ -19,7 +19,7 @@ export class System extends Scene {
   }
 
   preload() {
-    loadAtlas(this, WawaAtlas)
+    loadAtlas(this, WawaAtlas);
   }
 
   public async create() {
@@ -37,6 +37,12 @@ export class System extends Scene {
     });
 
     this.scene.bringToTop();
+
+    removeLoading();
+
+    if (!this.game.device.os.desktop) {
+      this.input.addPointer(1);
+    }
 
     this.input.keyboard?.on(CONTROL_KEY.PAUSE, () => {
       if (this.game.isPaused) {

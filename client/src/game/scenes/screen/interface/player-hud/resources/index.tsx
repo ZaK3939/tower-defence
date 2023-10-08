@@ -25,9 +25,13 @@ export const Resources: React.FC = () => {
     []
   );
 
-  useSceneUpdate(world, () => {
-    setAmount(world.player.resources);
-  });
+  useSceneUpdate(
+    world,
+    () => {
+      setAmount(world.player.resources);
+    },
+    []
+  );
 
   return (
     <Wrapper>

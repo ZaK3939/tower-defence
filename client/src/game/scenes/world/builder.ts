@@ -2,7 +2,7 @@ import EventEmitter from "events";
 
 import Phaser from "phaser";
 
-import { WORLD_DEPTH_EFFECT } from "@const/world";
+import { WORLD_DEPTH_GRAPHIC } from "@const/world";
 import { DIFFICULTY } from "@const/world/difficulty";
 import { BUILDINGS } from "@const/world/entities/buildings";
 import { LEVEL_TILE_SIZE } from "@const/world/level";
@@ -16,6 +16,7 @@ import { EntityType } from "@type/world/entities";
 import {
   BuildingAudio,
   BuildingBuildData,
+  BuildingIcon,
   BuildingVariant,
   IBuilding,
 } from "@type/world/entities/building";
@@ -39,14 +40,17 @@ export class Builder extends EventEmitter implements IBuilder {
 
   private buildArea: Nullable<Phaser.GameObjects.Ellipse> = null;
 
-  private buildingPreview: Nullable<Phaser.GameObjects.Image> = null;
+  private buildPreview: Nullable<Phaser.GameObjects.Image> = null;
+
+  private buildControls: Nullable<Phaser.GameObjects.Container> = null;
 
   private buildings: Partial<Record<BuildingVariant, IBuilding[]>> = {};
+
+  private supposedPosition: Nullable<Vector2D> = null;
 
   private _variant: Nullable<BuildingVariant> = null;
 
   private lastTapTime: number = 0;
-  private touchStartTimestamp: number | null = null;
 
   public get variant() {
     return this._variant;
@@ -73,8 +77,8 @@ export class Builder extends EventEmitter implements IBuilder {
 
     this.setMaxListeners(0);
     this.handleKeyboard();
+    this.handlePointer();
     this.handleTutorial();
-    this.handleMobile();
   }
 
   public destroy() {
@@ -85,8 +89,9 @@ export class Builder extends EventEmitter implements IBuilder {
   public update() {
     if (this.isCanBuild()) {
       if (this.isBuild) {
+        this.updateSupposedPosition();
         this.updateBuildAreaPosition();
-        this.updateBuildingPreview();
+        this.updateBuildInstance();
       } else {
         if (!this.scene.wave.isGoing) {
           this.open();
@@ -117,19 +122,23 @@ export class Builder extends EventEmitter implements IBuilder {
 
     this.variant = variant;
 
-    if (this.buildingPreview) {
-      this.buildingPreview.setTexture(BuildingInstance.Texture);
+    if (this.buildPreview) {
+      this.buildPreview.setTexture(BuildingInstance.Texture);
     }
   }
 
-  public unsetBuildingVariant() {
+  public unsetBuildingVariant(force?: boolean) {
     if (this.variant === null) {
       return;
     }
 
-    this.scene.sound.play(BuildingAudio.UNSELECT);
+    if (!force) {
+      this.scene.sound.play(BuildingAudio.UNSELECT);
+    }
 
-    this.scene.game.tutorial.complete(TutorialStep.STOP_BUILD);
+    if (this.scene.game.device.os.desktop) {
+      this.scene.game.tutorial.complete(TutorialStep.STOP_BUILD);
+    }
 
     this.clearBuildingVariant();
   }
@@ -237,36 +246,23 @@ export class Builder extends EventEmitter implements IBuilder {
     return (this.buildings[variant] ?? []) as T[];
   }
 
-  private getAssumedPosition() {
-    return Level.ToMatrixPosition({
-      x: this.scene.input.activePointer.worldX,
-      y: this.scene.input.activePointer.worldY,
-    });
-  }
-
-  private onMouseClick(pointer: Phaser.Input.Pointer) {
-    if (pointer.button === 0) {
-      this.build();
-    } else if (pointer.button === 2) {
-      this.unsetBuildingVariant();
-    }
-  }
-
   private open() {
     if (this.isBuild) {
       return;
     }
 
-    this.createBuildArea();
-    this.createBuildingPreview();
-
-    this.scene.input.on(
-      Phaser.Input.Events.POINTER_UP,
-      this.onMouseClick,
-      this
-    );
-
     this.isBuild = true;
+
+    if (!this.scene.game.device.os.desktop) {
+      this.supposedPosition =
+        this.scene.level.getFreeAdjacentTile({
+          ...this.scene.player.positionAtMatrix,
+          z: 1,
+        }) ?? this.scene.player.positionAtMatrix;
+    }
+
+    this.createBuildArea();
+    this.createBuildInstance();
 
     this.emit(BuilderEvents.BUILD_START);
   }
@@ -276,12 +272,11 @@ export class Builder extends EventEmitter implements IBuilder {
       return;
     }
 
-    this.scene.input.off(Phaser.Input.Events.POINTER_UP, this.onMouseClick);
-
-    this.destroyBuildingPreview();
+    this.destroyBuildInstance();
     this.destroyBuildArea();
 
     this.isBuild = false;
+    this.supposedPosition = null;
 
     this.emit(BuilderEvents.BUILD_STOP);
   }
@@ -308,22 +303,21 @@ export class Builder extends EventEmitter implements IBuilder {
   }
 
   private isAllowBuild() {
-    if (!this.buildArea) {
+    if (!this.buildArea || !this.supposedPosition) {
       return false;
     }
     if (this.scene.wave.isGoing) {
       return false;
     }
-    const positionAtMatrix = this.getAssumedPosition();
-
-    const positionAtWorldDown = Level.ToWorldPosition({
+    const positionAtMatrix = this.supposedPosition;
+    const positionAtWorld = Level.ToWorldPosition({
       ...positionAtMatrix,
       z: 0,
     });
     const offset = this.buildArea.getTopLeft() as Vector2D;
     const inArea = this.buildArea.geom.contains(
-      positionAtWorldDown.x - offset.x,
-      positionAtWorldDown.y - offset.y
+      positionAtWorld.x - offset.x,
+      positionAtWorld.y - offset.y
     );
 
     if (!inArea) {
@@ -365,7 +359,7 @@ export class Builder extends EventEmitter implements IBuilder {
   }
 
   private build() {
-    if (!this.variant || !this.isAllowBuild()) {
+    if (!this.variant || !this.supposedPosition || !this.isAllowBuild()) {
       return;
     }
 
@@ -388,13 +382,17 @@ export class Builder extends EventEmitter implements IBuilder {
 
     this.createBuilding({
       variant: this.variant,
-      positionAtMatrix: this.getAssumedPosition(),
+      positionAtMatrix: this.supposedPosition,
     });
 
     this.scene.player.takeResources(BuildingInstance.Cost);
     this.scene.player.giveExperience(DIFFICULTY.BUILDING_BUILD_EXPERIENCE);
 
     this.scene.sound.play(BuildingAudio.BUILD);
+
+    if (!this.scene.game.device.os.desktop) {
+      this.unsetBuildingVariant(true);
+    }
   }
 
   public createBuilding(data: BuildingBuildData) {
@@ -462,7 +460,7 @@ export class Builder extends EventEmitter implements IBuilder {
       this.radius * 2 * LEVEL_TILE_SIZE.persperctive
     );
     this.buildArea.updateDisplayOrigin();
-    this.buildArea.setDepth(WORLD_DEPTH_EFFECT);
+    this.buildArea.setDepth(WORLD_DEPTH_GRAPHIC);
   }
 
   private updateBuildAreaPosition() {
@@ -484,41 +482,137 @@ export class Builder extends EventEmitter implements IBuilder {
     this.buildArea = null;
   }
 
-  private createBuildingPreview() {
+  private createBuildPreview() {
     if (!this.variant) {
       return;
     }
 
     const BuildingInstance = BUILDINGS[this.variant];
 
-    this.buildingPreview = this.scene.add.image(0, 0, BuildingInstance.Texture);
-    this.buildingPreview.setOrigin(0.5, LEVEL_TILE_SIZE.origin);
-
-    this.updateBuildingPreview();
+    this.buildPreview = this.scene.add.image(0, 0, BuildingInstance.Texture);
+    this.buildPreview.setOrigin(0.5, LEVEL_TILE_SIZE.origin);
+    this.buildPreview.addShader("OutlineShader", {
+      size: 2.0,
+      color: 0xffffff,
+    });
   }
 
-  private updateBuildingPreview() {
-    if (!this.buildingPreview) {
+  private createBuildControls() {
+    this.buildControls = this.scene.add.container(0, 0);
+
+    const confirm = this.scene.add.image(-2, 0, BuildingIcon.CONFIRM);
+
+    confirm.setInteractive();
+    confirm.setOrigin(1.0, 0.5);
+
+    confirm.on(
+      Phaser.Input.Events.POINTER_DOWN,
+      (pointer: Phaser.Input.Pointer) => {
+        pointer.reset();
+        this.build();
+      }
+    );
+
+    const decline = this.scene.add.image(2, 0, BuildingIcon.DECLINE);
+
+    decline.setInteractive();
+    decline.setOrigin(0.0, 0.5);
+
+    decline.on(Phaser.Input.Events.POINTER_DOWN, () => {
+      this.unsetBuildingVariant();
+    });
+
+    this.buildControls.add([confirm, decline]);
+  }
+
+  private createBuildInstance() {
+    this.createBuildPreview();
+
+    if (!this.scene.game.device.os.desktop) {
+      this.createBuildControls();
+    }
+
+    this.updateBuildInstance();
+  }
+
+  private updateBuildInstance() {
+    if (!this.supposedPosition) {
       return;
     }
 
-    const positionAtMatrix = this.getAssumedPosition();
-    const tilePosition = { ...positionAtMatrix, z: 1 };
+    const tilePosition = { ...this.supposedPosition, z: 1 };
     const positionAtWorld = Level.ToWorldPosition(tilePosition);
     const depth = Level.GetTileDepth(positionAtWorld.y, tilePosition.z) + 1;
+    const isAllow = this.isAllowBuild();
 
-    this.buildingPreview.setPosition(positionAtWorld.x, positionAtWorld.y);
-    this.buildingPreview.setDepth(depth);
-    this.buildingPreview.setAlpha(this.isAllowBuild() ? 1.0 : 0.25);
-  }
-
-  private destroyBuildingPreview() {
-    if (!this.buildingPreview) {
-      return;
+    if (this.buildPreview) {
+      this.buildPreview.setPosition(positionAtWorld.x, positionAtWorld.y);
+      this.buildPreview.setDepth(depth);
+      this.buildPreview.setAlpha(isAllow ? 1.0 : 0.25);
     }
 
-    this.buildingPreview.destroy();
-    this.buildingPreview = null;
+    if (this.buildControls) {
+      const confirmBtton = <Phaser.GameObjects.Image>(
+        this.buildControls.getAt(0)
+      );
+
+      this.buildControls.setPosition(
+        positionAtWorld.x,
+        positionAtWorld.y + LEVEL_TILE_SIZE.height
+      );
+      this.buildControls.setDepth(WORLD_DEPTH_GRAPHIC);
+      confirmBtton.setTexture(
+        isAllow ? BuildingIcon.CONFIRM : BuildingIcon.CONFIRM_DISABLED
+      );
+    }
+  }
+
+  private destroyBuildInstance() {
+    if (this.buildPreview) {
+      this.buildPreview.destroy();
+      this.buildPreview = null;
+    }
+
+    if (this.buildControls) {
+      this.buildControls.destroy();
+      this.buildControls = null;
+    }
+  }
+
+  private getCurrentPointer() {
+    const busyPointerId = this.scene.game.screen.joystickActivePointer?.id;
+
+    return busyPointerId === 1
+      ? this.scene.input.pointer2
+      : this.scene.input.pointer1;
+  }
+
+  private updateSupposedPosition() {
+    let position: Vector2D;
+
+    if (this.scene.game.device.os.desktop) {
+      position = {
+        x: this.scene.input.activePointer.worldX,
+        y: this.scene.input.activePointer.worldY,
+      };
+    } else {
+      const pointer = this.getCurrentPointer();
+
+      if (!pointer.active || pointer.event.target !== this.scene.sys.canvas) {
+        return;
+      }
+
+      pointer.updateWorldPoint(this.scene.cameras.main);
+
+      position = {
+        x: pointer.worldX,
+        y:
+          pointer.worldY -
+          LEVEL_TILE_SIZE.height / this.scene.cameras.main.zoom,
+      };
+    }
+
+    this.supposedPosition = Level.ToMatrixPosition(position);
   }
 
   public removeAllBuildings() {
@@ -548,27 +642,25 @@ export class Builder extends EventEmitter implements IBuilder {
     );
   }
 
-  private onTouchStart(pointer: Phaser.Input.Pointer) {
-    this.touchStartTimestamp = pointer.time;
-  }
-
-  private onTouchEnd(pointer: Phaser.Input.Pointer) {
-    const currentTime = pointer.time;
-
-    if (currentTime - this.lastTapTime < 500) {
-      // Consider it a double tap; equivalent to a right mouse click
-      this.unsetBuildingVariant();
-    } else {
-      // Consider it a single tap; equivalent to a left mouse click
-      this.build();
+  private handlePointer() {
+    if (!this.scene.game.device.os.desktop) {
+      return;
     }
 
-    this.lastTapTime = currentTime;
-  }
+    this.scene.input.on(
+      Phaser.Input.Events.POINTER_UP,
+      (pointer: Phaser.Input.Pointer) => {
+        if (!this.isBuild) {
+          return;
+        }
 
-  private handleMobile() {
-    this.scene.input.on("pointerdown", this.onTouchStart, this);
-    this.scene.input.on("pointerup", this.onTouchEnd, this);
+        if (pointer.button === 0) {
+          this.build();
+        } else if (pointer.button === 2) {
+          this.unsetBuildingVariant();
+        }
+      }
+    );
   }
 
   private handleTutorial() {

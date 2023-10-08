@@ -76,9 +76,9 @@ export const MenuUI: React.FC<Props> = ({ defaultPage }) => {
           </Block>
         </Header>
 
-        <WawaBlock href="https://wawa.philand.xyz/" target="_blank">
+        <WawaBlock href="https://opensea.io/collection/wawa-11" target="_blank">
           <GifImage src="assets/wawa-idle.gif" alt="Wawa gif" />
-          <Link>Click and Mint Wawa from here</Link>
+          <Link>Buy Wawa from here</Link>
         </WawaBlock>
 
         <WalletProvider>

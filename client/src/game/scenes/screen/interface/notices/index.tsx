@@ -45,19 +45,23 @@ export const Notices: React.FC = () => {
     };
   }, []);
 
-  useSceneUpdate(screen, () => {
-    const now = Date.now();
+  useSceneUpdate(
+    screen,
+    () => {
+      const now = Date.now();
 
-    setNotices((currentNotices) => {
-      const newNotices = currentNotices.filter(
-        (currentNotice) => now - currentNotice.timestamp < 3000
-      );
+      setNotices((currentNotices) => {
+        const newNotices = currentNotices.filter(
+          (currentNotice) => now - currentNotice.timestamp < 3000
+        );
 
-      return newNotices.length === currentNotices.length
-        ? currentNotices
-        : newNotices;
-    });
-  });
+        return newNotices.length === currentNotices.length
+          ? currentNotices
+          : newNotices;
+      });
+    },
+    []
+  );
 
   return (
     <Wrapper>

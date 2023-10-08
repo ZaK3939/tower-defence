@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import { BuildingInfo } from './building-info';
-import { RelativeHint } from './relative-hint';
+import { RelativeBuildingInfo } from "./relative-building-info";
+import { RelativeHint } from "./relative-hint";
 
 export const WorldUI: React.FC = () => (
   <>
-    <BuildingInfo />
+    <RelativeBuildingInfo />
     <RelativeHint />
   </>
 );
 
-WorldUI.displayName = 'WorldUI';
+WorldUI.displayName = "WorldUI";

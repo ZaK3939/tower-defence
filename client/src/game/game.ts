@@ -33,7 +33,6 @@ import { World } from "@scene/world";
 import { IStorage, StorageSave, StorageSavePayload } from "@type/storage";
 import { INetwork } from "@type/network";
 import { Network } from "@lib/network";
-import VirtualJoystickPlugin from "phaser3-rex-plugins/plugins/virtualjoystick-plugin.js";
 import { Wawa, defaultWawa } from "@type/wawa";
 import { stopBattleMusic } from "@lib/music";
 
@@ -143,20 +142,9 @@ export class Game extends Phaser.Game implements IGame {
   constructor() {
     super({
       scene: [System, World, Screen, Menu, Gameover, Gameclear],
-      plugins: {
-        global: [
-          {
-            key: "rexVirtualJoystick",
-            plugin: VirtualJoystickPlugin,
-            start: true,
-          },
-        ],
-      },
       pixelArt: true,
       autoRound: true,
       disableContextMenu: true,
-      width: window.innerWidth,
-      height: window.innerHeight,
       parent: CONTAINER_ID,
       transparent: true,
       scale: {
@@ -337,6 +325,9 @@ export class Game extends Phaser.Game implements IGame {
       return;
     }
 
+    if (!this.scale.isFullscreen && !this.device.os.desktop && !IS_DEV_MODE) {
+      this.scale.startFullscreen();
+    }
     this.state = GameState.STARTED;
 
     if (!this.isSettingEnabled(GameSettings.TUTORIAL) || this.isPVP) {

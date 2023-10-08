@@ -1,11 +1,14 @@
 import Phaser from "phaser";
 
-import { CAMERA_ZOOM } from "@const/world/camera";
+import {
+  CAMERA_MAX_ZOOM,
+  CAMERA_MIN_ZOOM,
+  CAMERA_ZOOM,
+} from "@const/world/camera";
 import { Level } from "@game/scenes/world/level";
 import { IWorld } from "@type/world";
 import { ICamera } from "@type/world/camera";
 import { LEVEL_MAP_SIZE } from "@const/world/level";
-import { isMobileDevice } from "@lib/utils";
 
 export class Camera implements ICamera {
   private scene: IWorld;
@@ -15,7 +18,7 @@ export class Camera implements ICamera {
   }
 
   public zoomOut() {
-    this.scene.cameras.main.zoomTo(CAMERA_ZOOM * 0.5, 10 * 1000);
+    this.scene.cameras.main.zoomTo(CAMERA_MIN_ZOOM, 10 * 1000);
   }
 
   public shake() {
@@ -29,10 +32,11 @@ export class Camera implements ICamera {
     camera.startFollow(object);
 
     camera.setZoom(CAMERA_ZOOM * 2);
-    if (!isMobileDevice()) {
-      camera.zoomTo(CAMERA_ZOOM, 200);
+    if (this.scene.game.device.os.desktop) {
+      camera.setZoom(CAMERA_MAX_ZOOM * 2);
+      camera.zoomTo(CAMERA_MAX_ZOOM, 200);
     } else {
-      camera.zoomTo(CAMERA_ZOOM / 2, 200);
+      camera.setZoom(CAMERA_MIN_ZOOM);
     }
   }
 
@@ -50,20 +54,54 @@ export class Camera implements ICamera {
   }
 
   public addZoomControl() {
-    const camera = this.scene.cameras.main;
+    if (this.scene.game.device.os.desktop) {
+      this.scene.input.on(
+        Phaser.Input.Events.POINTER_WHEEL,
+        (pointer: Phaser.Input.Pointer) => {
+          const force = pointer.deltaY / 500;
 
-    this.scene.input.on(
-      Phaser.Input.Events.POINTER_WHEEL,
-      (pointer: Phaser.Input.Pointer) => {
-        const zoom = camera.zoom - pointer.deltaY / 500;
-        const clampZoom = Math.min(
-          CAMERA_ZOOM,
-          Math.max(CAMERA_ZOOM / 2, zoom)
+          this.updateZoom(force);
+        }
+      );
+    } else {
+      this.scene.input.on(Phaser.Input.Events.POINTER_MOVE, () => {
+        if (this.scene.game.screen.isJoystickUsing()) {
+          return;
+        }
+
+        const isMultitouch =
+          this.scene.input.pointer1.isDown && this.scene.input.pointer2.isDown;
+
+        if (!isMultitouch) {
+          return;
+        }
+
+        const distanceStart = Phaser.Math.Distance.Between(
+          this.scene.input.pointer1.downX,
+          this.scene.input.pointer1.downY,
+          this.scene.input.pointer2.downX,
+          this.scene.input.pointer2.downY
         );
+        const distanceCurrent = Phaser.Math.Distance.BetweenPoints(
+          this.scene.input.pointer1.position,
+          this.scene.input.pointer2.position
+        );
+        const force = (distanceStart - distanceCurrent) / 2000;
 
-        camera.zoomTo(clampZoom, 10);
-      }
+        this.updateZoom(force);
+      });
+    }
+  }
+
+  private updateZoom(value: number) {
+    const camera = this.scene.cameras.main;
+    const zoom = camera.zoom - value;
+    const clampZoom = Math.min(
+      CAMERA_MAX_ZOOM,
+      Math.max(CAMERA_MIN_ZOOM, zoom)
     );
+
+    camera.zoomTo(clampZoom, 10);
   }
 
   public focusOnMapCenterAndZoomOut() {

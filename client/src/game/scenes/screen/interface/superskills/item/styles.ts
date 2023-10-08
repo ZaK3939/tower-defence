@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-
+import { INTERFACE_MOBILE_BREAKPOINT } from "@const/interface";
 import {
   InterfaceBackgroundColor,
   InterfaceTextColor,
@@ -20,6 +20,10 @@ export const Icon = styled.img`
   display: block;
   width: 26px;
   height: 26px;
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    width: 22px;
+    height: 22px;
+  }
 `;
 
 export const Info = styled.div`
@@ -68,6 +72,7 @@ export const Body = styled.div`
 
 export const Container = styled.div<{
   $active?: boolean;
+  $selected?: boolean;
   $coolingDown?: boolean;
 }>`
   background: ${InterfaceBackgroundColor.BLACK_TRANSPARENT_50};
@@ -77,20 +82,21 @@ export const Container = styled.div<{
   border-bottom: 6px solid #000;
   border-radius: 5px;
   ${(props) =>
-    props.$coolingDown &&
-    css`
-      background: ${InterfaceBackgroundColor.RED_TRANSPARENT_50}; // 背景色を赤に変更
-      pointer-events: none; // クールタイム中はクリックを無効にする
-    `}
-
-  // アクティブ時のスタイル
-  ${(props) =>
-    props.$active &&
-    css`
-      ${Icon} {
-        opacity: 0.5;
-      }
-    `}
+    props.$active
+      ? css`
+          ${Icon} {
+            opacity: 0.5;
+          }
+        `
+      : () =>
+          props.$selected &&
+          css`
+            background: ${InterfaceBackgroundColor.BLACK_TRANSPARENT_75};
+            cursor: pointer;
+            ${Info} {
+              display: block;
+            }
+          `}
 
   // アクティブでない時のホバースタイル
   &:hover {
@@ -104,6 +110,9 @@ export const Container = styled.div<{
 
   &:not(:last-child) {
     margin-right: 10px;
+  }
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    padding: 10px;
   }
 `;
 

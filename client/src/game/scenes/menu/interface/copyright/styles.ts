@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { INTERFACE_MOBILE_BREAKPOINT } from "@const/interface";
 import { InterfaceTextColor, InterfaceFont } from "@type/interface";
 
 export const Wrapper = styled.div`
@@ -7,6 +7,9 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    margin-top: 2px;
+  }
 `;
 
 export const About = styled.div`
@@ -15,6 +18,10 @@ export const About = styled.div`
   white-space: pre-line;
   font-size: 12px;
   line-height: 12px;
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    font-size: 8px;
+    line-height: 8px;
+  }
 `;
 
 export const Link = styled.a`
@@ -26,7 +33,7 @@ export const Link = styled.a`
 `;
 
 export const Version = styled.div`
-  margin-top: 6px;
+  margin-top: 8px;
 `;
 
 export const Discord = styled.a`
@@ -44,6 +51,9 @@ export const Discord = styled.a`
   background: #6170c1;
   &:hover {
     background: #111;
+  }
+  @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    padding: 3px 6px;
   }
 `;
 

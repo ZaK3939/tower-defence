@@ -59,7 +59,7 @@ export interface IBuilder extends EventEmitter {
   /**
    * Unset building variant.
    */
-  unsetBuildingVariant(): void;
+  unsetBuildingVariant(force?: boolean): void;
 
   /**
    * Update radius of build area.

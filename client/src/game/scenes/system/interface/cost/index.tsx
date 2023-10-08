@@ -17,9 +17,13 @@ export const Cost: React.FC<Props> = ({ type, value, size }) => {
 
   const [haveAmount, setHaveAmount] = useState(0);
 
-  useSceneUpdate(world, () => {
-    setHaveAmount(world.player[type]);
-  });
+  useSceneUpdate(
+    world,
+    () => {
+      setHaveAmount(world.player[type]);
+    },
+    []
+  );
 
   return (
     <Wrapper $size={size}>

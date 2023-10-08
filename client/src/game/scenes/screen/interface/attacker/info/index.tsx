@@ -22,16 +22,20 @@ export const AttakerInfo: React.FC<Props> = ({ variant }) => {
   const [existCount, setExistCount] = useState(0);
   const [isAllowByWave, setAllowByWave] = useState(false);
 
-  useSceneUpdate(world, () => {
-    const currentLimit = world.attacker.getEnemyLimit(variant);
-    const currentIsAllowByWave = world.attacker.isEnemyAllowByWave(variant);
-    setAllowByWave(currentIsAllowByWave);
+  useSceneUpdate(
+    world,
+    () => {
+      const currentLimit = world.attacker.getEnemyLimit(variant);
+      const currentIsAllowByWave = world.attacker.isEnemyAllowByWave(variant);
+      setAllowByWave(currentIsAllowByWave);
 
-    setLimit(currentLimit);
-    if (currentLimit) {
-      setExistCount(world.attacker.getEnemiesByVariant(variant).length);
-    }
-  });
+      setLimit(currentLimit);
+      if (currentLimit) {
+        setExistCount(world.attacker.getEnemiesByVariant(variant).length);
+      }
+    },
+    []
+  );
 
   return (
     <Wrapper>

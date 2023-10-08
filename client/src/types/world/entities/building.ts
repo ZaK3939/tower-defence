@@ -181,6 +181,9 @@ export enum BuildingTexture {
 }
 
 export enum BuildingIcon {
+  CONFIRM = "building/icons/confirm",
+  CONFIRM_DISABLED = "building/icons/confirm_disabled",
+  DECLINE = "building/icons/decline",
   ALERT = "building/icons/alert",
   UPGRADE = "building/icons/upgrade",
   HEALTH = "building/icons/params/health",
