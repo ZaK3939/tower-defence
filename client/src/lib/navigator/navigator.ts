@@ -1,7 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
 // @ts-ignore
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import NavigatorWorker from "worker-loader!./worker";
 
 import {
   INavigator,
@@ -11,6 +9,8 @@ import {
   NavigatorEvent,
 } from "@type/navigator";
 import { Vector2D } from "@type/world/level";
+
+import NavigatorWorker from "./worker.ts?worker";
 
 export class Navigator implements INavigator {
   private pointsCost: number[][] = [];

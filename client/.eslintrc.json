@@ -1,0 +1,30 @@
+{
+  "rules": {
+    "no-new": "off",
+    "no-console": "off",
+    "default-case": "off",
+    "consistent-return": "off",
+    "func-names": "off",
+    "import/order": [
+      "warn",
+      {
+        "newlines-between": "always",
+        "groups": ["builtin", "external", "parent", "sibling", "index"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "pathGroups": [
+          {
+            "pattern": "~**/**",
+            "group": "parent"
+          },
+          {
+            "pattern": "../**",
+            "group": "sibling"
+          }
+        ]
+      }
+    ]
+  }
+}

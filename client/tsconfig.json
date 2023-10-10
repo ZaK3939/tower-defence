@@ -10,6 +10,8 @@
     "esModuleInterop": true,
     "strict": true,
     "strictPropertyInitialization": false,
+    "skipLibCheck": true,
+    "types": ["vite/client", "jest"],
     "paths": {
       "@entity/*": ["./src/game/scenes/world/entities/*"],
       "@scene/*": ["./src/game/scenes/*"],
@@ -19,5 +21,6 @@
       "@lib/*": ["./src/lib/*"]
     }
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*"],
+  "exclude": ["./src/**/__tests__/**", "./src/**/__mocks__/**"]
 }
