@@ -1,27 +1,22 @@
 import {
   getModifiedObject,
+  useMatchMedia,
   useMobilePlatform,
   useScene,
   useSceneUpdate,
 } from "phaser-react-ui";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
-import { PLAYER_SKILLS } from "@const/world/entities/player";
+import {
+  PLAYER_MAX_SKILL_LEVEL,
+  PLAYER_SKILLS,
+} from "@const/world/entities/player";
 import { Cost } from "@scene/system/interface/cost";
-import { Text } from "@scene/system/interface/text";
 import { GameScene } from "@type/game";
 import { IWorld } from "@type/world";
 import { PlayerSkill, PlayerSkillData } from "@type/world/entities/player";
-import {
-  Container,
-  Info,
-  Action,
-  Label,
-  Description,
-  Level,
-  Button,
-  Limit,
-} from "./styles";
+import { Container, Info, Action, Label, Level, Button, Limit } from "./styles";
+import { INTERFACE_MOBILE_BREAKPOINT } from "@const/interface";
 
 type Props = {
   type: PlayerSkill;
@@ -30,9 +25,13 @@ type Props = {
 export const UpgradesListItem: React.FC<Props> = ({ type }) => {
   const world = useScene<IWorld>(GameScene.WORLD);
   const isMobile = useMobilePlatform();
+  const isSmallScreen = useMatchMedia(INTERFACE_MOBILE_BREAKPOINT);
   const [data, setData] = useState<Nullable<PlayerSkillData>>(null);
 
-  const limit = data?.currentLevel && data.maxLevel <= data.currentLevel;
+  const levels = useMemo(
+    () => Array.from({ length: PLAYER_MAX_SKILL_LEVEL }),
+    []
+  );
 
   const onClick = () => {
     world.player.upgrade(type);
@@ -41,7 +40,12 @@ export const UpgradesListItem: React.FC<Props> = ({ type }) => {
   useSceneUpdate(
     world,
     () => {
-      if (type !== PlayerSkill.ASSISTANT || world.player.wawa?.petId) {
+      if (
+        (type !== PlayerSkill.ATTACK_DAMAGE &&
+          type !== PlayerSkill.ATTACK_DISTANCE &&
+          type !== PlayerSkill.ATTACK_SPEED) ||
+        world.player.wawa?.petId
+      ) {
         const newData: PlayerSkillData = {
           ...PLAYER_SKILLS[type],
           experience: world.player.getExperienceToUpgrade(type),
@@ -59,14 +63,16 @@ export const UpgradesListItem: React.FC<Props> = ({ type }) => {
       <Container>
         <Info>
           <Label>{data.label}</Label>
-          <Description>
-            <Text>{data.description}</Text>
-          </Description>
           <Level>
-            LEVEL <b>{data.currentLevel}</b>
+            {levels.map((_, level) => (
+              <Level.Progress
+                key={level}
+                $active={data.currentLevel && level < data.currentLevel}
+              />
+            ))}
           </Level>
         </Info>
-        {limit ? (
+        {data.currentLevel >= PLAYER_MAX_SKILL_LEVEL ? (
           <Action>
             <Limit>
               MAX
@@ -82,7 +88,11 @@ export const UpgradesListItem: React.FC<Props> = ({ type }) => {
             $active
           >
             <Button>UPGRADE</Button>
-            <Cost type="experience" value={data.experience} size="large" />
+            <Cost
+              type="experience"
+              value={data.experience}
+              size={isSmallScreen ? "small" : "medium"}
+            />
           </Action>
         )}
       </Container>

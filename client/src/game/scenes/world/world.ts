@@ -694,7 +694,6 @@ export class World extends Scene implements IWorld {
         positionAtMatrix: positionAtMatrix || this.player.positionAtMatrix,
         speed: this.player.speed,
         health: this.player.live.maxHealth,
-        level: this.player.upgradeLevel[PlayerSkill.ASSISTANT],
         wawa,
       });
 

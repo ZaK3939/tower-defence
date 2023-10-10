@@ -15,7 +15,19 @@ const animationOpacity = keyframes`
   100% { opacity: 1; margin-top: 14px }
 `;
 
+export const Targets = styled.div`
+  display: flex;
+  margin-bottom: 15px;
+  > * {
+    flex: 1;
+    &:not(:last-child) {
+      margin-right: 5px;
+    }
+  }
+`;
+
 export const Container = styled.div`
+  pointer-events: all;
   @media ${INTERFACE_DESKTOP_BREAKPOINT} {
     position: absolute;
     top: 100%;
@@ -25,6 +37,7 @@ export const Container = styled.div`
     border-radius: 10px;
     padding: 20px;
     margin-top: 14px;
+    width: 360px;
     &::after {
       position: absolute;
       content: "";
@@ -37,6 +50,7 @@ export const Container = styled.div`
     }
   }
   @media ${INTERFACE_MOBILE_BREAKPOINT} {
+    width: 320px;
     padding: 16px;
     position: fixed;
     left: 0;
