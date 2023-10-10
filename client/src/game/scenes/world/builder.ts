@@ -22,6 +22,8 @@ import {
 } from "@type/world/entities/building";
 import { INPC } from "@type/world/entities/npc";
 import { BiomeType, TileType, Vector2D } from "@type/world/level";
+import { progressionLinear } from "@lib/difficulty";
+import { PlayerSkill } from "@type/world/entities/player";
 
 export class Builder extends EventEmitter implements IBuilder {
   readonly scene: IWorld;
@@ -383,6 +385,11 @@ export class Builder extends EventEmitter implements IBuilder {
     this.createBuilding({
       variant: this.variant,
       positionAtMatrix: this.supposedPosition,
+      buildDuration: progressionLinear({
+        defaultValue: DIFFICULTY.BUILDER_BUILD_DURATION,
+        scale: DIFFICULTY.BUILDER_BUILD_DURATION_GROWTH,
+        level: this.scene.player.upgradeLevel[PlayerSkill.BUILD_SPEED],
+      }),
     });
 
     this.scene.player.takeResources(BuildingInstance.Cost);
@@ -398,7 +405,7 @@ export class Builder extends EventEmitter implements IBuilder {
   public createBuilding(data: BuildingBuildData) {
     const BuildingInstance = BUILDINGS[data.variant];
     const building = new BuildingInstance(this.scene, {
-      instant: data.instant,
+      buildDuration: data.buildDuration,
       positionAtMatrix: data.positionAtMatrix,
     });
 
