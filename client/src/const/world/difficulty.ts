@@ -94,8 +94,8 @@ export const DIFFICULTY = {
   ENEMY_ARMOUR: 60, // Armour
   ENEMY_ARMOUR_GROWTH: 0.38, // Armour growth by wave number (Quadratic)
   ENEMY_ARMOUR_GROWTH_RETARDATION_LEVEL: 15, // Level for armour growth retardation
-  ENEMY_SPEED: 60, // Movement speed
-  ENEMY_SPEED_GROWTH: 0.03, // Speed growth by wave number (Linear)
+  ENEMY_SPEED: 40, // Movement speed
+  ENEMY_SPEED_GROWTH: 0.02, // Speed growth by wave number (Linear)
   ENEMY_SPEED_GROWTH_MAX_LEVEL: 13, // Level for limit speed growth
   ENEMY_DAMAGE: 90, // Attack damage
   ENEMY_DAMAGE_GROWTH: 0.22, // Damage growth by wave number (Quadratic)
