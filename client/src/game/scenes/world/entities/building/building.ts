@@ -164,6 +164,10 @@ export class Building
 
       this.scene.level.navigator.resetPointCost(positionAtMatrix);
       this.live.removeAllListeners();
+
+      this.scene
+        .getEntitiesGroup(EntityType.BUILDING)
+        .emit(BuildingEvents.BREAK, this);
     });
   }
 
