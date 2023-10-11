@@ -214,7 +214,7 @@ export const DIFFICULTY = {
    * Building: Booster
    */
 
-  BUILDING_BOOSTER_COST: 80, // Building cost
+  BUILDING_BOOSTER_COST: 60, // Building cost
   BUILDING_BOOSTER_ALLOW_BY_WAVE: 2, // Minimal wave for allow build
   BUILDING_BOOSTER_HEALTH: 300, // Health
   BUILDING_BOOSTER_RADIUS: 80, // Increase radius
