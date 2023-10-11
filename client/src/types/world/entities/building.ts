@@ -5,6 +5,7 @@ import { ILive } from "./utils/live";
 import { Vector2D } from "@type/world/level";
 import { IShotInitiator } from "./shot";
 import { IEnemyTarget } from "./npc/enemy";
+import { TutorialStep } from "@type/tutorial";
 
 export interface IBuilding
   extends Phaser.GameObjects.Image,
@@ -53,6 +54,18 @@ export interface IBuilding
    * Check is actions not paused.
    */
   isActionAllowed(): boolean;
+
+  /**
+   * Bind hint on tutorial step
+   * @param step - Tutorial step
+   * @param text - Message
+   * @param condition - Show condition
+   */
+  bindTutorialHint(
+    step: TutorialStep,
+    text: string,
+    condition?: () => boolean
+  ): void;
 
   /**
    * Get building information params.
@@ -151,11 +164,13 @@ export interface IBuildingFactory {
   Health: number;
   Limit?: boolean;
   AllowByWave?: number;
+  MaxLevel: number;
   new (scene: IWorld, data: BuildingVariantData): IBuilding;
 }
 
 export enum BuildingEvents {
   UPGRADE = "upgrade",
+  BUY_AMMO = "buy_ammo",
 }
 
 export enum BuildingVariant {

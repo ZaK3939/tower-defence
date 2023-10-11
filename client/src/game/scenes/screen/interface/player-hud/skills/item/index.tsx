@@ -1,5 +1,5 @@
 import {
-  getModifiedObject,
+  ifModifiedObject,
   useMatchMedia,
   useMobilePlatform,
   useScene,
@@ -26,10 +26,19 @@ export const UpgradesListItem: React.FC<Props> = ({ type }) => {
   const world = useScene<IWorld>(GameScene.WORLD);
   const isMobile = useMobilePlatform();
   const isSmallScreen = useMatchMedia(INTERFACE_MOBILE_BREAKPOINT);
-  const [data, setData] = useState<Nullable<PlayerSkillData>>(null);
+  const getData = (): PlayerSkillData => ({
+    ...PLAYER_SKILLS[type],
+    experience: world.player.getExperienceToUpgrade(type),
+    currentLevel: world.player.upgradeLevel[type],
+  });
+
+  const [data, setData] = useState<PlayerSkillData>(getData);
 
   const levels = useMemo(
-    () => Array.from({ length: PLAYER_MAX_SKILL_LEVEL }),
+    () =>
+      Array.from({
+        length: PLAYER_MAX_SKILL_LEVEL,
+      }),
     []
   );
 
@@ -45,57 +54,48 @@ export const UpgradesListItem: React.FC<Props> = ({ type }) => {
           type !== PlayerSkill.ATTACK_DISTANCE &&
           type !== PlayerSkill.ATTACK_SPEED) ||
         world.player.wawa?.petId
-      ) {
-        const newData: PlayerSkillData = {
-          ...PLAYER_SKILLS[type],
-          experience: world.player.getExperienceToUpgrade(type),
-          currentLevel: world.player.upgradeLevel[type],
-        };
-
-        setData((current) => getModifiedObject(current, newData));
-      }
+      )
+        setData(ifModifiedObject(getData()));
     },
     []
   );
 
   return (
-    data && (
-      <Container>
-        <Info>
-          <Label>{data.label}</Label>
-          <Level>
-            {levels.map((_, level) => (
-              <Level.Progress
-                key={level}
-                $active={data.currentLevel && level < data.currentLevel}
-              />
-            ))}
-          </Level>
-        </Info>
-        {data.currentLevel >= PLAYER_MAX_SKILL_LEVEL ? (
-          <Action>
-            <Limit>
-              MAX
-              <br />
-              LEVEL
-            </Limit>
-          </Action>
-        ) : (
-          <Action
-            {...{
-              [isMobile ? "onTouchEnd" : "onClick"]: onClick,
-            }}
-            $active
-          >
-            <Button>UPGRADE</Button>
-            <Cost
-              type="experience"
-              value={data.experience}
-              size={isSmallScreen ? "small" : "medium"}
+    <Container>
+      <Info>
+        <Label>{data.label}</Label>
+        <Level>
+          {levels.map((_, level) => (
+            <Level.Progress
+              key={level}
+              $active={data.currentLevel && level < data.currentLevel}
             />
-          </Action>
-        )}
-      </Container>
-    )
+          ))}
+        </Level>
+      </Info>
+      {data.currentLevel >= PLAYER_MAX_SKILL_LEVEL ? (
+        <Action>
+          <Limit>
+            MAX
+            <br />
+            LEVEL
+          </Limit>
+        </Action>
+      ) : (
+        <Action
+          {...{
+            [isMobile ? "onTouchEnd" : "onClick"]: onClick,
+          }}
+          $active
+        >
+          <Button>UPGRADE</Button>
+          <Cost
+            type="experience"
+            value={data.experience}
+            size={isSmallScreen ? "small" : "medium"}
+          />
+        </Action>
+      )}
+    </Container>
   );
 };

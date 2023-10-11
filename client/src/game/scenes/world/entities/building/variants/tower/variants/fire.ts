@@ -46,6 +46,7 @@ export class BuildingTowerFire extends BuildingTower {
 
   static Health = DIFFICULTY.BUILDING_TOWER_FIRE_HEALTH;
 
+  static MaxLevel = 4;
   constructor(scene: IWorld, data: BuildingVariantData) {
     const shot = new ShotBallFire(scene, {
       damage: DIFFICULTY.BUILDING_TOWER_FIRE_DAMAGE,
@@ -71,52 +72,18 @@ export class BuildingTowerFire extends BuildingTower {
       shot
     );
 
-    let hintId: Nullable<string> = null;
-
-    const hideCurrentHint = () => {
-      if (hintId) {
-        this.scene.hideHint(hintId);
-        hintId = null;
-      }
-    };
-
-    const unbindUpgradeStep = this.scene.game.tutorial.bind(
+    this.bindTutorialHint(
       TutorialStep.UPGRADE_BUILDING,
-      {
-        beg: () => {
-          hintId = this.scene.showHint({
-            side: "top",
-            text: this.scene.game.device.os.desktop
-              ? "Hover and press [E] to upgrade"
-              : "Click to upgrade",
-            position: this.getPositionOnGround(),
-          });
-        },
-        end: hideCurrentHint,
-      }
+      this.scene.game.device.os.desktop
+        ? "Hover and press [E] to upgrade"
+        : "Click to upgrade"
     );
 
-    const unbindReloadStep = this.scene.game.tutorial.bind(
+    this.bindTutorialHint(
       TutorialStep.RELOAD_TOWER,
-      {
-        beg: () => {
-          if (this.ammo === 0) {
-            hintId = this.scene.showHint({
-              side: "top",
-              text: "Build ammunition nearby",
-              position: this.getPositionOnGround(),
-            });
-          }
-        },
-        end: hideCurrentHint,
-      }
+      "Build ammunition nearby",
+      () => this.ammo === 0
     );
-
-    this.on(Phaser.GameObjects.Events.DESTROY, () => {
-      hideCurrentHint();
-      unbindUpgradeStep();
-      unbindReloadStep();
-    });
 
     if (
       this.scene.game.tutorial.state(TutorialStep.BUILD_TOWER_FIRE) ===

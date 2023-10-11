@@ -1,6 +1,6 @@
 import { DIFFICULTY } from "@const/world/difficulty";
 import { Building } from "@game/scenes/world/entities/building";
-import { progressionQuadratic } from "@lib/difficulty";
+import { progressionLinear, progressionQuadratic } from "@lib/difficulty";
 import { getClosest } from "@lib/utils";
 import { TutorialStep } from "@type/tutorial";
 import { IWorld } from "@type/world";
@@ -16,6 +16,7 @@ import {
   IBuildingTower,
   BuildingAudio,
   BuildingDataPayload,
+  BuildingEvents,
 } from "@type/world/entities/building";
 import { IEnemy } from "@type/world/entities/npc/enemy";
 import { PlayerSuperskill } from "@type/world/entities/player";
@@ -140,7 +141,7 @@ export class BuildingTower extends Building implements IBuildingTower {
     };
 
     if (this.shotDefaultParams.speed) {
-      params.speed = progressionQuadratic({
+      params.speed = progressionLinear({
         defaultValue: this.shotDefaultParams.speed,
         scale: DIFFICULTY.BUIDLING_TOWER_SHOT_SPEED_GROWTH,
         level: this.upgradeLevel,
@@ -151,7 +152,7 @@ export class BuildingTower extends Building implements IBuildingTower {
       const rage = this.scene.player.activeSuperskills[PlayerSuperskill.RAGE];
 
       params.damage =
-        progressionQuadratic({
+        progressionLinear({
           defaultValue: this.shotDefaultParams.damage,
           scale: DIFFICULTY.BUIDLING_TOWER_SHOT_DAMAGE_GROWTH,
           level: this.upgradeLevel,
@@ -159,7 +160,7 @@ export class BuildingTower extends Building implements IBuildingTower {
     }
 
     if (this.shotDefaultParams.freeze) {
-      params.freeze = progressionQuadratic({
+      params.freeze = progressionLinear({
         defaultValue: this.shotDefaultParams.freeze,
         scale: DIFFICULTY.BUIDLING_TOWER_SHOT_FREEZE_GROWTH,
         level: this.upgradeLevel,
@@ -208,7 +209,9 @@ export class BuildingTower extends Building implements IBuildingTower {
     } else if (!this.needReload) {
       this.addAlertIcon();
       this.needReload = true;
-
+      if (this.scene.game.sound.getAll(BuildingAudio.OVER).length === 0) {
+        this.scene.game.sound.play(BuildingAudio.OVER);
+      }
       this.scene.game.tutorial.start(TutorialStep.RELOAD_TOWER);
     }
   }
@@ -247,12 +250,16 @@ export class BuildingTower extends Building implements IBuildingTower {
       }
     };
 
-    this.scene.builder.on(BuilderEvents.UPGRADE, handler);
+    const buidingsGroup = this.scene.getEntitiesGroup(EntityType.BUILDING);
+
     this.scene.builder.on(BuilderEvents.BUILD, handler);
+    buidingsGroup.on(BuildingEvents.UPGRADE, handler);
+    buidingsGroup.on(BuildingEvents.BUY_AMMO, handler);
 
     this.on(Phaser.GameObjects.Events.DESTROY, () => {
-      this.scene.builder.off(BuilderEvents.UPGRADE, handler);
       this.scene.builder.off(BuilderEvents.BUILD, handler);
+      buidingsGroup.off(BuildingEvents.UPGRADE, handler);
+      buidingsGroup.off(BuildingEvents.BUY_AMMO, handler);
     });
   }
 }

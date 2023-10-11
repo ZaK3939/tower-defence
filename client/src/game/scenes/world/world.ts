@@ -16,7 +16,7 @@ import { Stair } from "@game/scenes/world/entities/stair";
 import { Assistant } from "@game/scenes/world/entities/npc/variants/assistant";
 import { Player } from "@game/scenes/world/entities/player";
 import { Scene } from "..";
-import { aroundPosition, sortByDistance } from "@lib/utils";
+import { aroundPosition, hashString, sortByDistance } from "@lib/utils";
 import { Camera } from "@game/scenes/world/camera";
 import { WorldUI } from "@game/scenes/world/interface";
 import { Level } from "@game/scenes/world/level";
@@ -34,7 +34,7 @@ import {
   EnemyVariant,
   IEnemy,
 } from "@type/world/entities/npc/enemy";
-import { IPlayer, PlayerAudio, PlayerSkill } from "@type/world/entities/player";
+import { IPlayer, PlayerAudio } from "@type/world/entities/player";
 import { ISprite } from "@type/world/entities/sprite";
 import {
   ILevel,
@@ -131,8 +131,6 @@ export class World extends Scene implements IWorld {
   private enemySpawnPositionsAnalog: Vector2D[] = [];
 
   private lifecyle: Phaser.Time.TimerEvent;
-
-  private currentHintId: Nullable<string> = null;
 
   private _deltaTime: number = 1;
 
@@ -417,17 +415,15 @@ export class World extends Scene implements IWorld {
   }
 
   public showHint(hint: WorldHint) {
-    this.currentHintId = uuidv4();
-    this.events.emit(WorldEvents.SHOW_HINT, hint);
+    const id = hint.unique ? hashString(hint.text) : uuidv4();
 
-    return this.currentHintId;
+    this.events.emit(WorldEvents.SHOW_HINT, id, hint);
+
+    return id;
   }
 
-  public hideHint(id?: string) {
-    if (!id || id === this.currentHintId) {
-      this.events.emit(WorldEvents.HIDE_HINT);
-      this.currentHintId = null;
-    }
+  public hideHint(id: string) {
+    this.events.emit(WorldEvents.HIDE_HINT, id);
   }
 
   public getTime() {

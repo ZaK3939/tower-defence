@@ -50,6 +50,7 @@ export class BuildingTowerFrozen extends BuildingTower {
 
   static AllowByWave = DIFFICULTY.BUILDING_TOWER_FROZEN_ALLOW_BY_WAVE;
 
+  static MaxLevel = 4;
   constructor(scene: IWorld, data: BuildingVariantData) {
     const shot = new ShotBallFrozen(scene, {
       freeze: DIFFICULTY.BUILDING_TOWER_FROZEN_FREEZE_DURATION,

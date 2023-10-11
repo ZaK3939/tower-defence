@@ -28,10 +28,18 @@ export enum CrystalTexture {
 export enum CrystalAudio {
   PICKUP = "crystal/pickup",
 }
+export enum CrystalEvents {
+  PICKUP = "pickup",
+}
 
 export type CrystalData = {
   positionAtMatrix: Vector2D;
   variant?: number;
+};
+
+export type CrystalAmount = {
+  position: Vector2D;
+  value: number;
 };
 
 export type CrystalDataPayload = {

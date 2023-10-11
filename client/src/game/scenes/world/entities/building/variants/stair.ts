@@ -33,6 +33,7 @@ export class BuildingStair extends Building {
 
   static AllowByWave = DIFFICULTY.BUILDING_STAIR_ALLOW_BY_WAVE;
 
+  static MaxLevel = 1;
   constructor(scene: IWorld, data: BuildingVariantData) {
     super(scene, {
       ...data,

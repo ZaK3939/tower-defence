@@ -131,10 +131,6 @@ export class Building
     this.live = new Live({ health });
 
     this.addActionArea();
-    this.setInteractive({
-      pixelPerfect: true,
-      useHandCursor: true,
-    });
 
     this.handleKeyboard();
     this.handlePointer();
@@ -147,6 +143,8 @@ export class Building
 
     if (buildDuration && buildDuration > 0) {
       this.startBuildProcess(buildDuration);
+    } else {
+      this.completeBuildProcess();
     }
 
     this.scene.level.navigator.setPointCost(
@@ -244,15 +242,14 @@ export class Building
       });
     }
 
-    if (!this.live.isMaxHealth()) {
-      actions.push({
-        label: "Repair",
-        cost: this.getRepairCost(),
-        onClick: () => {
-          this.repair();
-        },
-      });
-    }
+    actions.push({
+      label: "Repair",
+      cost: this.getRepairCost(),
+      disabled: this.live.isMaxHealth(),
+      onClick: () => {
+        this.repair();
+      },
+    });
 
     return actions;
   }
@@ -283,12 +280,11 @@ export class Building
   }
 
   public getUpgradeCost(level?: number) {
-    const costPerLevel = this.getMeta().Cost / BUILDING_MAX_UPGRADE_LEVEL;
+    const costPerLevel =
+      this.getMeta().Cost * DIFFICULTY.BUILDING_UPGRADE_COST_MULTIPLIER;
     const nextLevel = level ?? this.upgradeLevel;
 
-    return Math.round(
-      costPerLevel * nextLevel * DIFFICULTY.BUILDING_UPGRADE_COST_MULTIPLIER
-    );
+    return Math.round(costPerLevel * nextLevel);
   }
 
   private getRepairCost() {
@@ -303,7 +299,7 @@ export class Building
   }
 
   private isUpgradeAllowed() {
-    return this.upgradeLevel < BUILDING_MAX_UPGRADE_LEVEL;
+    return this.upgradeLevel < this.getMeta().MaxLevel;
   }
 
   private getUpgradeAllowedByWave() {
@@ -342,7 +338,9 @@ export class Building
     this.setFrame(this.upgradeLevel - 1);
 
     this.emit(BuildingEvents.UPGRADE);
-    this.scene.builder.emit(BuilderEvents.UPGRADE, this);
+    this.scene
+      .getEntitiesGroup(EntityType.BUILDING)
+      .emit(BuildingEvents.UPGRADE, this);
 
     this.scene.player.takeResources(cost);
 
@@ -354,9 +352,8 @@ export class Building
 
     this.scene.player.giveExperience(experience);
 
-    this.scene.game.sound.play(BuildingAudio.UPGRADE);
-
     this.scene.game.tutorial.complete(TutorialStep.UPGRADE_BUILDING);
+    this.scene.game.sound.play(BuildingAudio.UPGRADE);
   }
 
   private repair() {
@@ -394,6 +391,40 @@ export class Building
       scale: DIFFICULTY.BUILDING_HEALTH_GROWTH,
       level: this.upgradeLevel,
       roundTo: 100,
+    });
+  }
+
+  public bindTutorialHint(
+    step: TutorialStep,
+    text: string,
+    condition?: () => boolean
+  ) {
+    let hintId: Nullable<string> = null;
+
+    const hideHint = () => {
+      if (hintId) {
+        this.scene.hideHint(hintId);
+        hintId = null;
+      }
+    };
+
+    const unbindStep = this.scene.game.tutorial.bind(step, {
+      beg: () => {
+        if (!condition || condition()) {
+          hintId = this.scene.showHint({
+            side: "top",
+            text,
+            position: this.getPositionOnGround(),
+            unique: true,
+          });
+        }
+      },
+      end: hideHint,
+    });
+
+    this.on(Phaser.GameObjects.Events.DESTROY, () => {
+      hideHint();
+      unbindStep();
     });
   }
 
@@ -680,6 +711,11 @@ export class Building
     this.setActive(true);
     this.setAlpha(1.0);
 
+    this.setInteractive({
+      pixelPerfect: true,
+      useHandCursor: true,
+    });
+
     this.scene.builder.emit(BuilderEvents.BUILD, this);
   }
 
@@ -700,7 +736,7 @@ export class Building
 
         this.setAlpha(this.alpha + 0.5 / target);
 
-        if (progress === target) {
+        if (progress >= target) {
           this.completeBuildProcess();
         } else if (this.buildBar) {
           const bar = <Phaser.GameObjects.Rectangle>this.buildBar.getAt(1);

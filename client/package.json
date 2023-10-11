@@ -1,6 +1,6 @@
 {
   "name": "tower-defense",
-  "version": "0.0.70",
+  "version": "0.0.71",
   "description": "Build and Defence in the onchain crypto world",
   "main": "./dist/index.html",
   "scripts": {
@@ -59,7 +59,7 @@
     "idb": "7.1.1",
     "path-browserify": "^1.0.1",
     "phaser": "3.60.0",
-    "phaser-react-ui": "1.9.1",
+    "phaser-react-ui": "1.9.4",
     "phaser3-rex-plugins": "1.60.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",

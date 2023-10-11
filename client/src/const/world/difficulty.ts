@@ -111,7 +111,7 @@ export const DIFFICULTY = {
   BUILDER_BUILD_AREA_EXPERIENCE_TO_UPGRADE: 100, // Experience need to upgrade radius
   BUILDER_BUILD_DURATION: 2000, // Duration of build process
   BUILDER_BUILD_DURATION_GROWTH: -0.12, // Experience growth by level (Linear)
-  BUILDER_BUILD_SPEED_EXPERIENCE_TO_UPGRADE: 50, // Experience need to upgrade speed
+  BUILDER_BUILD_SPEED_EXPERIENCE_TO_UPGRADE: 30, // Experience need to upgrade speed
   /**
    * Buildings
    */
@@ -120,7 +120,7 @@ export const DIFFICULTY = {
   BUILDING_BUILD_EXPERIENCE: 30, // Gained experience for build
   BUILDING_UPGRADE_EXPERIENCE: 15, // Gained experience per upgrade level
   BUILDING_UPGRADE_EXPERIENCE_GROWTH: 0.75, // Experience growth by level (Linear)
-  BUILDING_UPGRADE_COST_MULTIPLIER: 2.0, // Upgrade cost multiplier
+  BUILDING_UPGRADE_COST_MULTIPLIER: 1.0, // Upgrade cost multiplier
 
   /**
    * Building: Wall
@@ -134,9 +134,9 @@ export const DIFFICULTY = {
    * Building: Towers
    */
 
-  BUIDLING_TOWER_SHOT_DAMAGE_GROWTH: 0.55, // Shot damage growth by level (Quadratic)
-  BUIDLING_TOWER_SHOT_FREEZE_GROWTH: 0.45, // Frozen duration growth by level (Quadratic)
-  BUIDLING_TOWER_SHOT_SPEED_GROWTH: 0.2, // Shot speed growth by level (Quadratic)
+  BUIDLING_TOWER_SHOT_DAMAGE_GROWTH: 0.75, // Shot damage growth by level (Linear)
+  BUIDLING_TOWER_SHOT_FREEZE_GROWTH: 0.5, // Frozen duration growth by level (Lienear)
+  BUIDLING_TOWER_SHOT_SPEED_GROWTH: 0.2, // Shot speed growth by level (Linear)
   BUIDLING_TOWER_AMMO_AMOUNT: 30, // Ammo in clip
 
   /**
@@ -144,7 +144,7 @@ export const DIFFICULTY = {
    */
 
   BUILDING_TOWER_FIRE_COST: 30, // Building cost
-  BUILDING_TOWER_FIRE_HEALTH: 600, // Health
+  BUILDING_TOWER_FIRE_HEALTH: 400, // Health
   BUILDING_TOWER_FIRE_RADIUS: 160, // Attack radius
   BUILDING_TOWER_FIRE_RADIUS_GROWTH: 0.25, // Radius growth by level (Linear)
   BUILDING_TOWER_FIRE_DELAY: 1400, // Pause between attacks
@@ -157,7 +157,7 @@ export const DIFFICULTY = {
    */
 
   BUILDING_TOWER_FROZEN_COST: 40, // Building cost
-  BUILDING_TOWER_FROZEN_HEALTH: 800, // Health
+  BUILDING_TOWER_FROZEN_HEALTH: 400, // Health
   BUILDING_TOWER_FROZEN_ALLOW_BY_WAVE: 4, // Minimal wave for allow build
   BUILDING_TOWER_FROZEN_RADIUS: 150, // Freeze radius
   BUILDING_TOWER_FROZEN_RADIUS_GROWTH: 0.25, // Radius growth by level (Linear)
@@ -197,7 +197,7 @@ export const DIFFICULTY = {
   BUILDING_AMMUNITION_ALLOW_BY_WAVE: 3, // Minimal wave for allow build
   BUILDING_AMMUNITION_RADIUS: 120, // Heal radius
   BUILDING_AMMUNITION_RADIUS_GROWTH: 0.25, // Radius growth by level (Linear)
-  BUILDING_AMMUNITION_AMMO: 150, // Ammo amount
+  BUILDING_AMMUNITION_AMMO: 120, // Ammo amount
   BUILDING_AMMUNITION_AMMO_GROWTH: 1.0, // Ammo amount growth by level (Quadratic)
 
   /**
@@ -205,7 +205,7 @@ export const DIFFICULTY = {
    */
 
   BUILDING_RADAR_COST: 60, // Building cost
-  BUILDING_RADAR_HEALTH: 800, // Health
+  BUILDING_RADAR_HEALTH: 500, // Health
   BUILDING_RADAR_ALLOW_BY_WAVE: 8, // Minimal wave for allow build
   BUILDING_RADAR_RADIUS: 130, // Unhidden radius
   BUILDING_RADAR_RADIUS_GROWTH: 0.3, // Radius growth by level (Linear)

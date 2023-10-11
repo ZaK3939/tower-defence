@@ -64,14 +64,15 @@ export const Navigation: React.FC<Props> = ({ page, onSelect }) => {
       },
       {
         label: "About",
-        page: MenuPage.ABOUT,
-      },
-      {
-        label: "Controls",
-        page: MenuPage.CONTROLS,
+        page: MenuPage.ABOUT_GAME,
       }
     );
-
+    if (game.device.os.desktop) {
+      items.push({
+        label: "Controls",
+        page: MenuPage.CONTROLS,
+      });
+    }
     return items;
   }, []);
 

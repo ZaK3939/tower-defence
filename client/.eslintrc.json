@@ -5,6 +5,7 @@
     "default-case": "off",
     "consistent-return": "off",
     "func-names": "off",
+    "no-bitwise": "off",
     "import/order": [
       "warn",
       {
