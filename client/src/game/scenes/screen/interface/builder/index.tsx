@@ -24,6 +24,9 @@ export const Builder: React.FC = () => {
     }>
   >(null);
 
+  // check for wave is Going
+  const [isGoing, setIsGoing] = useState<boolean>(false);
+
   const showHint = (step: TutorialStep) => {
     switch (step) {
       case TutorialStep.BUILD_STAKING: {
@@ -81,7 +84,15 @@ export const Builder: React.FC = () => {
     []
   );
 
-  return (
+  useSceneUpdate(
+    world,
+    () => {
+      const waveIsGoing = world.wave.isGoing;
+      setIsGoing(waveIsGoing);
+    },
+    []
+  );
+  return !isGoing ? (
     <Wrapper ref={refScroll}>
       {Object.values(BuildingVariant).map((variant, index) => (
         <Building
@@ -94,5 +105,5 @@ export const Builder: React.FC = () => {
         />
       ))}
     </Wrapper>
-  );
+  ) : null;
 };
