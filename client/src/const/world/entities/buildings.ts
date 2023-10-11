@@ -10,6 +10,7 @@ import {
   BuildingVariant,
   IBuildingFactory,
 } from "@type/world/entities/building";
+import { BuildingBooster } from "@entity/building/variants/booster";
 
 export const BUILDINGS: Record<BuildingVariant, IBuildingFactory> = {
   [BuildingVariant.TOWER_FIRE]: BuildingTowerFire,
@@ -19,5 +20,6 @@ export const BUILDINGS: Record<BuildingVariant, IBuildingFactory> = {
   [BuildingVariant.TOWER_FROZEN]: BuildingTowerFrozen,
   [BuildingVariant.TOWER_LAZER]: BuildingTowerLazer,
   [BuildingVariant.RADAR]: BuildingRadar,
+  [BuildingVariant.BOOSTER]: BuildingBooster,
   [BuildingVariant.STAIR]: BuildingStair,
 };

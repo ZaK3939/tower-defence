@@ -110,9 +110,8 @@ export interface IBuilder extends EventEmitter {
 }
 
 export enum BuilderEvents {
-  UPGRADE = "upgrade",
   BUILD = "build",
+  BUY_AMMO = "buy_ammo",
   BUILD_START = "build_start",
   BUILD_STOP = "build_stop",
-  BUILD_COMPLETE = "build_complete",
 }

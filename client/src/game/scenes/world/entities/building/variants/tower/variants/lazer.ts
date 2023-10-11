@@ -42,6 +42,7 @@ export class BuildingTowerLazer extends BuildingTower {
 
   static AllowByWave = DIFFICULTY.BUILDING_TOWER_LAZER_ALLOW_BY_WAVE;
 
+  static MaxLevel = 4;
   constructor(scene: IWorld, data: BuildingVariantData) {
     const shot = new ShotLazer(scene, {
       damage: DIFFICULTY.BUILDING_TOWER_LAZER_DAMAGE,

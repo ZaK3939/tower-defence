@@ -22,7 +22,7 @@ export const Content: React.FC<Props> = ({ page }) => {
         return <PvpGame />;
       case MenuPage.SETTINGS:
         return <Settings />;
-      case MenuPage.ABOUT:
+      case MenuPage.ABOUT_GAME:
         return <About />;
       case MenuPage.CONTROLS:
         return <Controls />;

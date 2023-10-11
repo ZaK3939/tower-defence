@@ -13,6 +13,7 @@ import {
   CrystalAudio,
   ICrystal,
   CrystalDataPayload,
+  CrystalEvents,
 } from "@type/world/entities/crystal";
 import { TileType, Vector2D } from "@type/world/level";
 import { ITile } from "@type/world/level/tile-matrix";
@@ -41,6 +42,14 @@ export class Crystal
     scene.addEntity(EntityType.CRYSTAL, this);
 
     this.positionAtMatrix = positionAtMatrix;
+    if (this.scene.game.device.os.desktop) {
+      this.setInteractive({
+        pixelPerfect: true,
+      });
+
+      this.handlePointer();
+    }
+
     this.setDepth(Level.GetTileDepth(positionAtWorld.y, tilePosition.z));
     this.setOrigin(0.5, LEVEL_TILE_SIZE.origin);
     this.scene.level.putTile(this, tilePosition);
@@ -51,6 +60,9 @@ export class Crystal
 
     this.scene.player.giveResources(resources);
 
+    this.scene
+      .getEntitiesGroup(EntityType.CRYSTAL)
+      .emit(CrystalEvents.PICKUP, this, resources);
     this.scene.sound.play(CrystalAudio.PICKUP);
     if (this.scene.game.isPVP) {
       this.scene.game.network.sendCrystalPickupInfo(this.positionAtMatrix);
@@ -75,6 +87,19 @@ export class Crystal
     return {
       position: this.positionAtMatrix,
     };
+  }
+
+  private handlePointer() {
+    this.on(Phaser.Input.Events.POINTER_OVER, () => {
+      this.addShader("OutlineShader", {
+        size: 4.0,
+        color: 0xffffff,
+      });
+    });
+
+    this.on(Phaser.Input.Events.POINTER_OUT, () => {
+      this.removeShader("OutlineShader");
+    });
   }
 }
 

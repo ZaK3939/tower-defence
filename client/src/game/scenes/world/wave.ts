@@ -214,8 +214,7 @@ export class Wave extends EventEmitter implements IWave {
 
     // close building preview
     this.scene.game.world.builder.unsetBuildingVariant();
-    // Play the wave start sound
-    this.scene.sound.play(WaveAudio.START);
+
     if (this.number >= DIFFICULTY.SUPERSKILL_ALLOW_BY_WAVE) {
       this.scene.game.screen.notice(NoticeType.INFO, `Superskill is ready!`);
     }
@@ -234,6 +233,8 @@ export class Wave extends EventEmitter implements IWave {
 
     // Emit an event indicating the start of the wave
     this.emit(WaveEvents.START, this.number);
+    // Play the wave start sound
+    this.scene.sound.play(WaveAudio.START);
   }
 
   public complete() {
@@ -269,7 +270,6 @@ export class Wave extends EventEmitter implements IWave {
 
     // Start specific tutorials based on the wave number
     if (this.number === 2) {
-      this.scene.game.tutorial.start(TutorialStep.UPGRADE_SKILL);
       this.scene.game.tutorial.start(TutorialStep.UPGRADE_BUILDING);
     } else if (this.number === 3) {
       this.scene.game.tutorial.start(TutorialStep.BUILD_AMMUNITION);

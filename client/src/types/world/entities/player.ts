@@ -13,7 +13,7 @@ export interface IPlayer extends ISprite, IEnemyTarget {
   /**
    * Player experience.
    */
-  readonly experience: number;
+  experience: number;
 
   /**
    * Score amount.
@@ -155,7 +155,10 @@ export enum PlayerSkill {
   MAX_HEALTH = "MAX_HEALTH",
   SPEED = "SPEED",
   BUILD_AREA = "BUILD_AREA",
-  ASSISTANT = "ASSISTANT",
+  BUILD_SPEED = "BUILD_SPEED",
+  ATTACK_DAMAGE = "ATTACK_DAMAGE",
+  ATTACK_DISTANCE = "ATTACK_DISTANCE",
+  ATTACK_SPEED = "ATTACK_SPEED",
 }
 
 export enum MovementDirection {
@@ -174,12 +177,19 @@ export type PlayerData = {
   wawa?: Wawa;
 };
 
-export type PlayerSkillData = {
+export type PlayerSkillInfo = {
   label: string;
-  description: string;
   experience: number;
-  maxLevel: number;
-  currentLevel?: number;
+  target: PlayerSkillTarget;
+};
+
+export enum PlayerSkillTarget {
+  CHARACTER = "CHARACTER",
+  ASSISTANT = "ASSISTANT",
+}
+
+export type PlayerSkillData = PlayerSkillInfo & {
+  currentLevel: number;
 };
 
 export enum PlayerSuperskill {

@@ -5,6 +5,7 @@ import { ILive } from "./utils/live";
 import { Vector2D } from "@type/world/level";
 import { IShotInitiator } from "./shot";
 import { IEnemyTarget } from "./npc/enemy";
+import { TutorialStep } from "@type/tutorial";
 
 export interface IBuilding
   extends Phaser.GameObjects.Image,
@@ -53,6 +54,18 @@ export interface IBuilding
    * Check is actions not paused.
    */
   isActionAllowed(): boolean;
+
+  /**
+   * Bind hint on tutorial step
+   * @param step - Tutorial step
+   * @param text - Message
+   * @param condition - Show condition
+   */
+  bindTutorialHint(
+    step: TutorialStep,
+    text: string,
+    condition?: () => boolean
+  ): void;
 
   /**
    * Get building information params.
@@ -135,6 +148,13 @@ export interface IBuildingAmmunition extends IBuilding {
   use(amount: number): number;
 }
 
+export interface IBuildingBooster extends IBuilding {
+  /**
+   * Increase power.
+   */
+  readonly power: number;
+}
+
 export interface IBuildingTower extends IBuilding {
   /**
    * Current ammo in clip.
@@ -151,11 +171,14 @@ export interface IBuildingFactory {
   Health: number;
   Limit?: boolean;
   AllowByWave?: number;
+  MaxLevel: number;
   new (scene: IWorld, data: BuildingVariantData): IBuilding;
 }
 
 export enum BuildingEvents {
   UPGRADE = "upgrade",
+  BUY_AMMO = "buy_ammo",
+  BREAK = "break",
 }
 
 export enum BuildingVariant {
@@ -166,6 +189,7 @@ export enum BuildingVariant {
   TOWER_FROZEN = "TOWER_FROZEN",
   TOWER_LAZER = "TOWER_LAZER",
   RADAR = "RADAR",
+  BOOSTER = "BOOSTER",
   STAIR = "STAIR",
 }
 
@@ -177,6 +201,7 @@ export enum BuildingTexture {
   STAKING = "building/textures/staking",
   AMMUNITION = "building/textures/ammunition",
   RADAR = "building/textures/radar",
+  BOOSTER = "building/textures/booster",
   STAIR = "building/textures/stair",
 }
 
@@ -194,6 +219,7 @@ export enum BuildingIcon {
   RESOURCES = "building/icons/params/resources",
   SPEED = "building/icons/params/speed",
   DELAY = "building/icons/params/pause",
+  POWER = "building/icons/params/power",
 }
 
 export enum BuildingAudio {
@@ -234,15 +260,13 @@ export type BuildingControl = {
   onClick: () => void;
 };
 
-export type BuildingBuildData = {
-  variant: BuildingVariant;
-  instant?: boolean;
+export type BuildingVariantData = {
+  buildDuration?: number;
   positionAtMatrix: Vector2D;
 };
 
-export type BuildingVariantData = {
-  instant?: boolean;
-  positionAtMatrix: Vector2D;
+export type BuildingBuildData = BuildingVariantData & {
+  variant: BuildingVariant;
 };
 
 export type BuildingData = BuildingVariantData & {

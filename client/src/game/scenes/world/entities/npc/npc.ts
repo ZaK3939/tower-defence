@@ -155,8 +155,11 @@ export class NPC extends Sprite implements INPC {
     });
   }
 
-  public isFreezed() {
-    return this.freezeTimestamp > this.scene.getTime();
+  public isFreezed(withEffects?: boolean) {
+    return (
+      this.freezeTimestamp > this.scene.getTime() &&
+      (!withEffects || Boolean(this.freezeEffectTimer))
+    );
   }
 
   private findPathToTarget() {

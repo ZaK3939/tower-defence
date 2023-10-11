@@ -9,6 +9,7 @@ import {
   PLAYER_MOVEMENT_ANGLES,
   PLAYER_MOVEMENT_TARGET,
   PLAYER_MOVEMENT_KEYS,
+  PLAYER_MAX_SKILL_LEVEL,
 } from "@const/world/entities/player";
 import { Crystal } from "@game/scenes/world/entities/crystal";
 import { Stair } from "@game/scenes/world/entities/stair";
@@ -91,7 +92,10 @@ export class Player extends Sprite implements IPlayer {
     [PlayerSkill.MAX_HEALTH]: 1,
     [PlayerSkill.SPEED]: 1,
     [PlayerSkill.BUILD_AREA]: 1,
-    [PlayerSkill.ASSISTANT]: 1,
+    [PlayerSkill.BUILD_SPEED]: 1,
+    [PlayerSkill.ATTACK_DAMAGE]: 1,
+    [PlayerSkill.ATTACK_DISTANCE]: 1,
+    [PlayerSkill.ATTACK_SPEED]: 1,
   };
 
   public get upgradeLevel() {
@@ -400,13 +404,16 @@ export class Player extends Sprite implements IPlayer {
           level: nextLevel,
         });
       }
-      case PlayerSkill.ASSISTANT: {
+      default: {
         return nextLevel;
       }
     }
   }
 
   public upgrade(type: PlayerSkill) {
+    if (this.upgradeLevel[type] === PLAYER_MAX_SKILL_LEVEL) {
+      return;
+    }
     const experience = this.getExperienceToUpgrade(type);
 
     if (this.experience < experience) {
@@ -415,46 +422,12 @@ export class Player extends Sprite implements IPlayer {
       return;
     }
 
-    const nextValue = this.getUpgradeNextValue(type);
-
-    switch (type) {
-      case PlayerSkill.MAX_HEALTH: {
-        const addedHealth = nextValue - this.live.maxHealth;
-
-        this.live.setMaxHealth(nextValue);
-        this.live.addHealth(addedHealth);
-        if (this.scene.assistant) {
-          this.scene.assistant.live.setMaxHealth(nextValue);
-          this.scene.assistant.live.addHealth(addedHealth);
-        }
-        break;
-      }
-      case PlayerSkill.SPEED: {
-        this.speed = nextValue;
-        if (this.scene.assistant) {
-          this.scene.assistant.speed = nextValue;
-        }
-        break;
-      }
-      case PlayerSkill.BUILD_AREA: {
-        this.scene.builder.setBuildAreaRadius(nextValue);
-        break;
-      }
-      case PlayerSkill.ASSISTANT: {
-        if (this.scene.assistant) {
-          this.scene.assistant.level = nextValue;
-        }
-        break;
-      }
-    }
-
     this.setSkillUpgrade(type, this.upgradeLevel[type] + 1);
 
     this.experience -= experience;
 
-    this.scene.sound.play(PlayerAudio.UPGRADE);
-
     this.scene.game.tutorial.complete(TutorialStep.UPGRADE_SKILL);
+    this.scene.sound.play(PlayerAudio.UPGRADE);
   }
 
   private setSkillUpgrade(type: PlayerSkill, level: number) {
@@ -463,12 +436,9 @@ export class Player extends Sprite implements IPlayer {
     switch (type) {
       case PlayerSkill.MAX_HEALTH: {
         const addedHealth = nextValue - this.live.maxHealth;
+
         this.live.setMaxHealth(nextValue);
         this.live.addHealth(addedHealth);
-        if (this.scene.assistant) {
-          this.scene.assistant.live.setMaxHealth(nextValue);
-          this.scene.assistant.live.addHealth(addedHealth);
-        }
         break;
       }
       case PlayerSkill.SPEED: {
@@ -482,13 +452,8 @@ export class Player extends Sprite implements IPlayer {
         this.scene.builder.setBuildAreaRadius(nextValue);
         break;
       }
-      case PlayerSkill.ASSISTANT: {
-        if (this.scene.assistant) {
-          this.scene.assistant.level = nextValue;
-        }
-        break;
-      }
     }
+
     this.upgradeLevel[type] = level;
   }
 
@@ -587,14 +552,14 @@ export class Player extends Sprite implements IPlayer {
     this.scene.input.keyboard?.on(
       Phaser.Input.Keyboard.Events.ANY_KEY_DOWN,
       (event: KeyboardEvent) => {
-        toggleKeyState(event.key, true);
+        toggleKeyState(event.code, true);
       }
     );
 
     this.scene.input.keyboard?.on(
       Phaser.Input.Keyboard.Events.ANY_KEY_UP,
       (event: KeyboardEvent) => {
-        toggleKeyState(event.key, false);
+        toggleKeyState(event.code, false);
       }
     );
   }
