@@ -26,13 +26,28 @@ export const UpgradesListItem: React.FC<Props> = ({ type }) => {
   const world = useScene<IWorld>(GameScene.WORLD);
   const isMobile = useMobilePlatform();
   const isSmallScreen = useMatchMedia(INTERFACE_MOBILE_BREAKPOINT);
-  const getData = (): PlayerSkillData => ({
-    ...PLAYER_SKILLS[type],
-    experience: world.player.getExperienceToUpgrade(type),
-    currentLevel: world.player.upgradeLevel[type],
-  });
 
-  const [data, setData] = useState<PlayerSkillData>(getData);
+  const getData = (): PlayerSkillData | null => {
+    const excludedTypes = [
+      PlayerSkill.ATTACK_DAMAGE,
+      PlayerSkill.ATTACK_DISTANCE,
+      PlayerSkill.ATTACK_SPEED,
+    ];
+    if (
+      world.player.wawa?.petId === undefined &&
+      excludedTypes.includes(type)
+    ) {
+      return null;
+    }
+
+    return {
+      ...PLAYER_SKILLS[type],
+      experience: world.player.getExperienceToUpgrade(type),
+      currentLevel: world.player.upgradeLevel[type],
+    };
+  };
+
+  const [data, setData] = useState<PlayerSkillData | null>(getData);
 
   const levels = useMemo(
     () =>
@@ -49,18 +64,12 @@ export const UpgradesListItem: React.FC<Props> = ({ type }) => {
   useSceneUpdate(
     world,
     () => {
-      if (
-        (type !== PlayerSkill.ATTACK_DAMAGE &&
-          type !== PlayerSkill.ATTACK_DISTANCE &&
-          type !== PlayerSkill.ATTACK_SPEED) ||
-        world.player.wawa?.petId
-      )
-        setData(ifModifiedObject(getData()));
+      setData(ifModifiedObject(getData()));
     },
     []
   );
 
-  return (
+  return data ? (
     <Container>
       <Info>
         <Label>{data.label}</Label>
@@ -97,5 +106,5 @@ export const UpgradesListItem: React.FC<Props> = ({ type }) => {
         </Action>
       )}
     </Container>
-  );
+  ) : null;
 };
