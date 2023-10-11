@@ -41,6 +41,7 @@ export default defineConfig(({ command, mode }) => {
       ),
       "process.env.COLYSEUS_ENDPOINT": JSON.stringify(env.COLYSEUS_ENDPOINT),
       "process.env.ALCHEMY_API_KEY": JSON.stringify(env.ALCHEMY_API_KEY),
+      "process.env.ALCHEMY_POLYGON_API_KEY": JSON.stringify(env.ALCHEMY_POLYGON_API_KEY),
       "process.env.SCORE_RECORD_ENDPOINT": JSON.stringify(
         env.SCORE_RECORD_ENDPOINT
       ),
