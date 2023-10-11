@@ -183,7 +183,7 @@ export const DIFFICULTY = {
    * Building: Staking
    */
 
-  BUILDING_STAKING_COST: 20, // Building cost
+  BUILDING_STAKING_COST: 15, // Building cost
   BUILDING_STAKING_HEALTH: 300, // Health
   BUILDING_STAKING_DELAY: 1300, // Pause between resource generations
   BUILDING_STAKING_DELAY_GROWTH: -0.154, // Pause growth by level (Linear)
