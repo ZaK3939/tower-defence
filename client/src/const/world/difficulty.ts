@@ -95,7 +95,7 @@ export const DIFFICULTY = {
   ENEMY_ARMOUR_GROWTH: 0.38, // Armour growth by wave number (Quadratic)
   ENEMY_ARMOUR_GROWTH_RETARDATION_LEVEL: 15, // Level for armour growth retardation
   ENEMY_SPEED: 60, // Movement speed
-  ENEMY_SPEED_GROWTH: 0.1, // Speed growth by wave number (Linear)
+  ENEMY_SPEED_GROWTH: 0.03, // Speed growth by wave number (Linear)
   ENEMY_SPEED_GROWTH_MAX_LEVEL: 13, // Level for limit speed growth
   ENEMY_DAMAGE: 90, // Attack damage
   ENEMY_DAMAGE_GROWTH: 0.22, // Damage growth by wave number (Quadratic)
@@ -215,7 +215,7 @@ export const DIFFICULTY = {
    */
 
   BUILDING_BOOSTER_COST: 80, // Building cost
-  BUILDING_BOOSTER_ALLOW_BY_WAVE: 6, // Minimal wave for allow build
+  BUILDING_BOOSTER_ALLOW_BY_WAVE: 2, // Minimal wave for allow build
   BUILDING_BOOSTER_HEALTH: 300, // Health
   BUILDING_BOOSTER_RADIUS: 80, // Increase radius
   BUILDING_BOOSTER_RADIUS_GROWTH: 0.2, // Radius growth by level (Linear)
